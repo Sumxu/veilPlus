@@ -71,7 +71,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     let soldOutNumber = Number(soldOutNumbers);
     const surplusNumber = maxMint.toNumber() - soldOutNumber;
-    
     const percentage = (soldOutNumber / maxMint.toNumber()) * 100;
     setSurplus(surplusNumber);
     setPercentage(percentage);
@@ -106,6 +105,10 @@ const Home: React.FC = () => {
       (claimed / Number(fromWei(maxAmount, 18, true, 2))) * 100;
     return percentage;
   };
+  const buyClick=()=>{
+    console.log("buyClick--")
+    setShowBuyNftPopup(true)
+  }
   //获取tokenId 数组
   const multicallFn = () => {
     const calls = Array.from({ length: Number(balanceOf) }).map((_, index) => ({
@@ -186,7 +189,7 @@ const Home: React.FC = () => {
     <>
       <div className="home-page">
         <BackHeader
-          title={t("NFT股东")}
+          title={t("节点")}
           rightIcon={listIcon}
           rightUrl="/outputList"
         />
@@ -201,165 +204,58 @@ const Home: React.FC = () => {
                 </span>
               </div>
             </div>
-            <div className="number-info-option">
-              <div className="number-item">
-                <div className="number-item-top">{maxMint.toString()}</div>
-                <div className="number-item-end">{t("首期发售量(枚)")}</div>
-              </div>
-              <div className="line-item"></div>
-              <div className="number-item">
-                <div className="number-item-top">
-                  {fromWei(price, 18, true, 2)}
-                </div>
-                <div className="number-item-end">{t("发售价")}(USDT)</div>
-              </div>
-            </div>
-            <div className="progressBar-option">
-       
-              <div className="progress-bar">
-                <div
-                  className="progress-bar-check"
-                  style={{ width: `${percentage.toFixed(2)}%` }}
-                ></div>
-              </div>
-              <div className="progress-bar-number">
-                <div className="number-item">
-                  {t("已售")}：{soldOutNumbers.toString()} 
-                </div>
-                <div className="number-item">
-                  {t("剩余")}: <span className="spn-1">{surplus}</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div className="me-tools-box">
           <div className="me-header-option">
-            <div className="item-txt">{t("我的")}NFT</div>
-            <div className="item-txt">{balanceOf.toString()}</div>
+            <div className="item-txt">节点列表</div>
           </div>
-          {balanceOf.eq(0) ? (
-            <div className="no-buy-box">
-              <img className="logo-option" src={logoIcon} />
-              <div className="hint-txt-1">{t("您还没有购买")}NFT</div>
-              <div className="hint-txt-2">{t("成为NFT股东,享受更多权益")}</div>
-            </div>
-          ) : (
-            <div className="buy-box">
-              {/* <div className="buy-info-option">
-                <div className="buy-item-left">
-                  <div className="item-txt-1">+5.78</div>
-                  <div className="item-txt-2">昨日产出(TAX)</div>
-                </div>
 
-                <div className="buy-item-right">
-                  <div className="item-txt-1">1,538.02</div>
-                  <div className="item-txt-2">累计产出(TAX)</div>
-                </div>
-              </div> */}
-              {nftListLoading ? (
-                <div className="loading-box">
-                  <Spin />
-                </div>
-              ) : (
-                minerList.map((item, index) => (
-                  <div
-                    className={`buy-option ${
-                      nftPercentage(index) !== 100
-                        ? "buy-option-no-success-bg"
-                        : "buy-option-success-bg"
-                    }`}
-                    key={index}
-                  >
-                    <div className="buy-header-option">
-                      <div className="left-option">
-                        <img className="logo" src={logoIcon} />
-                        <div className="name">
-                          #{tokenIds[index]?.toString()}
-                        </div>
-
-                        <div
-                          className={
-                            nftPercentage(index) !== 100 ? "tag" : "tag-success"
-                          }
-                        >
-                          {nftPercentage(index) !== 100
-                            ? t("释放中…")
-                            : t("已释放完")}
-                        </div>
-                      </div>
-
-                      {nftPercentage(index) !== 100 && (
-                        <div
-                          className={`tag-right ${
-                            pendIngBtnLoading === index ? "disabled" : ""
-                          }`}
-                          onClick={() =>
-                            pendIngBtnLoading !== index && getPendIng(index)
-                          }
-                        >
-                          {pendIngBtnLoading === index ? (
-                            <Spin />
-                          ) : (
-                            <span>{t("领取")}</span>
-                          )}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="progress-bar">
-                      <div
-                        className="progress-bar-check"
-                        style={{ width: `${nftPercentage(index)}%` }}
-                      ></div>
-                    </div>
-
-                    <div className="info-txt-option">
-                      <div className="info-txt-1">{t("总产值")}</div>
-                      <div className="info-txt-1">{t("待领取")}</div>
-                      <div className="info-txt-1">{t("已领取")}</div>
-                    </div>
-
-                    <div className="info-txt-option">
-                      <div className="info-txt-2">
-                        {fromWei(maxAmount, 18, true, 2)} TAX
-                      </div>
-                      <div className="info-txt-2">
-                        {fromWei(pendingList[index], 18, true, 2)} TAX
-                      </div>
-                      <div className="info-txt-2">
-                        {fromWei(item.claimed, 18, true, 2)} TAX
+          <div className="buy-box">
+            {nftListLoading ? (
+              <div className="loading-box">
+                <Spin />
+              </div>
+            ) : (
+              [1, 2].map((item, index) => (
+                <div
+                  className={`buy-option ${
+                    12 !== 100
+                      ? "buy-option-no-success-bg"
+                      : "buy-option-success-bg"
+                  }`}
+                  key={index}
+                >
+                  <div className="buy-header-option">
+                    <div className="left-option">
+                      <div className="name">节点名称</div>
+                      <div className='tag'>
+                          USDT:12
                       </div>
                     </div>
+                    <span className="tag-right" onClick={()=>buyClick()}> {t("购买")}</span> 
                   </div>
-                ))
-              )}
 
-              {/* <div className="buy-option">
-                <div className="buy-header-option">
-                  <img className="logo" src={logoIcon} />
-                  <div className="name">#00893288</div>
-                  <div className="tag-success">已释放完</div>
+                  <div className="progress-bar">
+                    <div
+                      className="progress-bar-check"
+                      style={{ width: `12%` }}
+                    ></div>
+                  </div>
+
+                  <div className="info-txt-option">
+                    <div className="info-txt-1">{t("已售")}</div>
+                    <div className="info-txt-1">{t("剩余")}</div>
+                  </div>
+
+                  <div className="info-txt-option">
+                    <div className="info-txt-2">1200</div>
+                    <div className="info-txt-2">1200</div>
+                  </div>
                 </div>
-                <div className="progress-bar">
-                  <div className="progress-bar-check"></div>
-                </div>
-                <div className="info-txt-option">
-                  <div className="info-txt-1">总产值</div>
-                  <div className="info-txt-1">已产出</div>
-                </div>
-                <div className="info-txt-option">
-                  <div className="info-txt-2">1000.00 TAX</div>
-                  <div className="info-txt-2">537.89 TAX</div>
-                </div>
-              </div> */}
-            </div>
-          )}
-          {balanceOf.toNumber() !== 5 && (
-            <div className="btn-option" onClick={openPopupClick}>
-              {t("立即购买")}NFT
-            </div>
-          )}
+              ))
+            )}
+          </div>
         </div>
       </div>
       <Drawer

@@ -122,7 +122,7 @@ function BuyNftPopup(Props: buyNftPopupClass) {
   return (
     <div className="BuyNftPopup">
       <div className="header-top-box">
-        <div className="txt">{t("购买")}NFT</div>
+        <div className="txt">{t("购买")}节点</div>
         <div className="icon-close" onClick={() => Props.onClose()}>
           <CloseOutline fontSize={14} color="#969696" />
         </div>
