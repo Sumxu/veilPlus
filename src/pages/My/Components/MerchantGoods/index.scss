@@ -1,0 +1,112 @@
+.MerchantGoods {
+  margin-top: 20px;
+  .hintTxt {
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  .inputBox {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 36px;
+    padding: 8px 18px;
+    .searchIcon {
+      flex: none;
+    }
+    .inputClass {
+      margin-left: 8px;
+      flex: auto;
+    }
+  }
+  .tab-box {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .tab-item {
+      width: 23%;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .tab-active-item {
+      background: #0be72f;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+
+  .goodsListBox {
+    margin-top: 16px;
+    .goodsItem {
+      margin-bottom: 16px;
+      background: #272727;
+      border-radius: 8px;
+      padding: 12px 8px;
+      box-sizing: border-box;
+      .topOption {
+        display: flex;
+        align-items: center;
+        .goodsImgLeft {
+          width: 80px;
+          height: 80px;
+          border-radius: 8px;
+          background: skyblue;
+          flex: none;
+        }
+        .goodsRight {
+          flex: auto;
+          margin-left: 12px;
+          .goodsName {
+            font-weight: 400;
+            font-size: 14px;
+            color: #ffffff;
+            width: 230px;
+            white-space: nowrap; /* 不换行 */
+            overflow: hidden; /* 隐藏超出部分 */
+            text-overflow: ellipsis; /* 显示省略号 */
+          }
+          .goodsTypeTxt {
+            margin-top: 12px;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+          }
+          .goodsPriceOption {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            .usdtIcon {
+              width: 18px;
+              height: 18px;
+            }
+            .price {
+              margin-left: 4px;
+              font-weight: bold;
+              font-size: 16px;
+              color: #0be72f;
+            }
+          }
+        }
+      }
+      .endOption {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .spn {
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.65);
+        }
+      }
+    }
+  }
+}

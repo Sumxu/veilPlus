@@ -1,0 +1,40 @@
+.MerchantDataInfoPage {
+  margin-top: 20px;
+  .hintTxt {
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  .boxList {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    .boxItem {
+      width: 165px;
+      height: 75px;
+      display: flex;
+      border-radius: 8px;
+      background: #272727;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      .price {
+        font-weight: bold;
+        font-size: 16px;
+        color: #ffffff;
+      }
+      .yellowColor {
+        color: #0be72f;
+      }
+      .txt {
+        margin-top: 6px;
+        font-weight: 400;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+  }
+}

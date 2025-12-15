@@ -1,0 +1,376 @@
+import { message } from "antd";
+import { ethers, BigNumber } from "ethers";
+
+/**
+ * 格式化钱包地址
+ * @param addr 钱包地址
+ * @param prefixLen 前缀长度，默认 7
+ * @param suffixLen 后缀长度，默认 4
+ * @returns 格式化后的地址，例如：0x1234567....abcd
+ */
+export function formatAddress(
+  addr?: string,
+  prefixLen = 7,
+  suffixLen = 4
+): string {
+  if (!addr) return "";
+  return `${addr.slice(0, prefixLen)}....${addr.slice(-suffixLen)}`;
+}
+/**
+ * 根据数字的位数生成掩码
+ * @param {number|string} value - 原始数值或字符串
+ * @param {string} char - 替换字符（默认 *）
+ * @param {boolean|string} convert - 控制行为：
+ *   - true: 返回原始值
+ *   - false: 用 char 替换
+ *   - 字符串: 用该字符串替换
+ * @returns {string}
+ */
+export const getMask = (value, char = "*", convert = false) => {
+  if (value === null || value === undefined) return "";
+
+  const str = String(value);
+
+  // ✅ 如果 convert 为 true，直接返回原始内容
+  if (convert === true) return str;
+
+  // ✅ 如果 convert 是字符串，使用它作为掩码字符
+  let symbol = char;
+  if (typeof convert === "string") symbol = convert;
+  return symbol.repeat(str.length);
+};
+
+/**
+ * 检查是否是有效的以太坊地址
+ * @param addr 钱包地址
+ * @returns 如果是有效地址返回 true，否则 false
+ */
+export function isValidAddress(addr?: string): boolean {
+  if (!addr) return false;
+  try {
+    return ethers.utils.isAddress(addr);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 将最小单位（如 wei）转换为人类可读的格式（如 ETH）
+ * @param value 要转换的值，可以是 string | number | bigint
+ * @param decimals 小数位数，默认 18（Ether）
+ * @param fixed 是否固定为小数位数（默认保留 4 位）
+ * @returns 格式化后的字符串
+ */
+export function fromWei(
+  value: string | number | bigint | BigNumber,
+  decimals = 18,
+  fixed = true,
+  precision = 4
+): string {
+  if (value == "") {
+    return "";
+  }
+  if (value === undefined || value === null) return "0";
+  try {
+    const etherValue = ethers.utils.formatUnits(value.toString(), decimals);
+
+    if (!fixed) return etherValue;
+
+    return truncateDecimal(etherValue, precision);
+  } catch (error) {
+    console.error("fromWei 转换失败:", error);
+    return "0";
+  }
+}
+
+function truncateDecimal(value: string, decimals: number): string {
+  if (!value.includes(".")) return value;
+
+  const [integer, fraction = ""] = value.split(".");
+  const truncated = fraction.slice(0, decimals);
+  return `${integer}.${truncated.padEnd(decimals, "0")}`;
+}
+
+/**
+ * 将 Ether 或代币单位转换为最小单位（如 wei）
+ * @param value 字符串或数字
+ * @param decimals 小数位数（默认为 18）
+ * @returns 最小单位的 bigint 值
+ */
+export function toWei(
+  value: string | number | bigint,
+  decimals = 18
+): BigNumber {
+  if (value === undefined || value === null) return BigNumber.from(0);
+  try {
+    return ethers.utils.parseUnits(value.toString(), decimals);
+  } catch (error) {
+    console.error("toWei 转换失败:", error);
+    return BigNumber.from(0);
+  }
+}
+
+// 钱包地址截取
+export function SubAddress(address: string): string | null {
+  if (address) {
+    return (
+      address.substr(0, 4) +
+      "..." +
+      address.substr(address.length - 4, address.length)
+    );
+  } else {
+    return null;
+  }
+}
+
+// 全局消息通知
+export function Totast(
+  Message: string,
+  type: "success" | "error" | "info" | "warning" | "loading"
+) {
+  switch (type) {
+    case "success":
+      message.success(Message);
+      break;
+    case "error":
+      message.error(Message);
+      break;
+    case "info":
+      message.info(Message);
+      break;
+    case "warning":
+      message.warning(Message);
+      break;
+    case "loading":
+      message.loading(Message);
+      break;
+    default:
+      message.info(Message);
+  }
+}
+
+// 小数点截取
+export function DecSubt(Num: string, len: number) {
+  if (Num.indexOf(".") != -1) {
+    const NumArr = Num.split(".");
+    const Head = NumArr[0];
+    const foot = NumArr[1];
+    if (foot.length > len) {
+      const footSub = foot.substring(0, len);
+      return Head + "." + footSub;
+    } else {
+      return Num;
+    }
+  } else {
+    return Num;
+  }
+}
+
+// 代币名称
+export function TokenName() {
+  return "BRT";
+}
+
+export function formatDate(dateString) {
+  // 解析 ISO 格式的日期字符串
+  const date = new Date(dateString);
+
+  // 获取日期部分：MM/DD/YYYY
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份从 0 开始，所以加 1
+  const day = String(date.getDate()).padStart(2, "0");
+  const year = date.getFullYear();
+
+  const formattedDate = `${month}/${day}/${year}`;
+
+  // 获取时间部分：HH:mm:ss
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+  // 返回包含日期和时间的对象
+  return {
+    date: formattedDate,
+    time: formattedTime,
+    dateTime: formattedDate + " " + formattedTime,
+  };
+}
+export async function ensureBNBChain(): Promise<boolean> {
+  const { ethereum } = window;
+
+  if (!ethereum) {
+    message.error("未检测到钱包环境");
+    return false;
+  }
+
+  try {
+    const currentChainId = await ethereum.request({ method: "eth_chainId" });
+    if (currentChainId === "0x38") {
+      // 已经在BNB链
+      return true;
+    }
+    // 请求切换到BNB主网（Metamask中默认已配置）
+    await ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x38" }],
+    });
+    return true;
+  } catch (error) {
+    const err = error as Error;
+    message.error("请手动切换至 BNB 主链：" + err.message);
+    return false;
+  }
+}
+export const concatSign = (bigNumber: string): string => {
+  // 获取当前时间戳（秒）
+  const timestamp = Math.floor(Date.now() / 1000).toString();
+
+  // 拼接参数
+  const combined = `${bigNumber}${timestamp}`;
+
+  return combined;
+};
+/**
+ * 将用户输入的代币数量（如 "1.5"）转换为 BigNumber（带指定精度）
+ * @param value 用户输入的数值（字符串或数字）
+ * @param decimals 精度，默认 18
+ * @returns {ethers.BigNumber} BigNumber 类型的整数值
+ */
+export const toBigNumberUnits = (
+  value: string | number,
+  decimals: number = 18
+): ethers.BigNumber => {
+  if (value === null || value === undefined || value === "") {
+    throw new Error("Invalid value: value is required");
+  }
+
+  try {
+    // ethers.utils.parseUnits 只接受字符串
+    return ethers.utils.parseUnits(String(value), decimals);
+  } catch (err) {
+    console.error("❌ toBigNumberUnits error:", err);
+    throw new Error("Invalid number format");
+  }
+};
+//bigNumber加法
+export const BigNumberAdd = (big1: BigNumber, big2: BigNumber) => {
+  const a = BigNumber.from(big1.toString()); // 1e18
+  const b = BigNumber.from(big2.toString()); // 2e18
+  const sum = a.add(b);
+  return sum;
+};
+
+/**
+ * 格式化数字为千分位，保留两位小数
+ * @param num 输入数字或字符串
+ * @returns 格式化后的字符串，如 20000 -> "20,000.00"
+ */
+export const formatNumber = (num: number | string): string => {
+  if (num === null || num === undefined || num === "") return "0.00";
+
+  const numberValue = typeof num === "string" ? parseFloat(num) : num;
+
+  if (isNaN(numberValue)) return "0.00";
+
+  return numberValue.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+};
+
+/**
+ *
+ * @param timeStr 2025-10-19T17:32:00.02 格式数据
+ * @returns  //返回毫秒级时间戳
+ */
+export const toTimestamp = (timeStr: string): number =>
+  new Date(timeStr).getTime();
+
+/**
+ * 计算两个 BigNumber 的整数百分比（不保留小数）
+ * @param {BigNumber} part - 分子
+ * @param {BigNumber} total - 分母
+ * @returns {number} 整数百分比 (例如 25)
+ */
+export const calcBigNumberPercentInt = (
+  part: BigNumber,
+  total: BigNumber
+): number => {
+  if (!part || !total || total.isZero()) return 0;
+
+  // (part * 100) / total
+  const result = part.mul(100).div(total);
+
+  return result.toNumber(); // 返回普通数字，比如 25
+};
+
+export const getLangObj = () => {
+  const lang = localStorage.getItem("lang")??'zh';
+  let langInfo = {
+    label: "",
+    value: "",
+  };
+  switch (lang) {
+    case "en":
+      langInfo.label = "English";
+      langInfo.value = "2";
+      return langInfo;
+      break;
+    case "zh":
+      langInfo.label = "简体中文";
+      langInfo.value = "1";
+      return langInfo;
+      break;
+    case "zhHant":
+      langInfo.label = "繁体中文";
+      langInfo.value = "3";
+      break;
+  }
+
+  return langInfo;
+};
+/**
+ * 复制文本到剪贴板
+ * @param text 要复制的内容
+ * @param message 复制成功提示（可选）
+ */
+export function copyToClipboard(text: string, message: string = "复制成功") {
+  if (!text) return;
+
+  // 现代浏览器支持 navigator.clipboard
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        Totast(message, "success");
+      },
+      () => {
+        Totast("复制失败，请手动复制", "error");
+      }
+    );
+  } else {
+    // 兼容旧浏览器
+    const input = document.createElement("textarea");
+    input.value = text;
+    document.body.appendChild(input);
+    input.select();
+
+    try {
+      const successful = document.execCommand("copy");
+      if (successful) {
+        Totast(message, "success");
+      } else {
+        Totast("复制失败，请手动复制", "error");
+      }
+    } catch (err) {
+      Totast("复制失败，请手动复制", "error");
+    }
+
+    document.body.removeChild(input);
+  }
+}
+
+export function timestampToFull(ts: number, isMs = false) {
+  const date = new Date(isMs ? ts : ts * 1000);
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
+

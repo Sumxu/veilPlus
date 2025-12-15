@@ -1,0 +1,109 @@
+.out-put-list-page {
+  min-height: 100vh;
+  background: #191919;
+  padding: 60px 12px 30px 12px;
+  .item-box {
+    background: #373737;
+    border-radius: 8px;
+    overflow: hidden;
+    .item-header-option {
+      display: flex;
+      align-items: center;
+      padding: 16px 12px;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      .left-option {
+        display: flex;
+        align-items: center;
+        .logo-icon {
+          width: 24px;
+          height: 24px;
+        }
+        .left-name {
+          margin-left: 8px;
+          font-weight: bold;
+          font-size: 14px;
+          color: #ffffff;
+        }
+      }
+      .right-option {
+        display: flex;
+        align-items: center;
+
+        .right-info {
+          .txt-1 {
+            font-weight: bold;
+            font-size: 12px;
+            color: #ffffff;
+          }
+          .txt-2 {
+            font-weight: 400;
+            font-size: 12px;
+            text-align: right;
+            color: rgba(255, 255, 255, 0.64);
+          }
+        }
+        .right-icon {
+          margin-left: 12px;
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.64);
+        }
+      }
+    }
+    .list-item-header {
+      overflow-y: scroll;
+      padding-top: 16px;
+      padding-right: 16px;
+      padding-left: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .header-txt {
+        font-weight: bold;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .header-txt-1 {
+        width: 40%;
+      }
+      .header-txt-2 {
+        width: 20%;
+      }
+      .header-txt-3 {
+        width: 40%;
+        text-align: right;
+      }
+    }
+    .list-item-option {
+      height: calc(100vh - 130px);
+      overflow-y: scroll;
+    }
+    .list-item {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+      .item-txt {
+        font-size: 12px;
+        color: #ffffff;
+        width: 40%;
+      }
+      .item-txt-no {
+        width: 20%;
+        font-size: 12px;
+        text-align: left;
+        color: #fff;
+      }
+      .item-txt-right {
+        width: 40%;
+        text-align: right;
+        font-weight: bold;
+        font-size: 12px;
+        color: #0be72f;
+      }
+    }
+  }
+}

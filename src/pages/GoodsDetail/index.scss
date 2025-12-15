@@ -1,0 +1,202 @@
+.goodsDetailPage {
+  height: 100vh;
+  background: #1f1f1f;
+  position: relative;
+  .leftBackBox {
+    padding: 16px;
+  }
+  .goodsDetailContent {
+    overflow-y: scroll;
+    padding-bottom: 40px;
+    color: #fff;
+    max-height: calc(100vh - 70px);
+  }
+  .goodsInfoBox {
+    background: #272727;
+    padding: 16px;
+    box-sizing: border-box;
+    .goodsPrice {
+      display: flex;
+      align-items: center;
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+      .price {
+        margin-left: 4px;
+        font-weight: bold;
+        font-size: 20px;
+        color: #0be72f;
+      }
+    }
+    .txt {
+      margin-top: 12px;
+      font-weight: 500;
+      font-size: 18px;
+      color: #ffffff;
+    }
+    .hintOption {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .item {
+        width: 165px;
+        height: 55px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .txt1 {
+          font-weight: bold;
+          font-size: 14px;
+        }
+        .txt2 {
+          font-weight: 400;
+          font-size: 12px;
+        }
+      }
+      .item1bg {
+        background: rgba(253, 136, 10, 0.15);
+      }
+      .item2bg {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .item1Color {
+        color: #fd880a;
+      }
+      .item2TopColor {
+        color: #ffffff;
+      }
+      .item2EndColor {
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+  }
+  .goodsOptions {
+    background: #272727;
+    padding: 16px;
+    box-sizing: border-box;
+    margin-top: 8px;
+    .goodsInfoLine {
+      background: #191919;
+      width: 100%;
+      height: 1px;
+    }
+    .goodsInfoItem {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      .label {
+        width: 70px;
+        flex: none;
+        font-weight: 500;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+        display: flex;
+        align-items: center;
+        .leftIcon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      .value {
+        flex: auto;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        .tagOption {
+          display: flex;
+          align-items: center;
+          margin-right: 12px;
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
+          .name {
+            margin-left: 4px;
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+          }
+        }
+      }
+      .icon {
+        flex: none;
+      }
+      .rightTxt {
+        font-weight: 400;
+        font-size: 12px;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .goodsDetailContent {
+    margin-top: 8px;
+    .goodsTopBox {
+      background: #272727;
+      display: flex;
+      height: 50px;
+      align-items: center;
+      justify-content: center;
+      .leftLine {
+        width: 140px;
+        height: 12px;
+      }
+      .centerTxt {
+        margin-left: 6px;
+        margin-right: 6px;
+        font-weight: 500;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+    .richTextContent{
+      height: auto;
+      img{
+        width: 375px;
+        height: auto;
+      }
+    }
+  }
+  .endFixedBox {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 0px 16px;
+    background: #272727;
+    .leftOption {
+      flex: auto;
+      .spn1 {
+        width: 22px;
+        height: 22px;
+      }
+      .spn2 {
+        margin-top: 2px;
+        font-weight: 600;
+        font-size: 10px;
+        color: #0be72f;
+      }
+    }
+    .rightOption {
+      width: 170px;
+      flex: none;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: #0be72f;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}

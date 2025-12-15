@@ -1,0 +1,41 @@
+.back-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    padding: 0 16px;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    top: 0;
+     &.scrolled {
+    background:  #191919;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+    .back-left{
+        width: 80px;
+    }
+    .back-img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .back-header-title {
+        font-size: 18px;
+        color: #fff;
+        
+    }
+
+    .right-text {
+        text-align: right;
+        font-size: 14px;
+        color: #67BAFF;
+        width: 80px;
+        .right-header-icon{
+            width: 24px;
+            height: 24px;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+.addressEditPage {
+  height: 100vh;
+  background: #000000;
+  padding: 16px;
+  .addressContent {
+    margin-top: 12px;
+  }
+  .addressBtnBox {
+    margin-top: 32px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #0be72f;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+  .box {
+    background-color: #272727;
+    border-radius: 8px;
+    padding: 0px 16px;
+    margin-bottom: 12px;
+    .addressInfoItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0px;
+      .leftLabel {
+        flex: none;
+        width: 80px;
+        font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .rightContent {
+        flex: auto;
+        display: flex;
+        align-items: center;
+        .distpickerWrapper {
+          color: rgba(255, 255, 255, 0.75);
+        }
+      }
+    }
+    .addressInfoBottomBorder {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  }
+  .settingCheck {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .leftItem {
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .adm-switch-inner {
+      // background: #000000 !important;
+    }
+  }
+}
+.adm-cascader-header{
+  background: #fff !important;
+}
+.adm-tabs-tab-list{
+  background: #fff !important;
+}
+
+.adm-cascader{
+  background: #fff !important;
+  .adm-cascader-header-button a{
+      color: #0be72f !important;
+  }
+}

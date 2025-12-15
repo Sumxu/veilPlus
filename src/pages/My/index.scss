@@ -1,0 +1,9 @@
+.my-page {
+  background: #f3f3f3;
+  height: 100vh;
+  .tools-my-box {
+    height: calc(100vh - 196px - 49px);
+    overflow-y: scroll;
+    padding-bottom: 60px;
+  }
+}

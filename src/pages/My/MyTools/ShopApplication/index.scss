@@ -1,0 +1,67 @@
+.shopApplicationPage {
+  height: 100vh;
+  background: #1d1d1d;
+  padding: 16px;
+  .shopApplicationContentBox {
+    margin-top: 24px;
+    .item {
+      margin-bottom: 12px;
+      background: url("@/assets/component/shopAddBg.png");
+      padding: 16px 12px;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      .itemHeaderOption {
+        display: flex;
+        align-items: center;
+        .iconImg {
+          width: 20px;
+          height: 20px;
+        }
+        .shopTxt {
+          margin-left: 8px;
+          font-weight: bold;
+          font-size: 16px;
+          color: #ffffff;
+        }
+      }
+      .hintTxt {
+        margin-top: 6px;
+        margin-left: 30px;
+        font-weight: 400;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .bottomInfoOption {
+        margin-top: 12px;
+        background: #191919;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left:12px;
+        .leftTxt {
+          .spn1 {
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+          }
+          .spn2 {
+            margin-left: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #0be72f;
+          }
+        }
+        .btnTxt {
+          text-align: center;
+          padding: 6px 32px;
+          background: #ffffff;
+          border-radius: 16px;
+          font-weight: bold;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.85);
+        }
+      }
+    }
+  }
+}

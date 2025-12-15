@@ -1,0 +1,139 @@
+.my-info-box {
+  background: #191919;
+  background-image: url("@/assets/home/goodsBoxBg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  .info-number-option {
+    padding-top: 28px;
+    display: flex;
+    align-items: center;
+    .info-number-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .number-option {
+        font-weight: bold;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+      .txt-option {
+        margin-top: 4px;
+        font-weight: 400;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.65);
+      }
+    }
+    .info-number-line {
+      width: 1px;
+      height: 40px;
+      background: #000000;
+      opacity: 0.12;
+    }
+  }
+  .btn-box {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 16px;
+    .btn-option {
+      // width: 165px;
+      flex: 1;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 18px;
+    }
+    .btn-withdraw {
+      background: #191919;
+      font-weight: 500;
+
+      font-size: 14px;
+      color: #ffffff;
+    }
+    .btn-conversion {
+      background: #0be72f;
+      font-weight: 500;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+  .info-tax-balance-box {
+    margin-top: 20px;
+    margin-left: 16px;
+    margin-right: 16px;
+    background-image: url("@/assets/my/NFT.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .info-tax-balance-option {
+      padding: 18px 12px;
+      .topCenterInfo {
+        display: flex;
+        justify-content: space-between;
+        .left-option {
+          flex: auto;
+          display: flex;
+          .icon {
+            width: 32px;
+            height: 32px;
+          }
+          .left-info-item {
+            margin-left: 12px;
+            .number-option {
+              font-weight: bold;
+              font-size: 16px;
+              color: #ffffff;
+            }
+            .txt-option {
+              margin-top: 4px;
+              font-size: 12px;
+              color: rgba(255, 255, 255, 0.65);
+            }
+          }
+        }
+        .right-option-btn {
+          width: 120px;
+          min-width: 120px; /* 防止内容撑开 */
+          max-width: 120px;
+          height: 36px;
+          background: none !important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 18px;
+          border: 1px solid #0be72f;
+          font-weight: 500;
+          font-size: 14px;
+          color: #0be72f;
+        }
+      }
+      .endCenterInfo {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        .txtOption {
+          display: flex;
+          align-items: center;
+          flex: 1;
+          .label {
+            font-weight: bold;
+            font-size: 10px;
+            color: #ffffff;
+          }
+          .value {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.65);
+          }
+        }
+      }
+    }
+    .info-tax-line {
+      background: rgba(255, 255, 255, 0.15);
+      height: 1px;
+      width: 100%;
+    }
+  }
+}

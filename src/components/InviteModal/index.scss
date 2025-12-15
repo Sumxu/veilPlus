@@ -1,0 +1,36 @@
+.InviteModalPage {
+}
+.RestConnectWallBox {
+  > .Title {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  > .Message {
+    margin-top: 5px;
+    line-height: 20px;
+  }
+  > .inviteAddress {
+    margin-top: 10px;
+    > input {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      box-sizing: border-box;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+  > .But {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    > .Item {
+      box-sizing: border-box;
+      padding: 0 20px;
+      height: 40px;
+      line-height: 40px;
+      background: #29f136;
+      color: #000000;
+    }
+  }
+}

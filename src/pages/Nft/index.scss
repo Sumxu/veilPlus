@@ -1,0 +1,320 @@
+.home-page {
+  position: relative;
+  background: #f3f3f3 !important;
+  .loading-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .black-box {
+    height: 40px;
+    background: skyblue;
+  }
+  .header-box {
+    height: 290px;
+    .header-box-image {
+      padding-top: 70px;
+      background-image: url("@/assets/home/headerBg.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 290px;
+    }
+  }
+
+  .center-number-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .number-option {
+    display: inline-flex; /* 让对齐属性生效 */
+    align-items: center;
+    justify-content: center;
+    /* 只给 左上 & 右下 圆角 */
+    border: 1px solid rgba(246, 238, 181, 1);
+    border-radius: 8px 0 0 8px; /* 左上 & 左下圆角 */
+
+    /* 必须加，让圆角对 border-image 生效 */
+    .spn-1 {
+      padding: 3px 12px;
+      background: linear-gradient(180deg, #f6eeb5 0%, #d0c06d 100%);
+      border-radius: 8px 0px 0px 8px;
+      font-weight: 500;
+      font-size: 12px;
+      color: #000000;
+    }
+    .spn-2 {
+      padding: 3px 16px;
+      font-weight: 500;
+      font-size: 12px;
+      color: #e9d981;
+    }
+  }
+  .number-info-option {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .number-item {
+      flex: 1;
+      .number-item-top {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        color: #0be72f;
+      }
+      .number-item-end {
+        text-align: center;
+        margin-top: 8px;
+        font-weight: 400;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+    .line-item {
+      width: 1rpx;
+      height: 80px;
+      background: #ffffff;
+      opacity: 0.15;
+    }
+  }
+  .progressBar-option {
+    .progress-bar {
+      margin-top: 16px;
+      margin-left: 16px;
+      margin-right: 16px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      .progress-bar-check {
+        background: linear-gradient(270deg, #f6eeb5 0%, #d0c06d 100%);
+        border-radius: 6px;
+        width: 30%;
+        height: 100%;
+      }
+    }
+    .progress-bar-number {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 16px;
+      margin-right: 16px;
+      .number-item {
+        font-weight: 400;
+        font-size: 12px;
+        color: #ffffff;
+        .spn-1 {
+          color: #0be72f;
+        }
+      }
+    }
+  }
+  .me-tools-box {
+    background: #f3f3f3;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    background-image: url("@/assets/home/homeBg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 16px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 999;
+    box-sizing: border-box;
+    .me-header-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .item-txt {
+        font-weight: bold;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+    .no-buy-box {
+      background-repeat: no-repeat;
+      background-size: 100%;
+      height: 135px;
+      background-image: url("@/assets/home/homeSuccessBg.png");
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+      .logo-option {
+        width: 32px;
+        height: 32px;
+      }
+      .hint-txt-1 {
+        margin-top: 16px;
+        font-weight: bold;
+        font-size: 16px;
+        color: #ffffff;
+      }
+      .hint-txt-2 {
+        margin-top: 8px;
+        font-weight: 400;
+        font-size: 12px;
+        color: #0be72f;
+      }
+    }
+
+    .buy-box {
+      padding: 15px 12px;
+      box-sizing: border-box;
+      .buy-info-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 12px;
+        .buy-item-left {
+          height: 80px;
+          margin-right: 40px;
+          background: #0be72f;
+          border-radius: 8px;
+          width: 330px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .item-txt-1 {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.85);
+          }
+          .item-txt-2 {
+            margin-top: 4px;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.65);
+          }
+        }
+
+        .buy-item-right {
+          width: 330px;
+          height: 80px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: #191919;
+          border-radius: 8px;
+          .item-txt-1 {
+            font-weight: bold;
+            font-size: 20px;
+            color: #fff;
+          }
+          .item-txt-2 {
+            margin-top: 4px;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+          }
+        }
+      }
+      .buy-option-success-bg {
+        background-image: url("@/assets/home/homeSuccessBg.png");
+      }
+     .buy-option-no-success-bg {
+        background-image: url("@/assets/home/ingBg.png");
+      }
+      .buy-option {
+        margin-top: 16px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        box-sizing: border-box;
+        padding: 16px 12px;
+        .buy-header-option {
+          display: flex;
+          align-items: center;
+          margin-bottom: 12px;
+          .left-option {
+            display: flex;
+            align-items: center;
+            flex: auto;
+          }
+          .logo {
+            width: 32px;
+            height: 32px;
+          }
+          .name {
+            margin-left: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #ffffff;
+          }
+          .tag {
+            margin-left: 6px;
+            padding: 3px 6px;
+            font-weight: 500;
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.85);
+            background: linear-gradient(149deg, #0cfb57 0%, #069d1e 100%);
+          }
+          .tag-success {
+            margin-left: 6px;
+
+            padding: 3px 6px;
+            background: linear-gradient(149deg, #b8bcb9 0%, #666c67 100%);
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.85);
+          }
+          .tag-right {
+            border-radius: 4px;
+            margin-left: 6px;
+            padding: 3px 12px;
+            font-weight: 500;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.85);
+            background: linear-gradient(149deg, #0cfb57 0%, #069d1e 100%);
+          }
+        }
+        .progress-bar {
+          margin-top: 16px;
+          height: 6px;
+          background: rgba(255, 255, 255, 0.12);
+          border-radius: 6px;
+          .progress-bar-check {
+            // width: 40%;
+            background: linear-gradient(90deg, #069d1e 0%, #0cfb57 100%);
+            border-radius: 6px;
+            height: 100%;
+          }
+        }
+        .info-txt-option {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .info-txt-1 {
+            margin-top: 4px;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+          }
+          .info-txt-2 {
+            margin-top: 4px;
+
+            font-weight: 500;
+            font-size: 14px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    .btn-option {
+      margin-top: 16px;
+      line-height: 50px;
+      text-align: center;
+      height: 50px;
+      background: #0be72f;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}

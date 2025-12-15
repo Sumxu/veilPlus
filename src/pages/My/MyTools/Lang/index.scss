@@ -1,0 +1,32 @@
+.langPage {
+  height: 100vh;
+  background: #000000;
+  padding: 16px;
+  .box {
+    margin-top: 12px;
+    background-color: #272727;
+    border-radius: 8px;
+    padding: 0px 12px;
+    margin-bottom: 12px;
+    .boxInfoItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      .leftLabel {
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .rightBox {
+        .checkIcon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    .boxInfoBottomBorder {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  }
+}

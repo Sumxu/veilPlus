@@ -1,0 +1,235 @@
+.order-detail-page {
+  background: #191919;
+  height: 100vh;
+  .content-box {
+    padding-bottom: 24px;
+    margin: 16px;
+    height: calc(100vh - 170px);
+    overflow-y: scroll;
+  }
+
+  .wuLiuBox {
+    background: #272727;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    display: flex;
+    .leftIconOption {
+      flex: none;
+      background: #3aaeff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .icon {
+        width: 11px;
+        height: 8px;
+      }
+    }
+
+    .contentOption {
+      margin-left: 16px;
+      flex: auto;
+      .topContent {
+        font-weight: 500;
+        font-size: 16px;
+        color: #ffffff;
+        width: 230px;
+        overflow: hidden;
+        white-space: nowrap; /* 不换行 */
+        text-overflow: ellipsis; /* 超出显示省略号 */
+      }
+      .bottomOption {
+        margin-top: 8px;
+        font-weight: 400;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+    .rightOption {
+      flex: none;
+      .copyIcon {
+      margin-top: 4px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  .address-info-box {
+    margin-top: 12px;
+    background: #272727;
+    border-radius: 8px;
+    padding: 16px 12px;
+    box-sizing: border-box;
+    .info-header-option {
+      display: flex;
+      align-items: center;
+      .icon-option {
+        width: 20px;
+        height: 20px;
+        background: #0be72f;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .address-icon {
+          width: 12px;
+          height: 12px;
+        }
+      }
+      .right-option {
+        margin-left: 16px;
+        font-weight: 500;
+        font-size: 16px;
+        .spn-1 {
+          color: #ffffff;
+        }
+        .spn-2 {
+          color: #ffffff;
+          margin-left: 12px;
+        }
+      }
+    }
+
+    .addressDetailsOption {
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 12px;
+      margin-left: 37px;
+    }
+  }
+
+  .order-info-box {
+    margin-top: 24px;
+    background: #272727;
+    border-radius: 8px;
+    padding: 0px 16px 12px 16px;
+    box-sizing: border-box;
+    .item-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      .left-item-option {
+        font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .right-item-option {
+        display: flex;
+        align-items: center;
+        .spn-1 {
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+        }
+        .copyIcon {
+          margin-left: 4px;
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  .goodsInfoBox {
+    padding: 16px 13px;
+    margin-top: 12px;
+    background: #272727;
+    border-radius: 8px;
+    .headerTopOption {
+      display: flex;
+      align-items: center;
+      .Icon {
+        width: 18px;
+        height: 16px;
+      }
+      .txt {
+        margin-left: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+      }
+    }
+    .goodsItemOption {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      .goodsImg {
+        flex: none;
+        width: 80px;
+        height: 80px;
+        background: skyblue;
+        border-radius: 4px;
+      }
+      .goodsItemRightOption {
+        flex: auto;
+        margin-left: 12px;
+        .goodsItemHeader {
+          display: flex;
+          align-items: center;
+          .goodsItemTxt {
+            font-weight: 400;
+            font-size: 14px;
+            color: #ffffff;
+            width: 210px;
+          }
+          .goodsItemCount {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+          }
+        }
+        .goodsItemPrice {
+          margin-top: 12px;
+          display: flex;
+          align-items: center;
+          .priceIcon {
+            width: 18px;
+            height: 18px;
+          }
+          .goodsPrice {
+            margin-left: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #0be72f;
+          }
+        }
+        .goodsItemSpec {
+          margin-top: 4px;
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.65);
+        }
+      }
+    }
+
+    .goodsItemLineOption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      .leftOption {
+        font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .rightOption {
+        display: flex;
+        align-items: center;
+        .rightTxt {
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+        }
+        .rightTxtOrige {
+          color: #fd880a;
+        }
+      }
+    }
+  }
+}

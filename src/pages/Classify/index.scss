@@ -1,0 +1,22 @@
+.classify-page-box {
+  background: linear-gradient( 180deg, #272727 0%, #191919 100%);
+  height: calc(100vh - 44px);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  .header-box {
+    padding: 16px;
+  }
+  .classify-list-box {
+    display: flex;
+    .classify-left-option {
+      width: 108px;
+    }
+    .classify-content-option {
+      flex: 1;
+      background: #272727;
+      border-radius: 8px;
+      margin-right: 16px;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.classify-option {
+  box-sizing: border-box;
+  padding: 16px 12px;
+  width: 100%;
+  .classify-title {
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  .classify-content-scroll {
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
+    .content-scroll-item {
+      margin-top: 16px;
+      display: flex;
+
+      .left-img {
+        flex: none;
+        background: skyblue;
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+      }
+      .right-content {
+        height: 100%;
+        margin-left: 12px;
+        width: 100%;
+        .title-s {
+          flex: auto;
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+          height: 40px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .info-bottom {
+          margin-top: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .left-bottom {
+            display: flex;
+            align-items: center;
+            .usdt-icon {
+              width: 18px;
+              height: 18px;
+            }
+            .price-number {
+              margin-left: 4px;
+              font-weight: bold;
+              font-size: 16px;
+              color: #0be72f;
+            }
+          }
+          .right-btn {
+            padding: 2px 4px;
+            background: #fd880a;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.85);
+          }
+        }
+      }
+    }
+  }
+}

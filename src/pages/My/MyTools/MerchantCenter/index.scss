@@ -1,0 +1,131 @@
+.MerchantCenterPage {
+  height: 100vh;
+  background: #1d1d1d;
+  padding: 16px;
+  box-sizing: border-box;
+  .MerchantCenterContent{
+    height: calc(100vh - 40px);
+    overflow-y: scroll;
+  }
+  .headerTopBox {
+    margin-top: 50px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background: url("@/assets/component/shopDetailBg.png");
+    height: 150px;
+    position: relative;
+    border-radius: 16px;
+    .shopLogo {
+      position: absolute;
+      top: -20%;
+      left: 16px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #393939 0%, #000000 100%);
+      border: 3px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .logo {
+        width: 29px;
+        height: 26px;
+      }
+    }
+
+    .topInfo {
+      padding: 14px 0;
+      padding-left: 80px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      margin-left: 16px;
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .topTxt {
+        display: flex;
+        align-items: center;
+        .spn1 {
+          font-weight: bold;
+          font-size: 16px;
+          color: #ffffff;
+        }
+        .spn2 {
+          margin-left: 4px;
+          background: linear-gradient(180deg, #f6eeb5 0%, #d0c06d 100%);
+          border-radius: 4px;
+          padding: 2px 6px;
+          font-weight: 500;
+          font-size: 12px;
+          color: #000000;
+        }
+      }
+      .rightTxt{
+          .spn2 {
+          margin-left: 4px;
+          background: linear-gradient(180deg, #f6eeb5 0%, #d0c06d 100%);
+          border-radius: 4px;
+          padding: 2px 12px;
+          font-weight: 500;
+          font-size: 12px;
+          color: #000000;
+        }
+      }
+      .idTxt {
+        margin-top: 2px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+    .endOption {
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      .leftItem {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .price {
+          font-weight: bold;
+          font-size: 20px;
+          color: #ffffff;
+        }
+        .txt {
+          margin-top: 4px;
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.65);
+        }
+      }
+      .line {
+        height: 40px;
+        width: 1px;
+        background: #ffffff;
+        opacity: 0.25;
+      }
+      .rightItem {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .goodsInfoOption {
+          .spn1 {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+          }
+          .spn2 {
+            font-weight: 500;
+            font-size: 12px;
+            color: #ffffff;
+          }
+        }
+        .margin14{
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+}

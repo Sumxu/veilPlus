@@ -1,0 +1,22 @@
+.leftBackHeaderPage {
+  display: flex;
+  align-items: center;
+  .back-left {
+    width: 24px;
+    height: 24px;
+    .back-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .back-header-title {
+    font-weight: 600;
+    flex: 1;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .back-right {
+    width: 24px;
+  }
+}

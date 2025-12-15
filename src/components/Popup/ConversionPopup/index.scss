@@ -1,0 +1,129 @@
+.my-popup-page {
+  background: linear-gradient(180deg, #434545 0%, #161616 100%);
+  box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 16px 16px 0px 0px;
+  padding: 16px;
+  box-sizing: border-box;
+  .header-option {
+    display: flex;
+    align-items: center;
+    position: relative;
+    .title {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #ffffff;
+    }
+    .close-icon {
+      top: 0;
+      right: 16px;
+    }
+  }
+  .tag-box {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    background: rgba(253, 136, 10, 0.15);
+    border-radius: 4px;
+    padding: 6px 12px;
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+    .txt-option {
+      margin-left: 4px;
+      font-weight: 400;
+      font-size: 12px;
+      color: #fd880a;
+    }
+  }
+  .input-box {
+    margin-top: 16px;
+    .input-hint-txt-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .txt-option {
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .right-txt {
+        font-weight: 400;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+     .input-focus{
+    border: 1px solid #0BE72F !important;
+  }
+    .input-option {
+      border-radius: 8px;
+      margin-top: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #2e2f2f;
+      padding: 15px 12px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .input-class {
+        flex: auto;
+        color: #fff !important;
+      }
+      .adm-input-element{
+        color: #fff !important;
+      }
+
+  input:focus {
+    caret-color: #0BE72F;
+  }
+ 
+      .input-txt {
+        flex: none;
+        font-weight: 500;
+        font-size: 16px;
+        color: #ffffff;
+      }
+      .input-number {
+        color: #fff;
+        font-size: 16px;
+      }
+    }
+    .input-no {
+        border: none;
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+  .hint-txt-box {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .hint-txt-option {
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+    }
+    .right-bold {
+      font-weight: 500;
+    }
+    .right-option {
+      font-size: 16px;
+      color: #0be72f;
+      font-weight: bold;
+    }
+  }
+  .btn-submit {
+    margin-top: 114px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: linear-gradient(270deg, #0be72f 0%, #0be72f 100%);
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+}

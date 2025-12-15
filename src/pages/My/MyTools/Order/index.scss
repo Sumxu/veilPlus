@@ -1,0 +1,33 @@
+.order-page {
+  background: #191919;
+  .order-content-box {
+    padding: 16px;
+    box-sizing: border-box;
+    .tab-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .tab-item {
+        width: 23%;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .tab-active-item {
+        background: #0be72f;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+  }
+  .order-list-box{
+    margin-top: 16px;
+    height: calc(100vh - 42px - 86px);
+    overflow-y: scroll;
+  }
+}
