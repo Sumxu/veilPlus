@@ -41,8 +41,9 @@ body {
 }
 
 .adm-popup-body{
-  background: #092468 !important;
+  background: #fff !important;
   border-radius: 12px 12px 0 0 !important;
+ 
 }
 
 .coloursBT{

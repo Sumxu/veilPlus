@@ -48,18 +48,14 @@ class EnvManager {
   static get configAll(): Readonly<EnvConfig> {
     return EnvManager.config;
   }
-  static get contractSpaceNFT(): string {
-    return EnvManager.config.contractSpaceNFT;
-  }
-  static get multiCallToken(): string {
-    return EnvManager.config.multiCallToken;
-  }
-  
   static get contractUsdt(): string {
     return EnvManager.config.contractUsdt;
   }
-  static get contractTAXToken(): string {
-    return EnvManager.config.contractTAXToken;
+    static get contractVeillUser(): string {
+    return EnvManager.config.contractVeillUser;
+  }
+    static get contractVeillNode(): string {
+    return EnvManager.config.contractVeillNode;
   }
   static get rpcUrl(): string {
     return EnvManager.config.rpcUrl;
@@ -76,15 +72,7 @@ class EnvManager {
   static get apiBase(): string {
     return EnvManager.config.apiBase;
   }
- static get taxPool(): string {
-    return EnvManager.config.taxPool;
-  }
-   static get storeToken(): string {
-    return EnvManager.config.storeToken;
-  }
-     static get swapRouter(): string {
-    return EnvManager.config.swapRouter;
-  }
+  
   /** 调试打印（仅开发环境） */
   static print(): void {
     if (EnvManager.isProd) return;

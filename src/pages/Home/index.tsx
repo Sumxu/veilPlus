@@ -5,96 +5,255 @@ import React, { useEffect, useState } from "react";
 import { t } from "i18next";
 import { BigNumber, ethers } from "ethers";
 import listIcon from "@/assets/home/listIcon.png";
+import { storage } from "@/Hooks/useLocalStorage";
 import { Drawer, Spin } from "antd";
 import BuyNftPopup from "./component/BuyNftPopup";
 import BackHeader from "@/components/BackHeader";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
- 
+import InviteModal from "@/components/InviteModal";
+import ContractRequest from "@/Hooks/ContractRequest.ts";
+interface nodeItem {
+  amount: BigNumber;
+  nodeName: string;
+  inventory: BigNumber; //库存
+  max: BigNumber; //最大
+  id: number; //node 编号
+}
+interface userNodeInfo {
+  nodeId: BigNumber; //0小 1大
+  flg: boolean; //是否是节点
+  weight: BigNumber;
+  storeValue: BigNumber;
+  rewardDebt: BigNumber;
+}
 const Home: React.FC = () => {
+  const [inviteShow, setInviteShow] = useState<boolean>(false);
   const navigate = useNavigate();
-  const walletAddress = userAddress((state) => state.address);
-  const [showBuyNftPopup, setShowBuyNftPopup] = useState(false);
+  const [invite, setInvite] = useState<string | null>(null); // 新增 invite 状态
+
   // 当前钱包地址
+  const walletAddress = userAddress((state) => state.address);
+  const [showBuyNftPopup, setShowBuyNftPopup] = useState<boolean>(false);
+  const [userNodeInfo, setUserNodeInfo] = useState<userNodeInfo>({}); //用户节点信息
+  const [nodeId, setNodeId] = useState<number>(0); //购买节点信息Id
+  const [nodeList, setNodeList] = useState<nodeItem[]>([
+    {
+      amount: BigNumber.from("0"),
+      nodeName: t("小节点"),
+      max: BigNumber.from("0"),
+      inventory: BigNumber.from("0"),
+      id: 0,
+    },
+    {
+      amount: BigNumber.from("0"),
+      nodeName: t("大节点"),
+      max: BigNumber.from("0"),
+      inventory: BigNumber.from("0"),
+      id: 1,
+    },
+  ]);
   const openPopupClick = () => {
     setShowBuyNftPopup(true);
   };
   const BuyNftPopupCloseChange = () => {
     setShowBuyNftPopup(false);
     //关闭弹窗后刷新数据
-   
+    initNodeInfo();
+    getUserNodeInfo();
   };
   //总数量
-  const totalNumer: number = 990.0;
- 
+  const totalNumer: number = 2600;
+
   //nft列表加载状态
-  const [nftListLoading, setNftListLoading] = useState<boolean>(false);
- 
-  const buyClick = () => {
+  const [listLoading, setListLoading] = useState<boolean>(false);
+  /**
+   *
+   * @param item 购买节点
+   */
+  const buyClick = (item) => {
+    if (userNodeInfo.flg) return; //已购买节点
+    setNodeId(item.id);
     setShowBuyNftPopup(true);
   };
   const myTeamPath = () => {
     navigate("/myTeam");
   };
+  /**
+   *
+   * @param item 节点item
+   * @returns 返回已售卖的数量
+   */
+  const selllNumber = (item) => {
+    const result = item.max.sub(item.inventory);
+    return result.toString();
+  };
+  /**
+   *
+   * @param item 节点item
+   * @returns 返回已售卖的数量
+   */
+  const selllWith = (item) => {
+    const soldPercent = item.max.isZero()
+      ? 0
+      : item.max.sub(item.inventory).mul(100).div(item.max);
+    return soldPercent.toString();
+  };
+  /**
+   *
+   * @returns 当前用户是否存在上级
+   */
+  const isInviterFn = async () => {
+    // 1️⃣ 先检查 URL 是否有 invite 参数
+    const params = new URLSearchParams(location.search);
+    const inviteParam = params.get("invite");
+    if (inviteParam) {
+      setInvite(inviteParam); // 保存到 state
+      storage.set("invite", inviteParam); // 可选：存本地
+    }
+
+    if (!walletAddress) return; // 地址不存在不查
+    const result = await ContractRequest({
+      tokenName: "vailPlusUserToken",
+      methodsName: "userInfo",
+      params: [walletAddress],
+    });
+    if (result.value) {
+      if (result.value[0] == ethers.constants.AddressZero) {
+        setInviteShow(true);
+      }
+    }
+  };
+  /**
+   * 查询用户的节点信息
+   */
+  const getUserNodeInfo = async () => {
+    const result = await ContractRequest({
+      tokenName: "vailPlusNodeToken",
+      methodsName: "userNode",
+      params: [walletAddress],
+    });
+    setUserNodeInfo(result.value);
+  };
+  /**
+   * 获取节点信息
+   */
+  const initNodeInfo = async () => {
+    setListLoading(true);
+    try {
+      const nodeOne = await ContractRequest({
+        tokenName: "vailPlusNodeToken",
+        methodsName: "nodeInfo",
+        params: [0],
+      });
+
+      const nodeTwo = await ContractRequest({
+        tokenName: "vailPlusNodeToken",
+        methodsName: "nodeInfo",
+        params: [1],
+      });
+
+      if (!nodeOne.value || !nodeTwo.value) return;
+      setNodeList([
+        {
+          nodeName: t("小节点"),
+          amount: nodeOne.value[0],
+          max: nodeOne.value[1],
+          inventory: nodeOne.value[2],
+          id: 0,
+        },
+        {
+          nodeName:  t("大节点"),
+          amount: nodeTwo.value[0],
+          max: nodeTwo.value[1],
+          inventory: nodeTwo.value[2],
+          id: 1,
+        },
+      ]);
+    } catch (error) {
+    } finally {
+      setListLoading(false);
+    }
+  };
   useEffect(() => {
-    // 查询价格和首期发售量
+    isInviterFn();
+    initNodeInfo();
+    getUserNodeInfo();
   }, []);
   return (
     <>
       <div className="home-page">
-        <BackHeader
-          title={t("节点")}
-          rightIcon={listIcon}
-          isHome={true}
-          rightUrl="/outputList"
-        />
+        <BackHeader title={t("节点")} isHome={true} />
         <div className="header-box">
           <div className="header-box-image">
             <div className="center-number-option">
               <div className="number-option">
                 <span className="spn-1">{t("限量")}</span>
-                <span className="spn-2">
-                  {totalNumer}
-                  {t("枚")}
-                </span>
+                <span className="spn-2">{totalNumer}</span>
               </div>
             </div>
           </div>
         </div>
         <div className="me-tools-box">
           <div className="me-header-option">
-            <div className="item-txt">节点列表</div>
-            <div className="item-txt size-14" onClick={()=>myTeamPath()}>我的团队</div>
+            <div className="item-txt">{t('节点列表')}</div>
+            <div className="item-txt size-14" onClick={() => myTeamPath()}>
+              {t('我的团队')}
+            </div>
           </div>
           <div className="buy-box">
-            {nftListLoading ? (
-              <div className="loading-box">
+            {listLoading ? (
+              <div className="assetDetailSpinBox">
                 <Spin />
               </div>
             ) : (
-              [1, 2].map((item, index) => (
+              nodeList.map((item, index) => (
                 <div
                   className={`buy-option ${
-                    12 !== 100
-                      ? "buy-option-no-success-bg"
-                      : "buy-option-success-bg"
+                    item.inventory.eq(0)
+                      ? "buy-option-success-bg"
+                      : "buy-option-no-success-bg"
                   }`}
                   key={index}
                 >
                   <div className="buy-header-option">
                     <div className="left-option">
-                      <div className="name">节点名称</div>
-                      <div className="tag">USDT:12</div>
+                      <div className="name">{item.nodeName}</div>
+                      <div className="tag">
+                        USDT:{fromWei(item.amount, 18, true, 2)}
+                      </div>
                     </div>
-                    <span className="tag-right" onClick={() => buyClick()}>
-                      {" "}
-                      {t("购买")}
+
+                    <span
+                      className={
+                        !userNodeInfo.flg
+                          ? "tag-right"
+                          : "tag-right tag-right-opacity"
+                      }
+                      onClick={() => buyClick(item)}
+                    >
+                      {Number(userNodeInfo.nodeId) === item.id &&
+                      userNodeInfo.flg
+                        ? t("已购买")
+                        : t("购买")}
                     </span>
+
+                   {
+                    Number(userNodeInfo.nodeId)===item.id&& <span
+                      className={
+                        !userNodeInfo.flg
+                          ? "tag-right"
+                          : "tag-right tag-right-opacity"
+                      }
+                    >
+                      {t("待激活")}
+                    </span>
+                   }
                   </div>
 
                   <div className="progress-bar">
                     <div
                       className="progress-bar-check"
-                      style={{ width: `12%` }}
+                      style={{ width: `${selllWith(item)}%` }}
                     ></div>
                   </div>
 
@@ -104,8 +263,10 @@ const Home: React.FC = () => {
                   </div>
 
                   <div className="info-txt-option">
-                    <div className="info-txt-2">1200</div>
-                    <div className="info-txt-2">1200</div>
+                    <div className="info-txt-2">{selllNumber(item)}</div>
+                    <div className="info-txt-2">
+                      {item.inventory.toString()}
+                    </div>
                   </div>
                 </div>
               ))
@@ -123,9 +284,12 @@ const Home: React.FC = () => {
         title=""
         placement="bottom"
       >
-        <BuyNftPopup onClose={() => BuyNftPopupCloseChange()} />
+        <BuyNftPopup nodeId={nodeId} onClose={() => BuyNftPopupCloseChange()} />
       </Drawer>
-
+      <InviteModal
+        isShow={inviteShow}
+        onClose={() => setInviteShow(false)}
+      ></InviteModal>
     </>
   );
 };

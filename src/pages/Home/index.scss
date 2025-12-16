@@ -1,7 +1,7 @@
 .home-page {
   position: relative;
   background: #f3f3f3 !important;
-  .loading-box{
+  .loading-box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,7 +111,8 @@
     }
   }
   .me-tools-box {
-    background: #f3f3f3;
+    // background: #f3f3f3;
+    background: #fff;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     background-image: url("@/assets/home/homeBg.png");
@@ -131,8 +132,8 @@
         font-size: 18px;
         color: rgba(0, 0, 0, 0.85);
       }
-      .size-14{
-         font-size: 14px;
+      .size-14 {
+        font-size: 14px;
       }
     }
     .no-buy-box {
@@ -219,7 +220,7 @@
       .buy-option-success-bg {
         background-image: url("@/assets/home/homeSuccessBg.png");
       }
-     .buy-option-no-success-bg {
+      .buy-option-no-success-bg {
         background-image: url("@/assets/home/ingBg.png");
       }
       .buy-option {
@@ -253,13 +254,15 @@
             font-size: 10px;
             border-radius: 4px;
             color: rgba(0, 0, 0, 0.85);
-            background: linear-gradient(149deg, #0cfb57 0%, #069d1e 100%);
+          box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
           }
           .tag-success {
             margin-left: 6px;
 
             padding: 3px 6px;
-            background: linear-gradient(149deg, #b8bcb9 0%, #666c67 100%);
+           box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
             border-radius: 4px;
             font-weight: 500;
             font-size: 10px;
@@ -272,7 +275,11 @@
             font-weight: 500;
             font-size: 12px;
             color: rgba(0, 0, 0, 0.85);
-            background: linear-gradient(149deg, #0cfb57 0%, #069d1e 100%);
+            box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
+          }
+          .tag-right-opacity {
+            opacity: 0.7;
           }
         }
         .progress-bar {

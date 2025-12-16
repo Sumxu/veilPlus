@@ -1,7 +1,7 @@
 import ContractList from "../Contract/Contract.ts";
 import { type BigNumber, ethers } from "ethers";
 import { message } from "antd";
-
+import { t } from "i18next";
 export interface ContractParams {
   tokenName: string;
   methodsName: string;
@@ -50,13 +50,13 @@ async function useContractSend({
       err.code === "ACTION_REJECTED" ||
       err.message.includes("user rejected")
     ) {
-      message.warning("User cancels transaction"); // 你已取消交易签名
+      message.warning(t('取消交易签名')); // 你已取消交易签名
     } else {
       let errorMsg = err?.message || String(err);
       if (errorMsg.length > 50) {
         errorMsg = errorMsg.slice(0, 50) + "...";
       }
-      message.error("Transaction failed：" + errorMsg); // 交易失败：
+      message.error(t('交易失败') + errorMsg); // 交易失败：
     }
     return { value: false };
   }

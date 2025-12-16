@@ -11,7 +11,7 @@
       padding: 16px 0;
       display: flex;
       align-items: center;
-      background: linear-gradient(140deg, #36c934 0%, #1ea41c 100%);
+      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
       border-radius: 8px;
       margin-top: 24px;
       .itemOption {
@@ -47,8 +47,6 @@
       .usdtTop{
         display: flex;
         align-items: center;
-        padding-bottom: 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         .usdtTopItem{
           flex: 1;
           display: flex;

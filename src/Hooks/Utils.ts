@@ -304,7 +304,7 @@ export const calcBigNumberPercentInt = (
 };
 
 export const getLangObj = () => {
-  const lang = localStorage.getItem("lang")??'zh';
+  const lang = localStorage.getItem("lang")??'zhHant';
   let langInfo = {
     label: "",
     value: "",
@@ -313,11 +313,6 @@ export const getLangObj = () => {
     case "en":
       langInfo.label = "English";
       langInfo.value = "2";
-      return langInfo;
-      break;
-    case "zh":
-      langInfo.label = "简体中文";
-      langInfo.value = "1";
       return langInfo;
       break;
     case "zhHant":

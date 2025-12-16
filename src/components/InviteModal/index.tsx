@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "antd";
 import i18n, { t } from "i18next";
+import ContractRequest from "@/Hooks/ContractRequest.ts";
 import NetworkRequest from "@/Hooks/NetworkRequest.ts";
 import { Totast, isValidAddress, concatSign } from "@/Hooks/Utils.ts";
 import { userAddress } from "@/Store/Store";
 import { UseSignMessage } from "@/Hooks/UseSignMessage.ts";
 import { storage } from "@/Hooks/useLocalStorage";
 import ContractSend from "@/Hooks/ContractSend.ts";
-import ContractRequest from "@/Hooks/ContractRequest.ts";
 import { ethers } from "ethers";
 
 interface PropsClass {
@@ -17,7 +17,7 @@ interface PropsClass {
   onClose: () => void;
 }
 const InviteModal = (Props: PropsClass) => {
-  const invite = storage.get("invite");
+  const invite = storage.get("invite")||'';
   const navigate = useNavigate();
   const { signMessage } = UseSignMessage(); //获取钱包签名
   // 绑定的邀请人地址
@@ -39,7 +39,7 @@ const InviteModal = (Props: PropsClass) => {
     if (isValidAddress(inputAddress)) {
       //判断输入的邀请人上级是否有邀请人
       const result = await ContractRequest({
-        tokenName: "storeToken",
+        tokenName: "vailPlusUserToken",
         methodsName: "userInfo",
         params: [inputAddress],
       });
@@ -58,18 +58,17 @@ const InviteModal = (Props: PropsClass) => {
   };
   const bindInviter = async () => {
     const result = await ContractSend({
-      tokenName: "storeToken",
+      tokenName: "vailPlusUserToken",
       methodsName: "bind",
       params: [inputAddress],
     });
-    console.log("result==", result);
     if (result.value) {
       closeBindFloat();
     }
     setLoading(false);
   };
   useEffect(() => {
-    setInputAddress(invite);
+   setInputAddress(invite ?? "");
   }, [invite]);
   return (
     <div className="InviteModalPage">

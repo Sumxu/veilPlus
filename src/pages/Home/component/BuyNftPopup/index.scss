@@ -20,7 +20,7 @@
     margin-top: 16px;
     font-weight: bold;
     font-size: 24px;
-    color: #0be72f;
+    color: #FDCD9D;
     text-align: center;
   }
   .get-txt-option {
@@ -35,12 +35,12 @@
     margin-top: 42px;
     font-weight: 500;
     font-size: 14px;
-    color: #0be72f;
+   color: #FDCD9D;
     margin-bottom: 12px;
   }
   .buy-hint-option {
     margin-bottom: 8px;
-    padding: 12px;
+    padding: 12px 6px;
     background: rgba(5, 246, 44, 0.13);
     border-radius: 8px;
     display: flex;
@@ -54,6 +54,7 @@
     margin-left: 12px;
       flex: auto;
       .txt-1-item {
+        line-height: 24px;
         font-weight: 500;
         font-size: 14px;
         color: #ffffff;
@@ -74,7 +75,7 @@
     .need-txt-1 {
       font-weight: 500;
       font-size: 14px;
-      color: #0be72f;
+       color: #FDCD9D;
     }
     .need-txt-2 {
       font-weight: 400;
@@ -87,8 +88,8 @@
     height: 50px;
     line-height: 50px;
     text-align: center;
-
-    background: linear-gradient(270deg, #0be72f 0%, #0be72f 100%);
+box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
     border-radius: 25px;
     font-weight: 500;
     font-size: 16px;

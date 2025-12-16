@@ -3,6 +3,8 @@ import { message } from "antd";
 import EnvManager from "@/config/EnvManager";
 const RequestUrl = EnvManager.apiBase;
 import { storage } from "@/Hooks/useLocalStorage";
+import { t } from "i18next";
+
 interface NetWorkProps {
   Url: string;
   Method?: "get" | "post" | "put" | "delete";
@@ -29,18 +31,17 @@ async function NetworkRequest(params: NetWorkProps): Promise<any> {
       },
       body: method === "get" ? null : JSON.stringify(Data),
     });
-
     const result = await response.json();
     if (result.code === 401) {
       storage.remove("token");
       window.location.reload();
     } else if (!response.ok || result.code !== 200) {
-      throw new Error(result.msg || "Request Error");
+      throw new Error(result.msg || t("请求错误"));
     }
     return { success: true, data: result };
   } catch (error: any) {
     message.error({
-      content: "Request Error：" + (error.message || error),
+      content: t("请求错误") + (error.message || error),
       key,
     });
     return { success: false, error: error.message || error };

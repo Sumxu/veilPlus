@@ -1,50 +1,72 @@
 .back-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 44px;
-    padding: 0 16px;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    right: 0;
-    top: 0;
-     &.scrolled {
-    background:  #191919;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+  padding: 0 16px;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  top: 0;
+  &.scrolled {
+    background: #191919;
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   }
-    .back-left{
-        min-width: 80px;
-        .walletAddressSpan{
-border-radius: 4px;
-    margin-left: 6px;
-    padding: 3px 12px;
-    font-weight: 500;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.85);
-    background: linear-gradient(149deg, #0cfb57 0%, #069d1e 100%);
-        }
+  .back-left {
+    width: 130px;
+    flex: none;
+     .lan-option {
+      border: 1px solid #FDCD9D;
+      padding: 6px 15px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      .lan-icon {
+        width: 16px;
+        height: 16px;
+      }
+      .lan-txt {
+        margin-left: 4px;
+        margin-right: 4px;
+        font-weight: 400;
+        font-size: 12px;
+        color: #ffffff;
+      }
     }
-    .back-img {
-        width: 24px;
-        height: 24px;
+    .walletAddressSpan {
+      border-radius: 4px;
+      margin-left: 6px;
+      padding: 3px 12px;
+      font-weight: 500;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
     }
+  }
+  .back-img {
+    width: 24px;
+    height: 24px;
+  }
 
-    .back-header-title {
-        font-size: 18px;
-        color: #fff;
-        
-    }
+  .back-header-title {
+    flex: auto;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+  }
 
-    .right-text {
-        text-align: right;
-        font-size: 14px;
-        color: #67BAFF;
-        width: 80px;
-        .right-header-icon{
-            width: 24px;
-            height: 24px;
-        }
+  .right-text {
+    flex: none;
+       width: 130px;
+    text-align: right;
+    font-size: 14px;
+    color: #67baff;
+    .right-header-icon {
+      width: 24px;
+      height: 24px;
     }
+  }
 }
