@@ -43,9 +43,7 @@ const InviteModal = (Props: PropsClass) => {
         methodsName: "userInfo",
         params: [inputAddress],
       });
-      console.log("result==",result)
       if (result.value) {
-
         if (result.value[0] != ethers.constants.AddressZero) {
           bindInviter();
         } else {

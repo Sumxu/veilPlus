@@ -1,47 +1,47 @@
+import { useEffect, useState } from "react";
+import "./App.css";
+import { ensureWalletConnected, listenWalletEvents } from "@/Hooks/WalletHooks";
+import { userAddress } from "@/Store/Store.ts";
 import { Spin } from "antd";
-import { useLocation } from "react-router-dom";
-import AppRouter from "@/router";
-import useWalletListener from "@/Hooks/useWalletListener";
-import { useAuthGuard } from "@/hooks/useAuthGuard";
-import { userAddress } from "@/Store/Store";
 import { storage } from "@/Hooks/useLocalStorage";
-import InviteModal from "@/components/InviteModal";
-import { useState, useEffect } from "react";
+import EnvManager from "@/config/EnvManager";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
+import InviteModal from "@/components/InviteModal";
 import { ethers } from "ethers";
+import AppRouter from "@/router/index";
+EnvManager.print()
 function App() {
-  const walletAddress = userAddress((s) => s.address);
-  const noLoginPage = !["/nft", "/"].includes(location.pathname);
-  const [inviteShow, setInviteShow] = useState<boolean>(true);
-  // const clearFn = () => {
-  //   storage.remove("token");
-  //   storage.remove("editAddressInfo");
-  //   storage.remove("payMethodName");
-  //   storage.remove("checkAddress");
-  // };
-  // // 统一监听钱包事件
-  // useWalletListener({
-  //   onAccountsChanged: () => {
-  //     clearFn();
-  //     window.location.href = "/login"; // 更保险，不会出现 React 状态问题
-  //   },
-  //   onDisconnected: () => {
-  //     clearFn();
-  //     window.location.href = "/login";
-  //   },
-  //   onChainChanged: () => {
-  //     window.location.reload();
-  //   },
-  // });
-  // if (!ready) {
-  //   return (
-  //     <div className="loading">
-  //       <Spin />
-  //     </div>
-  //   );
-  // }
-  //判断邀请人
+  const [invite, setInvite] = useState<string | null>(null); // 新增 invite 状态
+  // 1️⃣ 先检查 URL 是否有 invite 参数
+  const params = new URLSearchParams(location.search);
+  const inviteParam = params.get("invite");
+  if (inviteParam) {
+    setInvite(inviteParam); // 保存到 state
+    storage.set("invite", inviteParam); // 可选：存本地
+  }
+  const walletAddress = userAddress((state) => state.address);
+  const [loading, setLoading] = useState(true);
+  const [inviteShow, setInviteShow] = useState<boolean>(false);
+  useEffect(() => {
+    listenWalletEvents(); // ✅ 挂载全局监听
+    const checkWallet = async () => {
+      if (!walletAddress) {
+        await ensureWalletConnected();
+      }
+      setLoading(false);
+    };
+    checkWallet();
+  }, [walletAddress]);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <Spin />
+      </div>
+    );
+  }
   const isInviterFn = async () => {
+    if (!walletAddress) return; // 地址不存在不查
     const result = await ContractRequest({
       tokenName: "storeToken",
       methodsName: "userInfo",
@@ -53,13 +53,21 @@ function App() {
       }
     }
   };
-  isInviterFn();
+  // isInviterFn();
   return (
-    <div className="app">
-      <div className="body">
+    <>
+      {walletAddress ? (
         <AppRouter />
-      </div>
-    </div>
+      ) : (
+        <div className="loding">
+          <div>请先连接钱包</div>
+        </div>
+      )}
+      <InviteModal
+        isShow={inviteShow}
+        onClose={() => setInviteShow(false)}
+      ></InviteModal>
+    </>
   );
 }
 

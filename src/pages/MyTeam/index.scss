@@ -1,0 +1,200 @@
+.myTeamPage {
+  height: 100vh;
+  background: #1d1d1d;
+  padding: 16px;
+  box-sizing: border-box;
+  .teamContentBox {
+    padding-bottom: 40px;
+    height: calc(100vh - 45px);
+    overflow-y: scroll;
+    .headerBox {
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(140deg, #36c934 0%, #1ea41c 100%);
+      border-radius: 8px;
+      margin-top: 24px;
+      .itemOption {
+        flex: 1;
+        .number {
+          text-align: center;
+          font-weight: bold;
+          font-size: 20px;
+          color: #ffffff;
+        }
+        .txt {
+          text-align: center;
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.65);
+          margin-top: 4px;
+        }
+      }
+      .line {
+        background: #ffffff;
+        opacity: 0.25;
+        width: 1px;
+      }
+    }
+    .box {
+      margin-top: 12px;
+      background: #272727;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    .usdtInfo {
+      padding: 17px 12px;
+      .usdtTop{
+        display: flex;
+        align-items: center;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        .usdtTopItem{
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .usdtTxt {
+        text-align: center;
+        font-weight: 500;
+        font-size: 12px;
+        color: #ffffff;
+      }
+      .usdtNumber {
+        font-weight: bold;
+        font-size: 16px;
+        color: #fd880a;
+        margin-top: 8px;
+        text-align: center;
+      }
+      .usdtEndOption {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 16px;
+                  color: #ffffff;
+
+        .itemEnd {
+          .spn1 {
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+          }
+          .spn2 {
+            font-weight: 500;
+            font-size: 12px;
+            color: #0be72f;
+          }
+        }
+      }
+    }
+
+    .inviteBox {
+      padding: 16px 12px;
+      box-sizing: border-box;
+      .inviteTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        .leftOption {
+          flex: auto;
+          .txt {
+            font-weight: 500;
+            font-size: 12px;
+            color: #ffffff;
+          }
+          .price {
+            margin-top: 8px;
+            font-weight: bold;
+
+            font-size: 16px;
+            color: #0be72f;
+          }
+        }
+        .rightOption {
+          flex: none;
+          .btn {
+            width: 120px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 18px;
+            color: #0be72f;
+            border: 1px solid #0be72f;
+          }
+        }
+      }
+      .inviteEnd {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .spn1 {
+          font-weight: 400;
+          font-size: 12px;
+          color: #ffffff;
+        }
+        .spn2 {
+          text-align: left;
+          width: 210px;
+          font-weight: 500;
+          font-size: 12px;
+          font-weight: 400;
+          color: #0be72f;
+        }
+        .copyIcon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    .hintTeamListTxt {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 12px;
+      color: #ffffff;
+    }
+    .teamList {
+      .itemTxtRight {
+        text-align: right;
+      }
+      padding: 16px 12px;
+      box-sizing: border-box;
+      margin-top: 16px;
+      .teamHeaderOption {
+        display: flex;
+        align-items: center;
+        .itemTxt {
+          flex: 1;
+          text-align: left;
+          font-weight: 500;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.45);
+        }
+      }
+      .teamListBox {
+        .teamItem {
+          margin-top: 16px;
+          display: flex;
+          align-items: center;
+          padding-bottom: 16px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .itemTxt {
+          flex: 1;
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+        }
+        .txtUsdt {
+          color: #0be72f;
+        }
+      }
+    }
+  }
+}

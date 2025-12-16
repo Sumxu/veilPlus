@@ -3,14 +3,19 @@ import { useEffect, useRef,useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import back from "@/assets/img/back.png";
+import { userAddress } from "@/Store/Store.ts";
+import { formatAddress } from "@/Hooks/Utils";
 
 const Header: React.FC<{
   title: string;
+  isHome?:boolean;
   rightText?: string;
   rightUrl?: string;
   rightIcon?: string;
-}> = ({ title, rightText, rightIcon, rightUrl }) => {
+}> = ({ title, isHome,rightText, rightIcon, rightUrl }) => {
   const navigate = useNavigate();
+  const walletAddress = userAddress().address;
+
     const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -28,14 +33,18 @@ const Header: React.FC<{
   return (
     <>
       <div className={`back-header ${scrolled ? 'scrolled' :''}`}  ref={headerRef}>
+        {isHome?
         <div className="back-left">
+          <span className="walletAddressSpan"> {formatAddress(walletAddress)}</span>
+        </div>
+        :<div className="back-left">
           <img
             onClick={() => navigate(-1)}
             src={back}
             className="back-img"
             alt=""
           />
-        </div>
+        </div>}
         <span className="back-header-title">{title}</span>
         <span
           onClick={() => rightUrl && navigate(rightUrl)}

@@ -8,19 +8,45 @@ declare global {
   }
 }
 
+// ✅ 保证全局只注册一次监听
+let isListenerAdded = false;
+
+export function listenWalletEvents() {
+  if (!window.ethereum || isListenerAdded) return;
+
+  isListenerAdded = true;
+
+  console.log("✅ Wallet Event Listener Registered");
+
+  window.ethereum.on("accountsChanged", (accounts: string[]) => {
+    if (accounts.length === 0) {
+      console.log("钱包已断开");
+     window.location.reload();
+    } else {
+      console.log("钱包切换为:", accounts[0]);
+      window.location.reload();
+    }
+  });
+
+  window.ethereum.on("chainChanged", () => {
+    console.log("链切换，刷新页面");
+    window.location.reload();
+  });
+}
+
+// ✅ 连接钱包逻辑
 export async function ensureWalletConnected(): Promise<boolean> {
   const { setAddress } = userAddress.getState();
   const { setChain } = userChainId.getState();
-  const { ethereum } = window as any;
-  if (!window.ethereum) {
-    console.error("未检测到钱包环境");
-    return false;
-  }
+
+  if (!window.ethereum) return false;
+
+  const ethereum = window.ethereum;
 
   const currentChainId = await ethereum.request({ method: "eth_chainId" });
   setChain(currentChainId);
   const BNB_PARAMS = {
-    chainId: EnvManager.chainId, // 56 的十六进制 => BSC Mainnet
+    chainId: EnvManager.chainId,
     chainName: EnvManager.chainName,
     nativeCurrency: {
       name: "BNB",
@@ -30,77 +56,41 @@ export async function ensureWalletConnected(): Promise<boolean> {
     rpcUrls: [EnvManager.rpcUrl],
     blockExplorerUrls: [EnvManager.blockExplorerUrls],
   };
-  let accounts: string[] = [];
-  try {
-    accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-  } catch (err: any) {
-    if (err.code == -32002) {
-      return false;
-    } else {
-      return false;
-    }
-  }
 
-  // 监听是否切换了链
-  window.ethereum.on("chainChanged", () => {
-    window.location.reload();
-  });
+  let accounts: string[] = [];
+
+  try {
+    accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    
+  } catch {
+    return false;
+  }
 
   if (accounts.length > 0) {
     setAddress(accounts[0]);
-    console.log("获取地址了",accounts[0])
+    localStorage.setItem("address", accounts[0]);
+  }
+
+  if (currentChainId.toLowerCase() !== BNB_PARAMS.chainId) {
     try {
-      const normalizedChainId = String(currentChainId).toLowerCase();
-      if (normalizedChainId === BNB_PARAMS.chainId) {
-        // 已经在BNB链
-        return true;
-      } else {
-        // // 尝试切换到BNB
-        await ethereum.request({
-          method: "wallet_switchEthereumChain",
-          params: [{ chainId: BNB_PARAMS.chainId }],
-        });
-        window.location.reload();
-        return true;
-      }
-    } catch (error: any) {
-      // 4902 表示链未添加
-      if (error.code === 4902) {
+      await ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: BNB_PARAMS.chainId }],
+      });
+      window.location.reload();
+    } catch (err: any) {
+      if (err.code === 4902) {
         try {
           await ethereum.request({
             method: "wallet_addEthereumChain",
             params: [BNB_PARAMS],
           });
           window.location.reload();
-          return true;
-        } catch (addError: any) {
-          message.error("添加 BNB 网络失败：" + addError.message);
-          return false;
+        } catch {
         }
-      } else {
-        message.error("请手动切换至 BNB 主链：" + error.message);
-        return false;
       }
     }
-  } else {
-    return false;
   }
-}
 
-export async function WalletSing(
-  message: string,
-  address: string
-): Promise<string> {
-  try {
-    const signature = await window.ethereum.request({
-      method: "personal_sign",
-      params: [message, address],
-    });
-    return signature as string;
-  } catch (err) {
-    console.warn("签名被拒绝或失败:", err);
-    return "";
-  }
+  return true;
 }
