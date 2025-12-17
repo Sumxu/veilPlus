@@ -12,6 +12,7 @@ import { Spin } from "antd";
 import {
   Totast,
   copyToClipboard,
+  copyText,
   formatDate,
   SubAddress,
   fromWei,
@@ -26,8 +27,8 @@ interface listItem {
 interface TeamInfo {
   teamPerf?: BigNumber; //团队业绩
   selfPerf?: BigNumber; //个人业绩
-  directCount?: BigNumber; //直推人数
-  teamCount?: BigNumber; //团队人数
+  directCount?: number; //直推人数
+  teamCount?: number; //团队人数
 }
 const MyTeam: React.FC = () => {
   const [location, setLocation] = useState(""); //网页地址
@@ -38,8 +39,8 @@ const MyTeam: React.FC = () => {
   const [teamInfo, setTeamInfo] = useState<TeamInfo>({
     teamPerf: BigNumber.from(0),
     selfPerf: BigNumber.from(0),
-    directCount: BigNumber.from(0),
-    teamCount: BigNumber.from(0),
+    directCount: 0,
+    teamCount: 0,
   });
   const [list, setList] = useState<listItem[]>([]);
   // 是否还有更多数据可以加载
@@ -77,9 +78,8 @@ const MyTeam: React.FC = () => {
 
   const copyAction = () => {
     const origin = window.location.origin;
-
     const inviteUrl = `${origin}/home?invite=${walletAddress}`;
-    copyToClipboard(inviteUrl, t("邀请链接已复制"));
+    copyText(inviteUrl);
   };
   const xiaoQuUsdt = () => {
     return teamInfo.teamPerf.sub(maximumDirectPerf);
@@ -91,8 +91,9 @@ const MyTeam: React.FC = () => {
       methodsName: "userInfo",
       params: [walletAddress],
     });
+ 
     if (result.value) {
-      setTeamInfo({
+       setTeamInfo({
         teamPerf: result.value[5],
         selfPerf: result.value[6],
         directCount: result.value[7],
@@ -112,10 +113,12 @@ const MyTeam: React.FC = () => {
     }
   };
   useEffect(() => {
-    getDataPage();
+   getDataPage();
     getTeamInfo();
     getMaximumDirectPerf();
-    setLocation(window.location.origin);
+     const origin = window.location.origin;
+    const inviteUrl = `${origin}/home?invite=${walletAddress}`;
+    setLocation(inviteUrl);
   }, []);
   return (
     <div className="myTeamPage">
@@ -123,12 +126,12 @@ const MyTeam: React.FC = () => {
       <div className="teamContentBox">
         <div className="headerBox">
           <div className="itemOption">
-            <div className="number">{fromWei(teamInfo.teamCount)}</div>
+            <div className="number">{teamInfo.teamCount?.toString()}</div>
             <div className="txt">{t("团队人数")}</div>
           </div>
           <div className="line"></div>
           <div className="itemOption">
-            <div className="number">{fromWei(teamInfo.directCount)}</div>
+            <div className="number">{teamInfo.directCount?.toString()}</div>
             <div className="txt">{t("直推人数")}</div>
           </div>
         </div>
@@ -137,19 +140,19 @@ const MyTeam: React.FC = () => {
             <div className="usdtTopItem">
               <div className="usdtTxt">{t("团队总业绩")}</div>
               <div className="usdtNumber">
-                {fromWei(teamInfo.teamPerf)} USDT
+                {fromWei(teamInfo.teamPerf,18,true,2)} USDT
               </div>
             </div>
             <div className="usdtTopItem">
               <div className="usdtTxt">{t("小区业绩")}</div>
               {maximumDirectPerf && teamInfo.teamPerf && (
-                <div className="usdtNumber">{fromWei(xiaoQuUsdt())} USDT</div>
+                <div className="usdtNumber">{fromWei(xiaoQuUsdt(),18,true,2)} USDT</div>
               )}
             </div>
             <div className="usdtTopItem">
               <div className="usdtTxt">{t("节点业绩")}</div>
               <div className="usdtNumber">
-                {fromWei(nodePref)||'0.0000'} USDT
+                {fromWei(nodePref,18,true,2)||'0.00'} USDT
               </div>
             </div>
           </div>

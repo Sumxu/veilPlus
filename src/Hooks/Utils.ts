@@ -304,7 +304,7 @@ export const calcBigNumberPercentInt = (
 };
 
 export const getLangObj = () => {
-  const lang = localStorage.getItem("lang")??'zhHant';
+  const lang = localStorage.getItem("lang") ?? "zhHant";
   let langInfo = {
     label: "",
     value: "",
@@ -323,6 +323,47 @@ export const getLangObj = () => {
 
   return langInfo;
 };
+
+function fallbackCopy(text: string) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.top = "0";
+  textarea.style.left = "0";
+  textarea.style.opacity = "0";
+
+  document.body.appendChild(textarea);
+
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  let success = false;
+  try {
+    success = document.execCommand("copy");
+  } catch {}
+
+  document.body.removeChild(textarea);
+
+  return success;
+}
+
+export function copyText(text: string) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(
+      () => Totast("复制成功", "success"),
+      () => {
+        const ok = fallbackCopy(text);
+        ok ? Totast("复制成功", "success") : Totast("请长按文本复制", "info");
+      }
+    );
+  } else {
+    const ok = fallbackCopy(text);
+    ok ? Totast("复制成功", "success") : Totast("请长按文本复制", "info");
+  }
+}
 /**
  * 复制文本到剪贴板
  * @param text 要复制的内容
@@ -347,7 +388,6 @@ export function copyToClipboard(text: string, message: string = "复制成功") 
     input.value = text;
     document.body.appendChild(input);
     input.select();
-
     try {
       const successful = document.execCommand("copy");
       if (successful) {
@@ -358,14 +398,16 @@ export function copyToClipboard(text: string, message: string = "复制成功") 
     } catch (err) {
       Totast("复制失败，请手动复制", "error");
     }
-
     document.body.removeChild(input);
   }
 }
 
 export function timestampToFull(ts: number, isMs = false) {
   const date = new Date(isMs ? ts : ts * 1000);
-  const pad = (n: number) => n.toString().padStart(2, '0');
-  return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+    date.getDate()
+  )} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(
+    date.getSeconds()
+  )}`;
 }
-

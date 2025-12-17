@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 44px;
+  height: 60px;
+  
   padding: 0 16px;
   position: fixed;
   z-index: 999;
@@ -19,7 +20,7 @@
     flex: none;
      .lan-option {
       border: 1px solid #FDCD9D;
-      padding: 6px 15px;
+      padding: 4px 15px;
       border-radius: 14px;
       display: flex;
       align-items: center;
@@ -38,7 +39,7 @@
     .walletAddressSpan {
       border-radius: 4px;
       margin-left: 6px;
-      padding: 3px 12px;
+      padding: 4px 12px;
       font-weight: 500;
       font-size: 12px;
       color: rgba(0, 0, 0, 0.85);

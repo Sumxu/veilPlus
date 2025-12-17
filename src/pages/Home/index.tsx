@@ -273,6 +273,9 @@ const Home: React.FC = () => {
             )}
           </div>
         </div>
+        {/* <div className="hintTxtBox">
+            <div className="txtOne">【VEIL + LABS】 携手顶级资本 · 顶级技术 · 顶级社区全球首发超级生态VEIL · PLUS浏览计划,同步推出</div>
+        </div> */}
       </div>
       <Drawer
         rootClassName="buyNodeDrawer"
