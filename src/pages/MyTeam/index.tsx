@@ -70,8 +70,8 @@ const MyTeam: React.FC = () => {
         address: walletAddress,
       },
     });
-    if (nodeRes.value) {
-      setNodePref(nodeRes.value || 0);
+    if (nodeRes.success) {
+      setNodePref(nodeRes.data.data.nodePerf);
     }
   };
 
