@@ -21,6 +21,23 @@ interface buyNftPopupClass {
 }
 
 function BuyNftPopup(Props: buyNftPopupClass) {
+  const hintTxts = [
+    t("全网入金1%永久分红"),
+    t("买入手续费1%永久分红"),
+    t("卖出手续费1.5%永久分红"),
+    t("防暴跌机制手续费30%永久分红"),
+    t("盈利税2%分红"),
+  ];
+  const mapTxts = {
+    0: [
+      t("小节点合伙人赠送VIP1级别(激活即可享受)"),
+      t("赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"),
+    ],
+    1: [
+      t("大节点合伙人赠送VIP2级别(激活即可享受)"),
+      t("赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"),
+    ],
+  };
   const walletAddress = userAddress((state) => state.address);
   //usdt 余额
   const [usdtBalanceOf, setUsdtBalanceOf] = useState<BigNumber>(
@@ -128,7 +145,7 @@ function BuyNftPopup(Props: buyNftPopupClass) {
         </div>
       </div>
       <div className="price-option">
-        {fromWei(nodeInfo.amount,18,true,2)} USDT
+        {fromWei(nodeInfo.amount, 18, true, 2)} USDT
       </div>
       <div className="get-txt-option">
         {t("即可获得")}
@@ -137,26 +154,29 @@ function BuyNftPopup(Props: buyNftPopupClass) {
       <div className="hint-txt">{t("获得权益")}</div>
       <div className="buy-hint-option">
         <div className="right-option">
-          <div className="txt-1-item">
-           {t("买3%")}{Props.nodeId == 0 ? t("小节点") : t(" 大节点")}{t('分红')}1%
-          </div>
-          <div className="txt-1-item">
-            {t("卖5%")} {Props.nodeId == 0 ? t("小节点") : t(" 大节点")}{t('分红')}1.5%
-          </div>
-          <div className="txt-1-item">
-             {t("盈利税20%")}{Props.nodeId == 0 ? t("小节点") : t(" 大节点")}{t('分红')}20%
-          </div>
-          <div className="txt-1-item">
-            {t("防暴跌手续费")}{Props.nodeId == 0 ? t("小节点") : t(" 大节点")}{t('分红')}30%
-          </div>
+          {hintTxts.map((item, index) => {
+            return (
+              <div className="txt-1-item" key={index}>
+                {item}
+              </div>
+            );
+          })}
+
+           {mapTxts[Props.nodeId].map((item, index) => {
+            return (
+              <div className="txt-1-item" key={index}>
+                {item}
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="need-pay-option">
         <div className="need-txt-1">
-          {t("需支付")}：{fromWei(nodeInfo.amount,18,true,2)} USDT
+          {t("需支付")}：{fromWei(nodeInfo.amount, 18, true, 2)} USDT
         </div>
         <div className="need-txt-2">
-          {t("余额")}：{fromWei(usdtBalanceOf,18,true,2)} USDT
+          {t("余额")}：{fromWei(usdtBalanceOf, 18, true, 2)} USDT
         </div>
       </div>
       <div className="btn-option" onClick={() => btnClick()}>

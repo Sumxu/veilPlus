@@ -42,7 +42,17 @@
   "取消交易签名": "Batalkan Tanda Tangan",
   "交易失败": "Transaksi Gagal",
   "请求错误": "Kesalahan Permintaan",
-    "暂无数据":"Tidak ada data",
-     "取消": "Batal",
-  "确认": "Konfirmasi"
+  "暂无数据": "Tidak ada data",
+  "取消": "Batal",
+  "确认": "Konfirmasi",
+  "全网入金1%永久分红": "Dividen permanen 1% dari total setoran seluruh jaringan",
+  "买入手续费1%永久分红": "Dividen permanen 1% dari biaya transaksi pembelian",
+  "卖出手续费1.5%永久分红": "Dividen permanen 1,5% dari biaya transaksi penjualan",
+  "防暴跌机制手续费30%永久分红": "Dividen permanen 30% dari biaya mekanisme pencegahan penurunan tajam",
+  "盈利税2%分红": "Dividen dari pajak keuntungan sebesar 2%",
+  "小节点合伙人赠送VIP1级别(激活即可享受)": "Mitra node kecil mendapatkan VIP level 1 (berlaku setelah aktivasi)",
+  "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)": "50% dari jumlah pembelian mitra node disumbangkan ke akun pendapatan kolam penambangan, mitra node kecil mendapatkan akun 250U (berlaku setelah aktivasi)",
+  "大节点合伙人赠送VIP2级别(激活即可享受)": "Mitra node besar mendapatkan VIP level 2 (berlaku setelah aktivasi)",
+  "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)": "50% dari jumlah pembelian mitra node disumbangkan ke akun pendapatan kolam penambangan, mitra node besar mendapatkan akun 500U (berlaku setelah aktivasi)",
+  "节点业绩": "Kinerja Node"
 }

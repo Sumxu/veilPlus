@@ -49,16 +49,29 @@ const MyTeam: React.FC = () => {
   //数据加载中
   const [listLoading, setListLoading] = useState<boolean>(false);
 
+  const [nodePref, setNodePref] = useState<string | number>(0);
+
   const getDataPage = async () => {
     const result = await NetworkRequest({
       Url: "user/directList",
       Method: "get",
       Data: {
-        address:walletAddress,
+        address: walletAddress,
       },
     });
     if (result.success) {
       setList(result.data.data);
+    }
+    //节点业绩
+    const nodeRes = await NetworkRequest({
+      Url: "user/info",
+      Method: "get",
+      Data: {
+        address: walletAddress,
+      },
+    });
+    if (nodeRes.value) {
+      setNodePref(nodeRes.value || 0);
     }
   };
 
@@ -68,9 +81,9 @@ const MyTeam: React.FC = () => {
     const inviteUrl = `${origin}/home?invite=${walletAddress}`;
     copyToClipboard(inviteUrl, t("邀请链接已复制"));
   };
-  const xiaoQuUsdt=()=>{
-        return  teamInfo.teamPerf.sub(maximumDirectPerf);
-  }
+  const xiaoQuUsdt = () => {
+    return teamInfo.teamPerf.sub(maximumDirectPerf);
+  };
   //业绩 人数信息
   const getTeamInfo = async () => {
     const result = await ContractRequest({
@@ -92,7 +105,7 @@ const MyTeam: React.FC = () => {
     const result = await ContractRequest({
       tokenName: "vailPlusUserToken",
       methodsName: "maximumDirectPerf",
-      params:  [walletAddress],
+      params: [walletAddress],
     });
     if (result.value) {
       setMaximumDirectPerf(result.value);
@@ -125,15 +138,19 @@ const MyTeam: React.FC = () => {
               <div className="usdtTxt">{t("团队总业绩")}</div>
               <div className="usdtNumber">
                 {fromWei(teamInfo.teamPerf)} USDT
-              </div>  
+              </div>
             </div>
             <div className="usdtTopItem">
               <div className="usdtTxt">{t("小区业绩")}</div>
-              { 
-                (maximumDirectPerf&&teamInfo.teamPerf)&&<div className="usdtNumber">
-                {fromWei(xiaoQuUsdt())} USDT
+              {maximumDirectPerf && teamInfo.teamPerf && (
+                <div className="usdtNumber">{fromWei(xiaoQuUsdt())} USDT</div>
+              )}
+            </div>
+            <div className="usdtTopItem">
+              <div className="usdtTxt">{t("节点业绩")}</div>
+              <div className="usdtNumber">
+                {fromWei(nodePref)||'0.0000'} USDT
               </div>
-              }
             </div>
           </div>
         </div>

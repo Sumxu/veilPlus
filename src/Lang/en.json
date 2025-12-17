@@ -44,5 +44,15 @@
   "请求错误": "Request Error",
   "暂无数据":"No Data",
   "取消": "Cancel",
-  "确认": "Confirm"
+  "确认": "Confirm",
+ "全网入金1%永久分红": "1% perpetual dividend on total network deposits",
+  "买入手续费1%永久分红": "1% perpetual dividend from buy transaction fees",
+  "卖出手续费1.5%永久分红": "1.5% perpetual dividend from sell transaction fees",
+  "防暴跌机制手续费30%永久分红": "30% perpetual dividend from anti-crash mechanism fees",
+  "盈利税2%分红": "2% profit tax dividend",
+  "小节点合伙人赠送VIP1级别(激活即可享受)": "Small Node Partners receive VIP Level 1 (available upon activation)",
+  "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)": "50% of the node partner purchase amount is donated to the mining pool income account; Small Node Partners receive a 250U account (available upon activation)",
+  "大节点合伙人赠送VIP2级别(激活即可享受)": "Large Node Partners receive VIP Level 2 (available upon activation)",
+  "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)": "50% of the node partner purchase amount is donated to the mining pool income account; Large Node Partners receive a 500U account (available upon activation)",
+  "节点业绩": "Node Performance"
 }

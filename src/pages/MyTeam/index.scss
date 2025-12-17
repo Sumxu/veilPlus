@@ -137,12 +137,18 @@
           color: #ffffff;
         }
         .spn2 {
+       
           text-align: left;
           width: 210px;
           font-weight: 500;
           font-size: 12px;
           font-weight: 400;
           color: #0be72f;
+          display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 显示行数 */
+  overflow: hidden;
+  text-overflow: ellipsis;
         }
         .copyIcon {
           width: 16px;
