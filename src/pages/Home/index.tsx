@@ -93,10 +93,10 @@ const Home: React.FC = () => {
    * @returns 返回已售卖的数量
    */
   const selllWith = (item) => {
-    const soldPercent = item.max.isZero()
-      ? 0
-      : item.max.sub(item.inventory).mul(100).div(item.max);
-    return soldPercent.toString();
+    const total = item.max.toString();
+    const stock =selllNumber(item);
+    const percent = (stock / total) * 100;
+    return percent;
   };
   /**
    *
@@ -162,7 +162,7 @@ const Home: React.FC = () => {
           id: 0,
         },
         {
-          nodeName:  t("大节点"),
+          nodeName: t("大节点"),
           amount: nodeTwo.value[0],
           max: nodeTwo.value[1],
           inventory: nodeTwo.value[2],
@@ -195,9 +195,9 @@ const Home: React.FC = () => {
         </div>
         <div className="me-tools-box">
           <div className="me-header-option">
-            <div className="item-txt">{t('节点列表')}</div>
+            <div className="item-txt">{t("节点列表")}</div>
             <div className="item-txt size-14" onClick={() => myTeamPath()}>
-              {t('我的团队')}
+              {t("我的团队")}
             </div>
           </div>
           <div className="buy-box">
@@ -237,17 +237,17 @@ const Home: React.FC = () => {
                         : t("购买")}
                     </span>
 
-                   {
-                    Number(userNodeInfo.nodeId)===item.id&& <span
-                      className={
-                        !userNodeInfo.flg
-                          ? "tag-right"
-                          : "tag-right tag-right-opacity"
-                      }
-                    >
-                      {t("待激活")}
-                    </span>
-                   }
+                    {Number(userNodeInfo.nodeId) === item.id&&userNodeInfo.flg  && (
+                      <span
+                        className={
+                          !userNodeInfo.flg
+                            ? "tag-right"
+                            : "tag-right tag-right-opacity"
+                        }
+                      >
+                        {t("待激活")}
+                      </span>
+                    )}
                   </div>
 
                   <div className="progress-bar">
