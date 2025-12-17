@@ -31,10 +31,10 @@ export default class EnvConfigProvider {
   /** 生产环境配置（主网） */
   static getProdConfig(): EnvConfig {
     return {
-      apiBase: "https://api.taxshop.plus/dapp/",
-      contractUsdt: "0x2Cba653C50e9A2e97411104d1460EBFAECE50E9C",
-      contractVeillUser: "0xc609d0DCb39da1655ae2cBf8039dba798d49a65D",
-      contractVeillNode: "0xd4948CE85494bF0Af4F89104AD8FDFf98D2c54f2",
+      apiBase: "https://api.veilplus.com/api/",
+      contractUsdt: "0x55d398326f99059fF775485246999027B3197955",
+      contractVeillUser: "0x0647C3F22ad415cAB132c8D7B0639a500498c3cE",
+      contractVeillNode: "0x6818087D9cd968A6d8DC3914F2bce74d07114204",
       chainId: "0x38",
       rpcUrl: "https://bsc-dataseed.binance.org/",
       blockExplorerUrls: "https://bscscan.com",
