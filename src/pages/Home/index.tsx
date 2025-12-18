@@ -6,7 +6,7 @@ import { t } from "i18next";
 import { BigNumber, ethers } from "ethers";
 import listIcon from "@/assets/home/listIcon.png";
 import { storage } from "@/Hooks/useLocalStorage";
-import { Drawer, Spin } from "antd";
+import { Drawer, Flex, Spin } from "antd";
 import BuyNftPopup from "./component/BuyNftPopup";
 import BackHeader from "@/components/BackHeader";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
@@ -43,6 +43,12 @@ const Home: React.FC = () => {
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
       id: 0,
+         txtLst: [
+            t("小节点合伙人赠送VIP1级别(激活即可享受)"),
+            t(
+              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
+            ),
+          ],
     },
     {
       amount: BigNumber.from("0"),
@@ -50,6 +56,12 @@ const Home: React.FC = () => {
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
       id: 1,
+       txtLst: [
+            t("大节点合伙人赠送VIP2级别(激活即可享受)"),
+            t(
+              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
+            ),
+          ],
     },
   ]);
   const openPopupClick = () => {
@@ -94,7 +106,7 @@ const Home: React.FC = () => {
    */
   const selllWith = (item) => {
     const total = item.max.toString();
-    const stock =selllNumber(item);
+    const stock = selllNumber(item);
     const percent = (stock / total) * 100;
     return percent;
   };
@@ -160,6 +172,12 @@ const Home: React.FC = () => {
           max: nodeOne.value[1],
           inventory: nodeOne.value[2],
           id: 0,
+          txtLst: [
+            t("小节点合伙人赠送VIP1级别(激活即可享受)"),
+            t(
+              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
+            ),
+          ],
         },
         {
           nodeName: t("大节点"),
@@ -167,6 +185,12 @@ const Home: React.FC = () => {
           max: nodeTwo.value[1],
           inventory: nodeTwo.value[2],
           id: 1,
+          txtLst: [
+            t("大节点合伙人赠送VIP2级别(激活即可享受)"),
+            t(
+              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
+            ),
+          ],
         },
       ]);
     } catch (error) {
@@ -237,17 +261,18 @@ const Home: React.FC = () => {
                         : t("购买")}
                     </span>
 
-                    {Number(userNodeInfo.nodeId) === item.id&&userNodeInfo.flg  && (
-                      <span
-                        className={
-                          !userNodeInfo.flg
-                            ? "tag-right"
-                            : "tag-right tag-right-opacity"
-                        }
-                      >
-                        {t("待激活")}
-                      </span>
-                    )}
+                    {Number(userNodeInfo.nodeId) === item.id &&
+                      userNodeInfo.flg && (
+                        <span
+                          className={
+                            !userNodeInfo.flg
+                              ? "tag-right"
+                              : "tag-right tag-right-opacity"
+                          }
+                        >
+                          {t("待激活")}
+                        </span>
+                      )}
                   </div>
 
                   <div className="progress-bar">
@@ -268,6 +293,16 @@ const Home: React.FC = () => {
                       {item.inventory.toString()}
                     </div>
                   </div>
+
+                  {/* <div className="hintTxtBoxOption">
+                    {item.txtLst.map((txtItem, txtIndex) => {
+                      return (
+                        <div className="info-txt-1" key={txtIndex}>
+                          {txtItem}
+                        </div>
+                      );
+                    })}
+                  </div> */}
                 </div>
               ))
             )}
