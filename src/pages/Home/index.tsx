@@ -85,7 +85,6 @@ const Home: React.FC = () => {
    * @param item 购买节点
    */
   const buyClick = (item) => {
-    
     if (userNodeInfo.flg) return; //已购买节点
     setNodeId(item.id);
     setShowBuyNftPopup(true);
@@ -224,7 +223,7 @@ const Home: React.FC = () => {
         <BackHeader isHome={true} />
         <div className="header-box">
           <div className="header-box-image">
-            <div className="appName">VEIL PLUS 生态节点</div>
+            <div className="appName">VEIL PLUS   {t('生态节点')}</div>
             <div className="center-number-option">
               <div className="number-option">
                 <span className="spn-1">{t("限量")}</span>
@@ -233,6 +232,15 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
+
+         <svg width="0" height="0">
+        <defs>
+          <linearGradient id="gradientColor" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#00B2FE" />
+            <stop offset="100%" stopColor="#00FDE3" />
+          </linearGradient>
+        </defs>
+      </svg>
         <div className="nodesBox">
           {listLoading ? (
             <div className="assetDetailSpinBox">
@@ -256,8 +264,8 @@ const Home: React.FC = () => {
                       style={{
                         "--size": "98px",
                         "--track-width": "4px",
-                        "--fill-color":
-                          "background: linear-gradient(270deg, #00B2FE 0%, #00B2FE 40% , #00FDE3 100%);",
+                        "--fill-color":"url(#gradientColor)",
+                        "--track-color":"#284647"
                       }}
                     >
                       <div className="progressCircleNumber">

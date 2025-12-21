@@ -54,5 +54,7 @@
   "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)": "50% of the node partner purchase amount is donated to the mining pool income account; Small Node Partners receive a 250U account (available upon activation)",
   "大节点合伙人赠送VIP2级别(激活即可享受)": "Large Node Partners receive VIP Level 2 (available upon activation)",
   "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)": "50% of the node partner purchase amount is donated to the mining pool income account; Large Node Partners receive a 500U account (available upon activation)",
-  "节点业绩": "Node Performance"
+  "节点业绩": "Node Performance",
+  "总量":"Total",
+  "生态节点":"Ecosystem Node"
 }
