@@ -3,12 +3,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import LeftBackHeader from "@/components/LeftBackHeader";
 import copyIcon from "@/assets/my/copy.png";
+import wallets from "@/assets/team/wallets.png";
 import { t } from "i18next";
 import { InfiniteScroll } from "antd-mobile";
 import { userAddress } from "@/Store/Store.ts";
 import NetworkRequest from "@/Hooks/NetworkRequest.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import { Spin } from "antd";
+
 import {
   Totast,
   copyToClipboard,
@@ -22,7 +24,7 @@ import { BigNumber } from "ethers";
 interface listItem {
   address?: string;
   createTime?: string;
-  selfPerf?: number;
+  teamPerf?: number;
 }
 interface TeamInfo {
   teamPerf?: BigNumber; //团队业绩
@@ -45,7 +47,6 @@ const MyTeam: React.FC = () => {
   const [list, setList] = useState<listItem[]>([]);
   // 是否还有更多数据可以加载
   const [isMore, setIsMore] = useState<boolean>(false);
-
   const [current, setCurrent] = useState<number>(1);
   //数据加载中
   const [listLoading, setListLoading] = useState<boolean>(false);
@@ -91,9 +92,9 @@ const MyTeam: React.FC = () => {
       methodsName: "userInfo",
       params: [walletAddress],
     });
- 
+
     if (result.value) {
-       setTeamInfo({
+      setTeamInfo({
         teamPerf: result.value[5],
         selfPerf: result.value[6],
         directCount: result.value[7],
@@ -113,10 +114,10 @@ const MyTeam: React.FC = () => {
     }
   };
   useEffect(() => {
-   getDataPage();
+    //  getDataPage();
     getTeamInfo();
     getMaximumDirectPerf();
-     const origin = window.location.origin;
+    const origin = window.location.origin;
     const inviteUrl = `${origin}/home?invite=${walletAddress}`;
     setLocation(inviteUrl);
   }, []);
@@ -137,23 +138,28 @@ const MyTeam: React.FC = () => {
         </div>
         <div className="box usdtInfo">
           <div className="usdtTop">
-            <div className="usdtTopItem">
-              <div className="usdtTxt">{t("团队总业绩")}</div>
-              <div className="usdtNumber">
-                {fromWei(teamInfo.teamPerf,18,true,2)} USDT
-              </div>
+            <div className="title">{t("团队总业绩")}(USDT)</div>
+            <div className="number">
+              {" "}
+              {fromWei(teamInfo.teamPerf, 18, true, 2)}{" "}
             </div>
-            <div className="usdtTopItem">
-              <div className="usdtTxt">{t("小区业绩")}</div>
+          </div>
+          <div className="usdtBottom">
+            <div className="usdtItemBottom">
               {maximumDirectPerf && teamInfo.teamPerf && (
-                <div className="usdtNumber">{fromWei(xiaoQuUsdt(),18,true,2)} USDT</div>
+                <div className="title">
+                  {fromWei(xiaoQuUsdt(), 18, true, 2)} USDT
+                </div>
               )}
+
+              <div className="number">{t("小区业绩")}</div>
             </div>
-            <div className="usdtTopItem">
-              <div className="usdtTxt">{t("节点业绩")}</div>
-              <div className="usdtNumber">
-                {fromWei(nodePref,18,true,2)||'0.00'} USDT
+            <div className="usdtItemBottom">
+              <div className="title">
+                {" "}
+                {fromWei(nodePref, 18, true, 2) || "0.00"} USDT
               </div>
+              <div className="number">{t("节点业绩")}</div>
             </div>
           </div>
         </div>
@@ -162,20 +168,21 @@ const MyTeam: React.FC = () => {
           <div className="inviteEnd">
             <span className="spn1">{t("邀请链接")}：</span>
             <span className="spn2">{location}</span>
-            <img
-              src={copyIcon}
+            <div
               className="copyIcon"
               onClick={() => {
                 copyAction();
               }}
-            ></img>
+            >
+              复制
+            </div>
           </div>
         </div>
 
         <div className="hintTeamListTxt">{t("团队列表")}</div>
         <div className="box teamList">
           <div className="teamHeaderOption">
-            <div className="itemTxt">{t("钱包地址")}</div>
+            <div className="itemTxtOne">{t("钱包地址")}</div>
             <div className="itemTxt">{t("时间")}</div>
             <div className="itemTxt itemTxtRight">{t("贡献业绩")}(USDT)</div>
           </div>
@@ -191,10 +198,16 @@ const MyTeam: React.FC = () => {
                 return (
                   <div className="teamListBox" key={index}>
                     <div className="teamItem">
-                      <div className="itemTxt">{SubAddress(item.address)}</div>
+                      <div className="walletsOption">
+                        <img src={wallets} className="walletsIcon"></img>
+                      </div>
+                      <div className="itemTxt marginLeft-6">
+                        {SubAddress(item.address)}
+                      </div>
                       <div className="itemTxt">{item.createTime}</div>
                       <div className="itemTxt txtUsdt itemTxtRight">
-                        {fromWei(item.teamPerf)}
+                        {/* {fromWei(item.teamPerf)} */}
+                        {item.teamPerf}
                       </div>
                     </div>
                   </div>

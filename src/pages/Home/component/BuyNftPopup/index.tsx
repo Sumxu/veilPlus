@@ -9,7 +9,8 @@ import ContractSend from "@/Hooks/ContractSend.ts";
 import ContractList from "@/Contract/Contract.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import { CloseOutline } from "antd-mobile-icons";
-
+import closeIcon from "@/assets/team/close.png";
+import checkIcon from "@/assets/team/check.png";
 interface nodeItem {
   amount: BigNumber;
   inventory: BigNumber; //库存
@@ -31,11 +32,15 @@ function BuyNftPopup(Props: buyNftPopupClass) {
   const mapTxts = {
     0: [
       t("小节点合伙人赠送VIP1级别(激活即可享受)"),
-      t("赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"),
+      t(
+        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
+      ),
     ],
     1: [
       t("大节点合伙人赠送VIP2级别(激活即可享受)"),
-      t("赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"),
+      t(
+        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
+      ),
     ],
   };
   const walletAddress = userAddress((state) => state.address);
@@ -140,9 +145,11 @@ function BuyNftPopup(Props: buyNftPopupClass) {
           {t("购买")}
           {Props.nodeId == 0 ? t("小节点") : t("大节点")}
         </div>
-        <div className="icon-close" onClick={() => Props.onClose()}>
-          <CloseOutline fontSize={14} color="#969696" />
-        </div>
+        <img
+          src={closeIcon}
+          className="icon-close"
+          onClick={() => Props.onClose()}
+        ></img>
       </div>
       <div className="price-option">
         {fromWei(nodeInfo.amount, 18, true, 2)} USDT
@@ -151,21 +158,27 @@ function BuyNftPopup(Props: buyNftPopupClass) {
         {t("即可获得")}
         {Props.nodeId == 0 ? t("小节点") : t("大节点")}
       </div>
-      <div className="hint-txt">{t("获得权益")}</div>
       <div className="buy-hint-option">
+        <div className="hintOption">{t('获得权益')}</div>
         <div className="right-option">
           {hintTxts.map((item, index) => {
             return (
-              <div className="txt-1-item" key={index}>
-                {item}
+              <div className="txtOption">
+                <img className="iconIcon" src={checkIcon}></img>
+                <div className="txt-1-item" key={index}>
+                  {item}
+                </div>
               </div>
             );
           })}
 
-           {mapTxts[Props.nodeId].map((item, index) => {
+          {mapTxts[Props.nodeId].map((item, index) => {
             return (
-              <div className="txt-1-item" key={index}>
-                {item}
+              <div className="txtOption">
+                <img className="iconIcon" src={checkIcon}></img>
+                <div className="txt-1-item" key={index}>
+                  {item}
+                </div>
               </div>
             );
           })}

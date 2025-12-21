@@ -3,6 +3,7 @@
   background: #1d1d1d;
   padding: 16px;
   box-sizing: border-box;
+
   .teamContentBox {
     padding-bottom: 40px;
     height: calc(100vh - 45px);
@@ -11,7 +12,7 @@
       padding: 16px 0;
       display: flex;
       align-items: center;
-      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
+      background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
       border-radius: 8px;
       margin-top: 24px;
       .itemOption {
@@ -27,65 +28,64 @@
           font-weight: 400;
           font-size: 12px;
           // color: rgba(255, 255, 255, 0.65);
-           color: #000;
+          color: #000;
           margin-top: 4px;
         }
       }
       .line {
-        background: #ffffff;
-        opacity: 0.25;
+        background: rgba(0, 0, 0, 0.12);
         width: 1px;
+        height: 44px;
       }
     }
     .box {
+      border: 1px solid #00e5ec;
       margin-top: 12px;
-      background: #272727;
+      background: rgba(0, 240, 247, 0.07);
       border-radius: 8px;
       box-sizing: border-box;
     }
     .usdtInfo {
       padding: 17px 12px;
-      .usdtTop{
-        display: flex;
-        align-items: center;
-        .usdtTopItem{
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+      .usdtTop {
+        .title {
+          text-align: center;
+          font-weight: 500;
+          font-size: 14px;
+          color: #ffffff;
+        }
+        .number {
+          text-align: center;
+          margin-top: 12px;
+          font-weight: 500;
+          font-size: 20px;
+          color: #ffffff;
         }
       }
-      .usdtTxt {
-        text-align: center;
-        font-weight: 500;
-        font-size: 12px;
-        color: #ffffff;
-      }
-      .usdtNumber {
-        font-weight: bold;
-        font-size: 16px;
-        color: #fd880a;
-        margin-top: 8px;
-        text-align: center;
-      }
-      .usdtEndOption {
+      .usdtBottom {
+        margin-top: 12px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: 16px;
-                  color: #ffffff;
-
-        .itemEnd {
-          .spn1 {
-            font-weight: 400;
-            font-size: 12px;
+        .usdtItemBottom {
+          width: 150px;
+          height: 63px;
+          background: rgba(0, 0, 0, 0.35);
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+          .title {
+            font-weight: 500;
+            font-size: 14px;
             color: #ffffff;
           }
-          .spn2 {
-            font-weight: 500;
+          .number {
+            margin-top: 4px;
+            font-weight: 400;
             font-size: 12px;
-            color: #0be72f;
+            color: #00f8f3;
           }
         }
       }
@@ -94,6 +94,8 @@
     .inviteBox {
       padding: 16px 12px;
       box-sizing: border-box;
+      display: flex;
+
       .inviteTop {
         display: flex;
         align-items: center;
@@ -130,43 +132,59 @@
       }
       .inviteEnd {
         display: flex;
+        width: 100%;
         align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         .spn1 {
-          font-weight: 400;
-          font-size: 12px;
+          width: 100%;
+          text-align: center;
+          font-weight: 500;
+          font-size: 14px;
           color: #ffffff;
         }
         .spn2 {
-       
+          margin-top: 12px;
+          width: 100%;
+          text-align: center;
           text-align: left;
-          width: 210px;
-          font-weight: 500;
           font-size: 12px;
           font-weight: 400;
-          color: #0be72f;
-  // -webkit-box-orient: vertical;
-  // -webkit-line-clamp: 3; /* 显示行数 */
-  // overflow: hidden;
-  // text-overflow: ellipsis;
-   word-break: break-word;
-  overflow-wrap: break-word;
+          color: #00f8f3;
+          white-space: nowrap; /* 不换行 */
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .copyIcon {
-          width: 16px;
-          height: 16px;
+          margin-top: 20px;
+          background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+          border-radius: 18px;
+          font-weight: bold;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.85) !important;
+          width: 142px;
+          height: 36px;
+          line-height: 36px;
+          text-align: center;
         }
       }
     }
     .hintTeamListTxt {
-      margin-top: 20px;
+      margin-top: 16px;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 16px;
       color: #ffffff;
     }
     .teamList {
       .itemTxtRight {
         text-align: right;
+      }
+      .itemTxtOne {
+        width: 135px;
+        text-align: left;
+        font-weight: 400;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
       }
       padding: 16px 12px;
       box-sizing: border-box;
@@ -174,13 +192,17 @@
       .teamHeaderOption {
         display: flex;
         align-items: center;
+
         .itemTxt {
           flex: 1;
           text-align: left;
-          font-weight: 500;
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.45);
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.65);
         }
+      }
+      .marginLeft-6 {
+        margin-left: 6px;
       }
       .teamListBox {
         .teamItem {
@@ -189,16 +211,30 @@
           align-items: center;
           padding-bottom: 16px;
           border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+          .walletsOption {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            .walletsIcon {
+              width: 16px;
+              height: 16px;
+            }
+          }
         }
 
         .itemTxt {
           flex: 1;
           font-weight: 400;
-          font-size: 14px;
+          font-size: 12px;
           color: #ffffff;
         }
         .txtUsdt {
-          color: #0be72f;
+          color: #ffffff;
         }
       }
     }

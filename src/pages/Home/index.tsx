@@ -7,11 +7,14 @@ import { BigNumber, ethers } from "ethers";
 import listIcon from "@/assets/home/listIcon.png";
 import { storage } from "@/Hooks/useLocalStorage";
 import { Drawer, Flex, Spin } from "antd";
+import { ProgressCircle } from "antd-mobile";
 import BuyNftPopup from "./component/BuyNftPopup";
 import BackHeader from "@/components/BackHeader";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
 import InviteModal from "@/components/InviteModal";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
+import teamIcon from "@/assets/team/teamIcon.png";
+
 interface nodeItem {
   amount: BigNumber;
   nodeName: string;
@@ -30,7 +33,6 @@ const Home: React.FC = () => {
   const [inviteShow, setInviteShow] = useState<boolean>(false);
   const navigate = useNavigate();
   const [invite, setInvite] = useState<string | null>(null); // 新增 invite 状态
-
   // 当前钱包地址
   const walletAddress = userAddress((state) => state.address);
   const [showBuyNftPopup, setShowBuyNftPopup] = useState<boolean>(false);
@@ -43,12 +45,12 @@ const Home: React.FC = () => {
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
       id: 0,
-         txtLst: [
-            t("小节点合伙人赠送VIP1级别(激活即可享受)"),
-            t(
-              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
-            ),
-          ],
+      txtLst: [
+        t("小节点合伙人赠送VIP1级别(激活即可享受)"),
+        t(
+          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
+        ),
+      ],
     },
     {
       amount: BigNumber.from("0"),
@@ -56,12 +58,12 @@ const Home: React.FC = () => {
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
       id: 1,
-       txtLst: [
-            t("大节点合伙人赠送VIP2级别(激活即可享受)"),
-            t(
-              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
-            ),
-          ],
+      txtLst: [
+        t("大节点合伙人赠送VIP2级别(激活即可享受)"),
+        t(
+          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
+        ),
+      ],
     },
   ]);
   const openPopupClick = () => {
@@ -83,6 +85,7 @@ const Home: React.FC = () => {
    * @param item 购买节点
    */
   const buyClick = (item) => {
+    
     if (userNodeInfo.flg) return; //已购买节点
     setNodeId(item.id);
     setShowBuyNftPopup(true);
@@ -146,6 +149,18 @@ const Home: React.FC = () => {
     });
     setUserNodeInfo(result.value);
   };
+  const nodeBtn = (item) => {
+    if (item.id == Number(userNodeInfo.nodeId) && userNodeInfo.flg) {
+      //已经是节点
+      return <span>{t("待激活")}</span>;
+    } else {
+      return (
+        <span>
+          {fromWei(item.amount, 18, true, 2)}U{t("购买")}
+        </span>
+      );
+    }
+  };
   /**
    * 获取节点信息
    */
@@ -206,9 +221,10 @@ const Home: React.FC = () => {
   return (
     <>
       <div className="home-page">
-        <BackHeader title={t("节点")} isHome={true} />
+        <BackHeader isHome={true} />
         <div className="header-box">
           <div className="header-box-image">
+            <div className="appName">VEIL PLUS 生态节点</div>
             <div className="center-number-option">
               <div className="number-option">
                 <span className="spn-1">{t("限量")}</span>
@@ -217,100 +233,69 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="me-tools-box">
-          <div className="me-header-option">
-            <div className="item-txt">{t("节点列表")}</div>
-            <div className="item-txt size-14" onClick={() => myTeamPath()}>
-              {t("我的团队")}
+        <div className="nodesBox">
+          {listLoading ? (
+            <div className="assetDetailSpinBox">
+              <Spin />
             </div>
-          </div>
-          <div className="buy-box">
-            {listLoading ? (
-              <div className="assetDetailSpinBox">
-                <Spin />
-              </div>
-            ) : (
-              nodeList.map((item, index) => (
-                <div
-                  className={`buy-option ${
-                    item.inventory.eq(0)
-                      ? "buy-option-success-bg"
-                      : "buy-option-no-success-bg"
-                  }`}
-                  key={index}
-                >
-                  <div className="buy-header-option">
-                    <div className="left-option">
-                      <div className="name">{item.nodeName}</div>
-                      <div className="tag">
-                        USDT:{fromWei(item.amount, 18, true, 2)}
+          ) : (
+            nodeList.map((item, index) => {
+              return (
+                <div className="nodeItem" key={index}>
+                  <div
+                    className={`trapezoid ${
+                      item.id == 0 ? "trapezoidOne" : "trapezoidTwo"
+                    }`}
+                  >
+                    {" "}
+                    {item.nodeName}
+                  </div>
+                  <div className="progressCircleItem">
+                    <ProgressCircle
+                      percent={selllWith(item)}
+                      style={{
+                        "--size": "98px",
+                        "--track-width": "4px",
+                        "--fill-color":
+                          "background: linear-gradient(270deg, #00B2FE 0%, #00B2FE 40% , #00FDE3 100%);",
+                      }}
+                    >
+                      <div className="progressCircleNumber">
+                        {item.inventory.toString()}
+                      </div>
+                      <div className="progressCircleTxt">{t("剩余")}</div>
+                    </ProgressCircle>
+                  </div>
+                  <div className="numberItem">
+                    <div className="itemHintTxt">
+                      <div className="hintTxt hintOne">{t("总量")}</div>
+                      <div className="hintTxt hintOne">
+                        {item.max.toString()}
                       </div>
                     </div>
-
-                    <span
-                      className={
-                        !userNodeInfo.flg
-                          ? "tag-right"
-                          : "tag-right tag-right-opacity"
-                      }
-                      onClick={() => buyClick(item)}
-                    >
-                      {Number(userNodeInfo.nodeId) === item.id &&
-                      userNodeInfo.flg
-                        ? t("已购买")
-                        : t("购买")}
-                    </span>
-
-                    {Number(userNodeInfo.nodeId) === item.id &&
-                      userNodeInfo.flg && (
-                        <span
-                          className={
-                            !userNodeInfo.flg
-                              ? "tag-right"
-                              : "tag-right tag-right-opacity"
-                          }
-                        >
-                          {t("待激活")}
-                        </span>
-                      )}
-                  </div>
-
-                  <div className="progress-bar">
-                    <div
-                      className="progress-bar-check"
-                      style={{ width: `${selllWith(item)}%` }}
-                    ></div>
-                  </div>
-
-                  <div className="info-txt-option">
-                    <div className="info-txt-1">{t("已售")}</div>
-                    <div className="info-txt-1">{t("剩余")}</div>
-                  </div>
-
-                  <div className="info-txt-option">
-                    <div className="info-txt-2">{selllNumber(item)}</div>
-                    <div className="info-txt-2">
-                      {item.inventory.toString()}
+                    <div className="line"></div>
+                    <div className="itemHintTxt">
+                      <div className="hintTxt hintOne">{t("已售")}</div>
+                      <div className="hintTxt hintOne">{selllNumber(item)}</div>
                     </div>
                   </div>
-
-                  {/* <div className="hintTxtBoxOption">
-                    {item.txtLst.map((txtItem, txtIndex) => {
-                      return (
-                        <div className="info-txt-1" key={txtIndex}>
-                          {txtItem}
-                        </div>
-                      );
-                    })}
-                  </div> */}
+                  <div
+                    className={`btn ${item.id == 0 ? "oneBtn" : "twoBtn"}`}
+                    onClick={() => buyClick(item)}
+                  >
+                    {nodeBtn(item)}
+                  </div>
                 </div>
-              ))
-            )}
-          </div>
+              );
+            })
+          )}
         </div>
-        {/* <div className="hintTxtBox">
-            <div className="txtOne">【VEIL + LABS】 携手顶级资本 · 顶级技术 · 顶级社区全球首发超级生态VEIL · PLUS浏览计划,同步推出</div>
-        </div> */}
+        <div className="teamBtn">
+          <img src={teamIcon} className="teamIcon"></img>
+          <span className="spnTxt" onClick={() => myTeamPath()}>
+            {t("我的团队")}
+          </span>
+        </div>
       </div>
       <Drawer
         rootClassName="buyNodeDrawer"

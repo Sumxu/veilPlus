@@ -1,5 +1,6 @@
 .BuyNftPopup {
   box-sizing: border-box;
+
   .header-top-box {
     position: relative;
     display: flex;
@@ -8,55 +9,58 @@
     .txt {
       text-align: center;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
       color: #ffffff;
     }
-    .icon-close{
-        position: absolute;
-        right: 0;
+    .icon-close {
+      position: absolute;
+      right: 0;
+      width: 22px;
+      height: 22px;
     }
   }
   .price-option {
     margin-top: 16px;
     font-weight: bold;
     font-size: 24px;
-    color: #FDCD9D;
+    color: #00f8f3;
     text-align: center;
+    font-weight: 400;
   }
   .get-txt-option {
     text-align: center;
 
     margin-top: 6px;
-    font-weight: 500;
-    font-size: 14px;
-    color: #ffffff;
-  }
-  .hint-txt {
-    margin-top: 42px;
-    font-weight: 500;
-    font-size: 14px;
-   color: #FDCD9D;
-    margin-bottom: 12px;
+    font-weight: 400;
+    font-size: 12px;
+    color: #00f8f3;
   }
   .buy-hint-option {
+    margin-top: 24px;
     margin-bottom: 8px;
-    padding: 12px 6px;
-    background: rgba(5, 246, 44, 0.13);
+    padding: 12px;
+    background: rgba(0, 240, 247, 0.15);
+    border: 1px solid rgba(0, 178, 254, 1);
     border-radius: 8px;
-    display: flex;
-    align-items: center;
     .left-icon {
       flex: none;
       width: 40px;
       height: 40px;
     }
     .right-option {
-    margin-left: 12px;
-      flex: auto;
+      .txtOption {
+        display: flex;
+        margin-top: 8px;
+      }
+      .iconIcon {
+        width: 16px;
+        height: 16px;
+      }
       .txt-1-item {
-        line-height: 24px;
-        font-weight: 500;
-        font-size: 14px;
+        margin-left: 4px;
+        // line-height: 24px;
+        font-weight: 400;
+        font-size: 12px;
         color: #ffffff;
       }
       .txt-2-item {
@@ -64,6 +68,12 @@
         font-size: 12px;
         color: #0be72f;
       }
+    }
+
+    .hintOption {
+      font-weight: bold;
+      font-size: 16px;
+      color: #00f8f3;
     }
   }
 
@@ -73,23 +83,23 @@
     align-items: center;
     justify-content: space-between;
     .need-txt-1 {
-      font-weight: 500;
+      font-weight: 400;
       font-size: 14px;
-       color: #FDCD9D;
+      color: #ffffff;
     }
     .need-txt-2 {
       font-weight: 400;
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(255, 255, 255, 0.45);
     }
   }
   .btn-option {
-    margin-top: 12px;
+    margin-top: 36px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
-      background: linear-gradient( 315deg, #EE8233 0%, #FFF5C7 50%, #FDCD9D 100%);
+    background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+
     border-radius: 25px;
     font-weight: 500;
     font-size: 16px;
@@ -97,7 +107,7 @@ box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
   }
 }
 .ant-drawer-content {
-  background: linear-gradient(180deg, #434545 0%, #161616 100%) !important;
+  background: linear-gradient(180deg, #375150 0%, #182726 100%) !important;
   box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.25) !important;
   border-radius: 16px 16px 0px 0px;
 }

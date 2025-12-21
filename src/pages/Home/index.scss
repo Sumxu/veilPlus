@@ -1,8 +1,12 @@
 .home-page {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   overflow-y: auto;
-  background: #f3f3f3 !important;
+  // background: #f3f3f3 !important;
+  background-image: url("@/assets/team/homeBg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   .loading-box {
     display: flex;
     align-items: center;
@@ -16,7 +20,6 @@
     height: 190px;
     .header-box-image {
       padding-top: 80px;
-      background-image: url("@/assets/home/headerBg.png");
       background-repeat: no-repeat;
       background-size: cover;
       height: 190px;
@@ -28,29 +31,47 @@
     align-items: center;
     justify-content: center;
   }
+  .appName {
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+    line-height: 34px;
+    text-align: center;
+    font-style: normal;
 
+    background: linear-gradient(
+      32.86788150482898deg,
+      #97fcff 0%,
+      #ffffff 52%,
+      #54eef2 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* 霓虹发光 */
+    text-shadow: 0 0 0px #97fcff, 0 0 1.5px #54eef2;
+  }
   .number-option {
+    margin-top: 8px;
     display: inline-flex; /* 让对齐属性生效 */
     align-items: center;
     justify-content: center;
     /* 只给 左上 & 右下 圆角 */
-    border: 1px solid rgba(246, 238, 181, 1);
-    border-radius: 8px 0 0 8px; /* 左上 & 左下圆角 */
-
+    border: 1px solid #00d3e3;
+    border-radius: 4px; /* 左上 & 左下圆角 */
     /* 必须加，让圆角对 border-image 生效 */
     .spn-1 {
       padding: 3px 12px;
-      background: linear-gradient(180deg, #f6eeb5 0%, #d0c06d 100%);
-      border-radius: 8px 0px 0px 8px;
+      background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+      border-radius: 4px 0px 0px 4px;
       font-weight: 500;
       font-size: 12px;
-      color: #000000;
+      color: rgba(0, 0, 0, 0.85);
     }
     .spn-2 {
       padding: 3px 16px;
       font-weight: 500;
       font-size: 12px;
-      color: #e9d981;
+      color: #fff;
     }
   }
   .number-info-option {
@@ -307,7 +328,7 @@
           font-weight: 400;
           font-size: 12px;
           color: rgba(255, 255, 255, 0.65);
-          .info-txt-1{
+          .info-txt-1 {
             padding-top: 4px;
           }
         }
@@ -328,7 +349,7 @@
           align-items: center;
           justify-content: space-between;
           .info-txt-1 {
-            margin-top:24px;
+            margin-top: 24px;
             font-weight: 400;
             font-size: 12px;
             color: rgba(255, 255, 255, 0.65);
@@ -355,17 +376,145 @@
       color: rgba(0, 0, 0, 0.85);
     }
   }
-  .hintTxtBox {
-    position: fixed;
-    bottom: 24px;
-    left: 16px;
-    right: 16px;
-    margin-left: 16px;
-    margin-right: 16px;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-    line-height: 1.5em;
-    letter-spacing: 1px;
+  .nodesBox {
+    .assetDetailSpinBox {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      margin-top: 220px;
+      height: 200px;
+    }
+    box-sizing: border-box;
+    margin-top: 220px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .nodeItem {
+      box-sizing: border-box;
+      position: relative;
+      padding: 12px;
+      width: 165px;
+      border: 1px solid #00d7f0;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: center;
+      .trapezoid {
+        position: absolute;
+        top: 0;
+        right: 30px;
+        left: 30px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+        height: 26px;
+        line-height: 26px;
+        color: #ffffff;
+
+        clip-path: polygon(
+          0 0,
+          /* 左上 */ 100% 0,
+          /* 右上 */ 90% 100%,
+          /* 右下 */ 10% 100% /* 左下 */
+        );
+      }
+      .trapezoidOne {
+        background: linear-gradient(180deg, #00fbc4 0%, #00b894 100%);
+      }
+      .trapezoidTwo {
+        background: #9c87ff;
+      }
+      .progressCircleItem {
+        margin-top: 60px;
+        .progressCircleNumber {
+          font-weight: bold;
+          font-size: 18px;
+          color: #ffffff;
+        }
+        .progressCircleTxt {
+          margin-top: 2px;
+          font-weight: 400;
+          font-size: 12px;
+          color: #00f8f3;
+        }
+      }
+
+      .numberItem {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        .itemHintTxt {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          flex: 1;
+          .hintTxt {
+            font-weight: 400;
+            font-size: 12px;
+            color: #00f8f3;
+          }
+          .hintOne {
+            margin-top: 3px;
+          }
+        }
+        .line {
+          width: 1px;
+          height: 29px;
+          background: rgba(255, 255, 255, 0.15);
+        }
+      }
+      .btn {
+        border: 1px solid #fff;
+        margin-left: 12px;
+        margin-right: 12px;
+        width: 120px;
+        margin-top: 16px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.85);
+        border-radius: 18px;
+        span {
+          font-weight: bold;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.85);
+        }
+      }
+      .oneBtn {
+        background: #00fbc6;
+      }
+      .twoBtn {
+        background: #9c87ff;
+      }
+    }
+  }
+  .teamBtn {
+    box-sizing: border-box;
+    margin: 24px 16px 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border: 1px solid #00d7f0;
+    border-radius: 8px;
+    .teamIcon {
+      width: 24px;
+      height: 24px;
+    }
+    .spnTxt {
+      margin-left: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #00f8f3;
+    }
   }
 }

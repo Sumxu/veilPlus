@@ -54,6 +54,7 @@ const InviteModal = (Props: PropsClass) => {
     } else {
       //提示无效地址
       Totast(t("邀请人地址无效"), "warning"); //
+       setLoading(false);
     }
   };
   const bindInviter = async () => {

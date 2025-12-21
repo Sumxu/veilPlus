@@ -8,6 +8,7 @@ import { formatAddress } from "@/Hooks/Utils";
 import { Picker } from "antd-mobile";
 import i18n, { t } from "i18next";
 import { DownOutline } from "antd-mobile-icons";
+import walletsIcon from '@/assets/team/wallets.png'
 const Header: React.FC<{
   title: string;
   isHome?: boolean;
@@ -128,14 +129,18 @@ const Header: React.FC<{
           </div>
         )}
       </div>
-      <span className="back-header-title">{title}</span>
+      {
+        title&&<span className="back-header-title">{title}</span>
+      }
       <span
         onClick={() => rightUrl && navigate(rightUrl)}
         className="right-text"
       >
         {isHome ? (
           <div className="back-left">
+           
             <span className="walletAddressSpan">
+               <img src={walletsIcon} className="walletsIcon"></img>
               {formatAddress(walletAddress)}
             </span>
           </div>
