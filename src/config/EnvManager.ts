@@ -75,6 +75,7 @@ class EnvManager {
   
   /** 调试打印（仅开发环境） */
   static print(): void {
+    console.log("EnvManager.isProd==",EnvManager.isProd)
     if (EnvManager.isProd) return;
     console.log("🌍 EnvManager.mode:", EnvManager.mode);
     console.log("🌍 EnvManager.config:", EnvManager.config);

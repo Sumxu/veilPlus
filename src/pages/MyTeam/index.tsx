@@ -22,7 +22,7 @@ import {
 import NoData from "@/components/NoData";
 import { BigNumber } from "ethers";
 interface listItem {
-  address?: string;
+  address?: string|number;
   createTime?: string;
   teamPerf?: number;
 }
@@ -114,7 +114,7 @@ const MyTeam: React.FC = () => {
     }
   };
   useEffect(() => {
-    //  getDataPage();
+     getDataPage();
     getTeamInfo();
     getMaximumDirectPerf();
     const origin = window.location.origin;
@@ -206,8 +206,7 @@ const MyTeam: React.FC = () => {
                       </div>
                       <div className="itemTxt">{item.createTime}</div>
                       <div className="itemTxt txtUsdt itemTxtRight">
-                        {/* {fromWei(item.teamPerf)} */}
-                        {item.teamPerf}
+                        {fromWei(item.teamPerf)||'0'}
                       </div>
                     </div>
                   </div>

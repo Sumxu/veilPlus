@@ -69,7 +69,7 @@ const Header: React.FC<{
     }
     if (localLang == "vietnamese") {
       setValue("7");
-      setLangTxt("vietnamese");
+      setLangTxt("Vietnamese");
     }
   };
   // 获取当前语言

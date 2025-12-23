@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { ethers, BigNumber } from "ethers";
-
+import {t} from 'i18next'
 /**
  * 格式化钱包地址
  * @param addr 钱包地址
@@ -353,15 +353,15 @@ function fallbackCopy(text: string) {
 export function copyText(text: string) {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(text).then(
-      () => Totast("复制成功", "success"),
+      () => Totast(t("复制成功"), "success"),
       () => {
         const ok = fallbackCopy(text);
-        ok ? Totast("复制成功", "success") : Totast("请长按文本复制", "info");
+        ok ? Totast(t("复制成功"), "success") : Totast("请长按文本复制", "info");
       }
     );
   } else {
     const ok = fallbackCopy(text);
-    ok ? Totast("复制成功", "success") : Totast("请长按文本复制", "info");
+    ok ? Totast(t("复制成功"), "success") : Totast("请长按文本复制", "info");
   }
 }
 /**

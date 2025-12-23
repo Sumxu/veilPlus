@@ -163,9 +163,9 @@ function BuyNftPopup(Props: buyNftPopupClass) {
         <div className="right-option">
           {hintTxts.map((item, index) => {
             return (
-              <div className="txtOption">
+              <div className="txtOption" key={index}>
                 <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item" key={index}>
+                <div className="txt-1-item">
                   {item}
                 </div>
               </div>
@@ -174,9 +174,9 @@ function BuyNftPopup(Props: buyNftPopupClass) {
 
           {mapTxts[Props.nodeId].map((item, index) => {
             return (
-              <div className="txtOption">
+              <div className="txtOption" key={index}>
                 <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item" key={index}>
+                <div className="txt-1-item">
                   {item}
                 </div>
               </div>

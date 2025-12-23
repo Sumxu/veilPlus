@@ -1,5 +1,7 @@
 .home-page {
- 
+  svg {
+  transform: rotate(-180deg) scaleY(-1);
+}
   position: relative;
   min-height: 100vh;
   overflow-y: auto;
@@ -398,7 +400,7 @@
       box-sizing: border-box;
       position: relative;
       padding: 12px;
-      width: 165px;
+      width: 48%;
       border: 1px solid #00d7f0;
       border-radius: 8px;
       display: flex;
