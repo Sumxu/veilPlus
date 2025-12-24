@@ -20,7 +20,6 @@ interface buyNftPopupClass {
   onClose: () => void;
   nodeId: number;
 }
-
 function BuyNftPopup(Props: buyNftPopupClass) {
   const hintTxts = [
     t("全网入金1%永久分红"),
