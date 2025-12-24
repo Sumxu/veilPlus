@@ -35,12 +35,18 @@ function BuyNftPopup(Props: buyNftPopupClass) {
       t(
         "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
       ),
+      t("前1～500位: 奖励2000枚VIPL"),
+      t("前501～1000位: 奖励1400枚VIPL"),
+      t("前1001～1600位: 奖励980枚VIPL"),
     ],
     1: [
       t("大节点合伙人赠送VIP2级别(激活即可享受)"),
       t(
         "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
       ),
+      t("前1～300位: 奖励5000枚VIPL"),
+      t("前301～600位: 奖励3500枚VIPL"),
+      t("前601～1000位: 奖励2450枚VIPL"),
     ],
   };
   const walletAddress = userAddress((state) => state.address);
@@ -159,15 +165,13 @@ function BuyNftPopup(Props: buyNftPopupClass) {
         {Props.nodeId == 0 ? t("小节点") : t("大节点")}
       </div>
       <div className="buy-hint-option">
-        <div className="hintOption">{t('获得权益')}</div>
+        <div className="hintOption">{t("获得权益")}</div>
         <div className="right-option">
           {hintTxts.map((item, index) => {
             return (
               <div className="txtOption" key={index}>
                 <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item">
-                  {item}
-                </div>
+                <div className="txt-1-item">{item}</div>
               </div>
             );
           })}
@@ -176,9 +180,7 @@ function BuyNftPopup(Props: buyNftPopupClass) {
             return (
               <div className="txtOption" key={index}>
                 <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item">
-                  {item}
-                </div>
+                <div className="txt-1-item">{item}</div>
               </div>
             );
           })}

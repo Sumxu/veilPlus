@@ -56,5 +56,11 @@
   "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)": "50% of the node partner purchase amount is donated to the mining pool income account; Large Node Partners receive a 500U account (available upon activation)",
   "节点业绩": "Node Performance",
   "总量":"Total",
-  "生态节点":"Ecosystem Node"
+  "生态节点":"Ecosystem Node",
+  "前1～500位: 奖励2000枚VIPL": "Top 1–500: Reward 2000 VIPL",
+  "前501～1000位: 奖励1400枚VIPL": "Top 501–1000: Reward 1400 VIPL",
+  "前1001～1600位: 奖励980枚VIPL": "Top 1001–1600: Reward 980 VIPL",
+  "前1～300位: 奖励5000枚VIPL": "Top 1–300: Reward 5000 VIPL",
+  "前301～600位: 奖励3500枚VIPL": "Top 301–600: Reward 3500 VIPL",
+  "前601～1000位: 奖励2450枚VIPL": "Top 601–1000: Reward 2450 VIPL"
 }
