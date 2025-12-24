@@ -22,7 +22,6 @@ const Header: React.FC<{
   const [menuStatus, setMenuStatus] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const handleScroll = () => {
       if (headerRef.current) {
@@ -30,11 +29,9 @@ const Header: React.FC<{
         setScrolled(window.scrollY > headerHeight);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <>
       {!menuStatus && (

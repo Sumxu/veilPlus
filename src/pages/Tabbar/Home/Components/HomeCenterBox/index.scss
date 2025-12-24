@@ -1,0 +1,65 @@
+.HomeCenterBox {
+  padding-inline: 16px;
+  margin-top: -50px;
+  background-image: url('@/assets/home/centerBg.png');
+   background-position: top 120px right; /* 从上方50px开始 */
+  background-repeat: no-repeat;
+   background-size: 100% 550px;
+   height: 800px;
+  .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    color: #ffffff;
+  }
+  .totalBox {
+    margin-top: 8px;
+    .totalTop20{
+        margin-top: 20px;
+    }
+    .totalOption {
+      .font12Option {
+        color: #00f8f3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .txt {
+          font-size: 12px;
+          font-weight: 400;
+          color: #00f8f3;
+        }
+      }
+      .font16Option {
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .txt {
+          font-size: 16px;
+          font-weight: 500;
+          font-size: 16px;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .box {
+    border: 1px solid #00c4f7;
+    margin-top: 12px;
+    border-radius: 8px;
+    padding: 16px 12px;
+    .boxTitle {
+      text-align: center;
+      font-weight: 500;
+      font-size: 14px;
+      color: #00f8f3;
+    }
+    .boxContent {
+      text-align: center;
+      margin-top: 4px;
+      font-weight: 500;
+      font-size: 20px;
+      color: #ffffff;
+    }
+  }
+}

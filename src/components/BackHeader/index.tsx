@@ -8,7 +8,7 @@ import { formatAddress } from "@/Hooks/Utils";
 import { Picker } from "antd-mobile";
 import i18n, { t } from "i18next";
 import { DownOutline } from "antd-mobile-icons";
-import walletsIcon from '@/assets/team/wallets.png'
+import walletsIcon from '@/assets/basic/wallets.png'
 const Header: React.FC<{
   title: string;
   isHome?: boolean;

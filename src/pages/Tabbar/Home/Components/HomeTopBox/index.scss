@@ -1,0 +1,54 @@
+.HomeTopBox {
+  padding-top: 60px;
+  .dappTitle {
+    margin-top: 38px;
+    font-weight: bold;
+    font-size: 32px;
+    color: #ffffff;
+    padding-inline: 16px;
+  }
+  .homeTopBg {
+    padding-inline: 16px;
+    background-image: url("@/assets/home/topBg.png");
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 400px;
+    height: 400px;
+  }
+  .dappHintTxt {
+    margin-top: 6px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #ffffff;
+  }
+  .dappHintBgTxt {
+    margin-top: 12px;
+    display: inline-block;
+    padding: 4px 8px;
+    background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+    border-radius: 4px;
+  }
+  .btnList {
+    margin-top: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn {
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.85);
+      border-radius: 25px;
+      border: 1px solid #fff;
+      width: 48%;
+    }
+    .bgOne {
+      background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+    }
+    .bgTwo {
+      background: linear-gradient(270deg, #ffbf67 0%, #e878ff 100%);
+    }
+  }
+}

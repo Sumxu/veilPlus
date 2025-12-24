@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import eslint from "vite-plugin-eslint";
 import removeConsole from "vite-plugin-remove-console";
-
 export default defineConfig(({ mode }) => {
   const isProd = mode === "production";
   return {
@@ -17,7 +16,6 @@ export default defineConfig(({ mode }) => {
       }),
       isProd && removeConsole({ exclude: [] }), // 构建时移除所有 console
     ],
-
     resolve: {
       alias: {
         buffer: "buffer",

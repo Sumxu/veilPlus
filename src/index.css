@@ -8,19 +8,7 @@
 body {
   padding: 0 !important;
   margin: 0 auto !important;
-  min-width: 320px;
-  max-width: 600px;
-  min-height: 100vh;
 }
-
-.confirm-btn {
-  background: linear-gradient(270deg, #AB46FF 0%, #00B7FF 48%, #00FFED 100%);
-  font-size: 16px !important;
-  color: #000 !important;
-  border-radius: 9999px !important;
-  border: none !important;
-}
-
 
 .boxBorder::after{
   content: '';
