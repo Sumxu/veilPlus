@@ -1,6 +1,13 @@
 import "./index.scss";
-import   { useEffect, useState } from "react";
- const Home: React.FC = () => {
-  return <div>Home</div>;
+import Tools from "./Components/Tools";
+import Info from "./Components/Info";
+import WalletHeader from "./Components/WalletHeader";
+const My: React.FC = () => {
+  return (
+    <div className="myPage">
+      <WalletHeader></WalletHeader>
+      <Tools></Tools>
+    </div>
+  );
 };
-export default Home;
+export default My;

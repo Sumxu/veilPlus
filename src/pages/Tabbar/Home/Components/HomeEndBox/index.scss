@@ -1,0 +1,117 @@
+.HomeEndBox {
+  padding-bottom: 50px;
+  padding-inline: 16px;
+  margin-top: 120px;
+  background: url('@/assets/home/endBg.png');
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 500px;
+  .title {
+    margin-top: 40px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    color: #ffffff;
+  }
+  .listHeaderOption {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .txt {
+      font-weight: 500;
+      font-size: 12px;
+      color: #00f8f3;
+    }
+  }
+  .rankingTopBox {
+    margin-top: 8px;
+    .topOption {
+      display: flex;
+      align-items: center;
+      border: 1px solid #adaca9;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      .icon {
+        flex: none;
+        width: 32px;
+        height: 32px;
+      }
+      .walletTxt {
+        flex: auto;
+        margin-left: 6px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .usdtNumber {
+        flex: none;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+      }
+    }
+    .oneTop {
+      background: linear-gradient(
+        270deg,
+        rgba(255, 202, 40, 0.25) 0%,
+        rgba(255, 202, 40, 0.08) 100%
+      );
+    }
+    .oneTwo {
+      background: linear-gradient(
+        270deg,
+        rgba(196, 196, 196, 0.25) 0%,
+        rgba(196, 196, 196, 0.08) 100%
+      );
+    }
+    .oneThree {
+      background: linear-gradient(
+        270deg,
+        rgba(230, 172, 121, 0.25) 0%,
+        rgba(230, 172, 121, 0.08) 100%
+      );
+    }
+  }
+  .rankingListBox {
+    margin-top: 8px;
+    border: 1px solid #00ebeb;
+    background: rgba(0,240,247,0.15);
+    border-radius: 8px;
+    .rankingOption {
+      border-radius: 8px;
+      padding-inline: 14px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+      .indexItem {
+        background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+        flex: none;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: 500;
+        font-size: 16px;
+        color: #000000;
+      }
+      .indexWallet {
+        flex: auto;
+        margin-left: 6px;
+        font-weight: 400;
+        font-size: 12px;
+        color: #ffffff;
+      }
+      .indexNumber {
+        font-weight: 400;
+        font-size: 12px;
+        color: #ffffff;
+        flex: none;
+      }
+    }
+  }
+}

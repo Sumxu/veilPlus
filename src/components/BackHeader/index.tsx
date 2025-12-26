@@ -1,14 +1,14 @@
 import "./index.scss";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import lan from "@/assets/login/lan.png";
-import back from "@/assets/img/back.png";
+import lan from "@/assets/basic/lan.png";
+import back from "@/assets/basic/back.png";
 import { userAddress } from "@/Store/Store.ts";
 import { formatAddress } from "@/Hooks/Utils";
 import { Picker } from "antd-mobile";
 import i18n, { t } from "i18next";
 import { DownOutline } from "antd-mobile-icons";
-import walletsIcon from '@/assets/basic/wallets.png'
+import walletsIcon from '@/assets/basic/wallet.png'
 const Header: React.FC<{
   title: string;
   isHome?: boolean;

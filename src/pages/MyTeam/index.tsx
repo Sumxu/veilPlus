@@ -2,15 +2,13 @@ import "./index.scss";
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import LeftBackHeader from "@/components/LeftBackHeader";
-import copyIcon from "@/assets/my/copy.png";
-import wallets from "@/assets/team/wallets.png";
+import wallets from "@/assets/basic/wallet.png";
 import { t } from "i18next";
 import { InfiniteScroll } from "antd-mobile";
 import { userAddress } from "@/Store/Store.ts";
 import NetworkRequest from "@/Hooks/NetworkRequest.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import { Spin } from "antd";
-
 import {
   Totast,
   copyToClipboard,
@@ -22,7 +20,7 @@ import {
 import NoData from "@/components/NoData";
 import { BigNumber } from "ethers";
 interface listItem {
-  address?: string|number;
+  address?: string | number;
   createTime?: string;
   teamPerf?: number;
 }
@@ -114,7 +112,7 @@ const MyTeam: React.FC = () => {
     }
   };
   useEffect(() => {
-     getDataPage();
+    getDataPage();
     getTeamInfo();
     getMaximumDirectPerf();
     const origin = window.location.origin;
@@ -178,7 +176,18 @@ const MyTeam: React.FC = () => {
             </div>
           </div>
         </div>
-
+        <div className="awardBox">
+          <div className="itemBox">
+            <div className="txt">累计团队奖励(USDT)</div>
+            <div className="number">9800.00</div>
+            <div className="btn btnList">明细记录</div>
+          </div>
+          <div className="itemBox">
+            <div className="txt">待领取团队奖励(USDT)</div>
+            <div className="number awardColor">200.00</div>
+            <div className="btn btnAward">领取奖励</div>
+          </div>
+        </div>
         <div className="hintTeamListTxt">{t("团队列表")}</div>
         <div className="box teamList">
           <div className="teamHeaderOption">
@@ -206,7 +215,7 @@ const MyTeam: React.FC = () => {
                       </div>
                       <div className="itemTxt">{item.createTime}</div>
                       <div className="itemTxt txtUsdt itemTxtRight">
-                        {fromWei(item.teamPerf)||'0'}
+                        {fromWei(item.teamPerf) || "0"}
                       </div>
                     </div>
                   </div>

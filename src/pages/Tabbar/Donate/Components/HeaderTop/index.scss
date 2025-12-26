@@ -1,0 +1,28 @@
+.headerTopPage {
+  position: fixed;
+  top: 10px;
+  left: 16px;
+  right: 16px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .leftTxt {
+    font-weight: 500;
+    font-size: 18px;
+    color: #ffffff;
+  }
+  .rightOption {
+    padding: 6px 12px;
+    border: 1px solid #00f8f3;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    .txt {
+      padding-right: 12px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #00f8f3;
+    }
+  }
+}

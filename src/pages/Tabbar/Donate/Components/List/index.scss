@@ -1,0 +1,49 @@
+.listPage {
+  margin-top: 20px;
+  .hintTitle {
+    font-weight: 500;
+    font-size: 18px;
+    color: #ffffff;
+  }
+  .itemBox {
+    background: rgba(0, 240, 247, 0.15);
+    border: 1px solid #00c7f7;
+    margin-top: 12px;
+    border-radius: 8px;
+    padding: 16px 12px;
+    .hintTitle {
+      font-weight: 500;
+      font-size: 16px;
+      color: #ffffff;
+    }
+    .endBox {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .leftOption {
+        .hintTxt {
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.65);
+        }
+        .hintNumber {
+          margin-top: 3px;
+          font-weight: 500;
+          font-size: 16px;
+          color: #00f8f3;
+        }
+      }
+      .rightBtnOption {
+        flex: none;
+        background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+        border-radius: 16px;
+        padding: 6px 19px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+  }
+}

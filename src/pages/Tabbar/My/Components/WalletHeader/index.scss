@@ -1,0 +1,80 @@
+.WalletHeaderPage {
+  display: flex;
+  align-items: center;
+  .logoBox {
+    flex: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  .rightBox {
+    flex: auto;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    .centerBox {
+      flex: auto;
+      .walletOption {
+        display: flex;
+        align-items: center;
+        .walletTxt {
+          font-weight: bold;
+          font-size: 18px;
+          color: #ffffff;
+        }
+        .copyIcon {
+          margin-left: 8px;
+          height: 16px;
+          width: 16px;
+        }
+      }
+      .nodeBox {
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        .nodeOption {
+          display: flex;
+          align-items: center;
+          background: linear-gradient(
+            270deg,
+            #00ffed 0%,
+            #00b7ff 51.87%,
+            #ab46ff 100%
+          );
+          border-radius: 2px;
+          padding: 2px 5px;
+
+          font-weight: 500;
+          font-size: 11px;
+          color: rgba(0, 0, 0, 0.85);
+          .nodeIcon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+        .memberOption {
+          background: rgba(0, 0, 0, 0.8);
+          border-radius: 2px;
+          border: 1px solid #00f8f3;
+          margin-left: 12px;
+          display: flex;
+          align-items: center;
+          padding: 2px 5px;
+          font-weight: 500;
+          font-size: 11px;
+          color: #00f8f3;
+          .memberIcon {
+            width: 12px;
+            height: 12px;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+    .logOutIcon {
+      flex: none;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

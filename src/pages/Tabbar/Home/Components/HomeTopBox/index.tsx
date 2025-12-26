@@ -1,6 +1,8 @@
 import "./index.scss";
 import type { FC } from "react";
+import { useNavigate } from "react-router-dom";
 const HomeTopBox: FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="HomeTopBox">
       <div className="dappTitle">VEIL PLUS</div>
@@ -9,7 +11,9 @@ const HomeTopBox: FC = () => {
         <div className="dappHintBgTxt">构建可移植的全链上身份协议</div>
         <div className="btnList">
           <div className="btn bgOne">捐赠挖矿</div>
-          <div className="btn bgTwo">节点购买</div>
+          <div className="btn bgTwo" onClick={() => navigate("/Node")}>
+            节点购买
+          </div>
         </div>
       </div>
     </div>

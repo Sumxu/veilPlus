@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-const Node = lazy(() => import("@/pages/Node"));
+const Node = lazy(() => import("@/pages/Node/index"));
 const OutputList = lazy(() => import("@/pages/OutputList"));
 const MyTeam = lazy(() => import("@/pages/MyTeam"));
 const Home = lazy(() => import("@/pages/Tabbar/Home/index"));
