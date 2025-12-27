@@ -29,9 +29,7 @@ body {
 }
 
 .adm-popup-body{
-  background: #fff !important;
-  border-radius: 12px 12px 0 0 !important;
- 
+  border-radius: 18px;
 }
 
 .coloursBT{

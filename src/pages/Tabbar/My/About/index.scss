@@ -1,0 +1,51 @@
+.aboutPage {
+  background: url("@/assets/my/meTOpBg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 400px;
+  padding-inline: 16px;
+  .contentPage {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+
+    .title {
+      margin-top: 16px;
+      font-weight: bold;
+      font-size: 32px;
+      color: #ffffff;
+      background: linear-gradient(
+        32.86788150482898deg,
+        #97fcff 0%,
+        #ffffff 52%,
+        #54eef2 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hintTxt {
+      margin-top: 6px;
+      font-weight: 400;
+      font-size: 20px;
+      color: #ffffff;
+    }
+    .hintBoxTxt {
+      padding: 4px 8px;
+      display: inline-block;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.85);
+      background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+      border-radius: 4px;
+    }
+    .HintListBox {
+      margin-top: 203px;
+      .txtOption {
+        font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+        
+        margin-bottom: 24px;
+      }
+    }
+  }
+}

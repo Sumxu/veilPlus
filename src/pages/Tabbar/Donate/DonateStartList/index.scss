@@ -1,0 +1,166 @@
+.DonateStartListPage {
+  height: 100vh;
+  position: relative;
+  background-image: url("@/assets/donate/donateBg.png");
+  background-size: 100% 100vh;
+  background-repeat: no-repeat;
+  padding-inline: 16px;
+  padding-bottom: 40px;
+  padding-top: 12px;
+
+  .tabBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .tabOption {
+      width: 30%;
+      text-align: center;
+      height: 32px;
+      line-height: 32px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-weight: 500;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .checked {
+      background: rgba(0, 248, 243, 0.15);
+      border-radius: 18px;
+      color: #00f8f3;
+      border: 1px solid #00f8f3;
+    }
+  }
+  .opacity {
+    opacity: 0.75;
+  }
+  .contentList {
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    margin-top: 16px;
+    svg {
+      transform: rotate(-180deg) scaleY(-1);
+      transform-origin: center;
+    }
+    .itemBox {
+      margin-bottom: 12px;
+      border-radius: 8px;
+      padding-block: 8px;
+      border: 1px solid #00c4f7;
+      background: rgba(0, 240, 247, 0.15);
+      .headerOption {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .tag {
+          padding: 6px 12px;
+          border-top-right-radius: 16px;
+          border-bottom-right-radius: 16px;
+          background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+        }
+        .rightOption {
+          padding-right: 12px;
+          .statusTxt {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            .line {
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              background: #3ae97d;
+            }
+            .txt {
+              text-align: right;
+              margin-left: 4px;
+              font-weight: 400;
+              font-size: 12px;
+              color: #3ae97d;
+            }
+          }
+
+          .dateTime {
+            margin-top: 2px;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+          }
+        }
+      }
+      .centerBox {
+        padding-inline: 14px;
+        display: flex;
+        align-items: center;
+        margin-top: 12px;
+        .leftOption {
+          flex: none;
+          .progressCircleItem {
+            .progressCircleNumber {
+              font-weight: bold;
+              font-size: 12px;
+              color: #fff !important;
+            }
+          }
+        }
+        .rightOption {
+          margin-left: 18px;
+          flex: auto;
+          display: flex;
+          align-items: center;
+          .rightItem {
+            .txt {
+              font-weight: 400;
+              font-size: 12px;
+              color: rgba(255, 255, 255, 0.65);
+            }
+            .txt2 {
+              font-weight: 400;
+              font-size: 14px;
+              color: #ffffff;
+            }
+          }
+          .rightItemLeft {
+            margin-left: 38px;
+          }
+        }
+      }
+      .endBox {
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-inline: 14px;
+        padding-inline: 8px;
+        height: 32px;
+        background: rgba(0, 0, 0, 0.35);
+        border-radius: 4px;
+        .leftOption {
+          .spn1 {
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+          }
+          .spn2 {
+            font-weight: 500;
+            font-size: 12px;
+            color: #f4ff00;
+          }
+        }
+        .rightOption {
+         display: flex;
+         align-items: center;
+          .spn1 {
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+            margin-right: 4px;
+          }
+          .rightIcon{
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+}

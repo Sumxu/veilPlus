@@ -1,0 +1,88 @@
+.InfoPage {
+  margin-top: 20px;
+  .infoBox {
+    background: url("@/assets/my/userInfoBg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    position: relative;
+    .detailList {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      .txt {
+        font-weight: 400;
+        font-size: 12px;
+        color: #ffffff;
+      }
+    }
+    .hintTxt {
+      font-weight: bold;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    .numberBox {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      .numberItem {
+        flex: 1;
+        .itemTxt {
+          font-weight: 400;
+          font-size: 12px;
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .itemNumber {
+          margin-top: 2px;
+          font-weight: bold;
+          font-size: 20px;
+          color: rgba(0, 0, 0, 0.85);
+        }
+      }
+      .numberTwoItem {
+        margin-left: 12px;
+      }
+      .line {
+        background: rgba(255, 255, 255, 0.25);
+        height: 40px;
+        width: 1px;
+      }
+    }
+    .infoEnd {
+      margin-top: 16px;
+      display: flex;
+      padding:4px 12px;
+      align-items: center;
+      background: #000000;
+      border-radius: 4px;
+      .leftOption {
+        flex: auto;
+        display: flex;
+        align-items: center;
+        .txt {
+          font-weight: 500;
+          font-size: 12px;
+          color: #00f8f3;
+        }
+        .number {
+          font-weight: 500;
+          font-size: 14px;
+          color: rgba(244, 255, 0, 0.85);
+        }
+      }
+      .btn {
+        flex: none;
+        background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+        border-radius: 14px;
+        padding: 6px 18px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+  }
+}

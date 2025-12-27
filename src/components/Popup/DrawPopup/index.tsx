@@ -2,8 +2,7 @@ import "./index.scss";
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Popup, Input } from "antd-mobile";
-import { CloseOutline } from "antd-mobile-icons";
-import popupHintIcon from "@/assets/popup/popupHintIcon.png";
+import closeIcon from "@/assets/basic/close.png";
 import { t } from "i18next";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import ContractList from "@/Contract/Contract";
@@ -12,6 +11,7 @@ import { userAddress } from "@/Store/Store.ts";
 import { BigNumber, utils } from "ethers";
 import { Button } from "antd-mobile";
 import ContractSend from "@/Hooks/ContractSend.ts";
+import hintIcon from "@/assets/basic/hintIcon.png";
 const MyPopup: React.FC = ({ isShow, onClose }) => {
   const [userInfo, setUserInfo] = useState({}); //用户信息
   const walletAddress = userAddress((state) => state.address);
@@ -119,8 +119,6 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
   };
   useEffect(() => {
     if (isShow == false) return;
-    getTusdSwap(); //获取兑换比例
-    getUserInfo(); //获取用户信息
   }, [isShow]);
   return (
     <>
@@ -132,23 +130,21 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
       >
         <div className="my-popup-page">
           <div className="header-option">
-            <div className="title">{t("提现")}</div>
-            <div className="close-icon" onClick={() => onCloseChange()}>
-              <CloseOutline fontSize={12} color="#969797" />
-            </div>
+            <div className="title">{t("领取收益")}</div>
+            <img
+              src={closeIcon}
+              className="close-icon"
+              onClick={onCloseChange}
+            ></img>
           </div>
           <div className="tag-box">
-            <img src={popupHintIcon} className="icon"></img>
-            <div className="txt-option">
-              {t("兑换比例")}：1.00 TUSD ≈ {fromWei(rate, 18, true, 2)}
-            </div>
+            <img src={hintIcon} className="icon"></img>
+            <div className="txt-option">领取收益将直接到账已绑定的钱包!</div>
           </div>
           <div className="input-box">
             <div className="input-hint-txt-option">
-              <div className="txt-option">{t("提现数量")}:</div>
-              <div className="txt-option right-txt">
-                {t("余额")}:{fromWei(userInfo.tusd)} TUSD
-              </div>
+              <div className="txt-option">{t("领取数量")}:</div>
+              <div className="txt-option right-txt">可领取:12VIPL</div>
             </div>
             <div className={`input-option ${isFocus ? "input-focus" : ""}`}>
               <Input
@@ -162,18 +158,14 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
                 clearable
                 className="input-class"
               />
-              <div className="input-txt">TUSD</div>
+              <div className="input-txt">VIPL</div>
+              <div className="line"></div>
+              <div className="input-txt">MAX</div>
             </div>
           </div>
-
-          <div className="input-box">
-            <div className="input-hint-txt-option">
-              <div className="txt-option">{t("预计获得")}TAX:</div>
-            </div>
-            <div className="input-option input-no">
-              <div className="input-number">{fromWei(getTaxNumber)}</div>
-              <div className="input-txt">TAX</div>
-            </div>
+          <div className="HintOption">
+            <div className="labelTxt">实际到账：</div>
+            <div className="valueTxt">500.00 VIPL</div>
           </div>
           <Button
             loading={submitLoading}
@@ -183,7 +175,7 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
               submitClick();
             }}
           >
-            {t("确认提现")}
+            {t("确认领取")}
           </Button>
         </div>
       </Popup>

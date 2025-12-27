@@ -8,7 +8,6 @@ import { t } from "i18next";
 import ContractSend from "@/Hooks/ContractSend.ts";
 import ContractList from "@/Contract/Contract.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
-import { CloseOutline } from "antd-mobile-icons";
 import closeIcon from "@/assets/basic/close.png";
 import checkIcon from "@/assets/team/check.png";
 interface nodeItem {

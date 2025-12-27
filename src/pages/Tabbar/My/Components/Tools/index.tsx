@@ -1,4 +1,5 @@
 import "./index.scss";
+import { useState } from "react";
 import { RightOutline } from "antd-mobile-icons";
 import type { MyToolItem } from "@/Ts/MyToolItem";
 import teamTools from "@/assets/my/teamTools.png";
@@ -6,7 +7,11 @@ import nodeTools from "@/assets/my/nodeTools.png";
 import aboutIcon from "@/assets/my/about.png";
 import lanIcon from "@/assets/my/lanIcon.png";
 import moneyTools from "@/assets/my/moneyTools.png";
+import { useNavigate } from "react-router-dom";
+import LanPopup from "@/components/LanPopup";
 const Tools: React.FC = () => {
+  const navigate = useNavigate();
+  const [isShow, setIsShow] = useState<boolean>(false);
   const toolList: MyToolItem[] = [
     {
       icon: moneyTools,
@@ -20,21 +25,21 @@ const Tools: React.FC = () => {
       toolsName: "我的团队",
       type: 0,
       desc: "",
-      path: "",
+      path: "/MyTeam",
     },
     {
       icon: nodeTools,
       toolsName: "VIPL PLUS节点",
       type: 0,
       desc: "",
-      path: "",
+      path: "/NodeDetail",
     },
     {
       icon: aboutIcon,
       toolsName: "关于我们",
       type: 0,
       desc: "",
-      path: "",
+      path: "/About",
     },
     {
       icon: lanIcon,
@@ -44,11 +49,28 @@ const Tools: React.FC = () => {
       path: "",
     },
   ];
+  const toolsClick = (item) => {
+    if (item.type == 1) {
+      setIsShow(true);
+    } else {
+      navigate(item.path);
+    }
+  };
+  /**
+   * 显示隐藏语言设置
+   */
+  const lanSetChange = () => {
+    setIsShow(!isShow);
+  };
   return (
     <div className="ToolsPage">
       {toolList.map((item, index) => {
         return (
-          <div className="toolItem" key={index}>
+          <div
+            className="toolItem"
+            onClick={() => toolsClick(item)}
+            key={index}
+          >
             <img src={item.icon} className="toolIcon"></img>
             <div className="toolName">{item.toolsName}</div>
             <div className="rightOption">
@@ -58,6 +80,7 @@ const Tools: React.FC = () => {
           </div>
         );
       })}
+      <LanPopup isShow={isShow} lanChange={lanSetChange}></LanPopup>
     </div>
   );
 };

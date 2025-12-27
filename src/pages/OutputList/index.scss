@@ -1,11 +1,16 @@
 .out-put-list-page {
   min-height: 100vh;
   background: #191919;
-  padding: 60px 12px 30px 12px;
+  padding: 12px 12px 30px 12px;
+  background: url('@/assets/donate/donateBg.png');
+  background-repeat: no-repeat;
+  background-size:100% 100%;
   .item-box {
-    background: #373737;
     border-radius: 8px;
     overflow: hidden;
+    border: 1px solid #00e4ed;
+    padding-inline: 12px;
+    background: rgba(0, 240, 247, 0.15);
     .item-header-option {
       display: flex;
       align-items: center;
@@ -85,7 +90,9 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
+      .ing{
+        color:#F4FF00 !important;
+      }
       .item-txt {
         font-size: 12px;
         color: #ffffff;

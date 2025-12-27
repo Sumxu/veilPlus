@@ -6,8 +6,9 @@ const My: React.FC = () => {
   return (
     <div className="myPage">
       <WalletHeader></WalletHeader>
+      <Info></Info>
       <Tools></Tools>
     </div>
-  );
+  );    
 };
 export default My;

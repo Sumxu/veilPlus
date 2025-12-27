@@ -1,8 +1,7 @@
 .my-popup-page {
-  background: linear-gradient(180deg, #434545 0%, #161616 100%);
-  box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, #375150 0%, #182726 100%);
   border-radius: 16px 16px 0px 0px;
-  padding: 16px;
+  // padding: 16px;
   box-sizing: border-box;
   .header-option {
     display: flex;
@@ -10,7 +9,6 @@
     position: relative;
     .title {
       width: 100%;
-
       text-align: center;
       font-weight: bold;
       font-size: 18px;
@@ -18,7 +16,50 @@
     }
     .close-icon {
       top: 0;
-      right: 16px;
+      width: 22px;
+      height: 22px;
+    }
+  }
+  .title {
+    margin-top: 12px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: #00f8f3;
+  }
+  .hintBox {
+    margin-top: 16px;
+    background: #000000;
+    border-radius: 8px;
+    padding: 12px;
+    .txtOption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .txt {
+        font-weight: 500;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .txtEnd {
+        font-weight: bold;
+        font-size: 16px;
+        color: #00f8f3;
+      }
+    }
+    .txtEndOption {
+      margin-top: 4px;
+    }
+  }
+  .hintOption {
+    margin-top: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    .spn1 {
+      font-weight: 400;
+      font-size: 14px;
+      color: #00f8f3;
     }
   }
   .tag-box {
@@ -48,7 +89,7 @@
       .txt-option {
         font-weight: 400;
         font-size: 14px;
-        color: #ffffff;
+        color: rgba(255, 255, 255, 0.65);
       }
       .right-txt {
         font-weight: 400;
@@ -56,18 +97,15 @@
         color: rgba(255, 255, 255, 0.65);
       }
     }
-    .margin-12{
-      margin-top: 12px;
+    .input-focus {
+      border: 1px solid #00c7f7 !important;
     }
-     .input-focus{
-    border: 1px solid #0BE72F !important;
-  }
     .input-option {
       border-radius: 8px;
       margin-top: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: #2e2f2f;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       padding: 15px 12px;
+      font-size: 16px !important;
       box-sizing: border-box;
       display: flex;
       align-items: center;
@@ -76,19 +114,25 @@
         flex: auto;
         color: #fff !important;
       }
-      .adm-input-element{
+      .adm-input-element {
         color: #fff !important;
       }
 
-  input:focus {
-    caret-color: #0BE72F;
-  }
- 
+      input:focus {
+        caret-color: #0be72f;
+      }
+
       .input-txt {
         flex: none;
         font-weight: 500;
         font-size: 16px;
         color: #ffffff;
+      }
+      .line {
+        width: 1px;
+        height: 20px;
+        margin-inline: 16px;
+        background: rgba(255, 255, 255, 0.15);
       }
       .input-number {
         color: #fff;
@@ -96,7 +140,7 @@
       }
     }
     .input-no {
-        border: none;
+      border: none;
       background: rgba(255, 255, 255, 0.15);
     }
   }
@@ -119,15 +163,31 @@
       font-weight: bold;
     }
   }
-  .btn-redemption-submit {
-    margin-top: 74px;
-    width: 100%;
+  .HintOption {
+    margin-top: 114px;
+
+    display: flex;
+    align-items: center;
+    .labelTxt {
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .valueTxt {
+      font-weight: 400;
+      font-size: 14px;
+      color: #00f8f3;
+    }
+  }
+  .btn-withdraw-submit {
+    margin-top: 65px;
     height: 50px;
-    // text-align: center;
-    background: linear-gradient(270deg, #0be72f 0%, #0be72f 100%);
+    text-align: center;
+    background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
     border-radius: 25px;
     font-weight: 500;
     font-size: 16px;
+    width: 100%;
     color: rgba(0, 0, 0, 0.85);
   }
 }
