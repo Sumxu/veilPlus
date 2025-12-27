@@ -4,7 +4,7 @@ import LeftBackHeader from "@/components/LeftBackHeader";
 import { useState } from "react";
 import { RightOutline } from "antd-mobile-icons";
 import { ProgressCircle } from "antd-mobile";
-import rightIcon from '@/assets/basic/right.png';
+import rightIcon from "@/assets/basic/right.png";
 const DonateStartListPage: FC = () => {
   const [tabIndex, setTabIndex] = useState<string>("0");
   const tabList = [
@@ -98,7 +98,7 @@ const DonateStartListPage: FC = () => {
             </div>
             <div className="rightOption">
               <span className="spn1">收益记录</span>
-              <RightOutline fontSize={12} color="#fff" />
+              <img src={rightIcon} className="rightIcon"></img>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@ const DonateStartListPage: FC = () => {
             </div>
             <div className="rightOption">
               <span className="spn1">收益记录</span>
-                  <img src={rightIcon} className="rightIcon"></img>
+              <img src={rightIcon} className="rightIcon"></img>
             </div>
           </div>
         </div>
