@@ -9,41 +9,43 @@ import lanIcon from "@/assets/my/lanIcon.png";
 import moneyTools from "@/assets/my/moneyTools.png";
 import { useNavigate } from "react-router-dom";
 import LanPopup from "@/components/LanPopup";
+import { t } from "i18next";
+
 const Tools: React.FC = () => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState<boolean>(false);
   const toolList: MyToolItem[] = [
     {
       icon: moneyTools,
-      toolsName: "我的捐赠",
+      toolsName: t("我的捐赠"),
       type: 0,
       desc: "",
-      path: "",
+      path: "/DonateStartList",
     },
     {
       icon: teamTools,
-      toolsName: "我的团队",
+      toolsName: t("我的团队"),
       type: 0,
       desc: "",
       path: "/MyTeam",
     },
     {
       icon: nodeTools,
-      toolsName: "VIPL PLUS节点",
+      toolsName: t("VIPL PLUS节点"),
       type: 0,
       desc: "",
       path: "/NodeDetail",
     },
     {
       icon: aboutIcon,
-      toolsName: "关于我们",
+      toolsName: t("关于我们"),
       type: 0,
       desc: "",
       path: "/About",
     },
     {
       icon: lanIcon,
-      toolsName: "语言设置",
+      toolsName: t("语言设置"),
       type: 1,
       desc: "简体中文",
       path: "",

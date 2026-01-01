@@ -170,7 +170,7 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
           <Button
             loading={submitLoading}
             loadingText={t("确认中")}
-            className="btn-withdraw-submit"
+            className="btn-draw-submit"
             onClick={() => {
               submitClick();
             }}

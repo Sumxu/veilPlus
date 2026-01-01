@@ -4,10 +4,8 @@ import React, { useEffect, useState } from "react";
 import { t } from "i18next";
 import NoData from "@/components/NoData";
 import { Spin } from "antd";
-import { DownOutline } from "antd-mobile-icons";
 import NetworkRequest from "@/Hooks/NetworkRequest.ts";
 import LeftBackHeader from "@/components/LeftBackHeader";
-
 import { userAddress } from "@/Store/Store.ts";
 import { InfiniteScroll } from "antd-mobile";
 import { fromWei } from "@/Hooks/Utils";
@@ -27,6 +25,72 @@ const OutputList: React.FC = () => {
       amount: "12.2",
     },
      {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    }, {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    }, {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    }, {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+     {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    }, {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
@@ -89,11 +153,11 @@ const OutputList: React.FC = () => {
   return (
     <>
       <div className="out-put-list-page">
-        <LeftBackHeader title="收益记录"></LeftBackHeader>
+        <LeftBackHeader title={t('收益记录')}></LeftBackHeader>
         <div className="item-box">
           <div className="list-item-header">
             <div className="header-txt header-txt-1">{t("时间")}</div>
-            <div className="header-txt header-txt-2">状态</div>
+            <div className="header-txt header-txt-2">{t('状态')}</div>
             <div className="header-txt header-txt-3">{t("金额(VIPL)")}</div>
           </div>
           <div className="list-item-option">

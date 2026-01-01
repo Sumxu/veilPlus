@@ -178,14 +178,14 @@ const MyTeam: React.FC = () => {
         </div>
         <div className="awardBox">
           <div className="itemBox">
-            <div className="txt">累计团队奖励(USDT)</div>
+            <div className="txt">{t('累计团队奖励')}(USDT)</div>
             <div className="number">9800.00</div>
-            <div className="btn btnList">明细记录</div>
+            <div className="btn btnList">{t('明细记录')}</div>
           </div>
           <div className="itemBox">
-            <div className="txt">待领取团队奖励(USDT)</div>
+            <div className="txt">{t('待领取团队奖励')}(USDT)</div>
             <div className="number awardColor">200.00</div>
-            <div className="btn btnAward">领取奖励</div>
+            <div className="btn btnAward">{t('领取奖励')}</div>
           </div>
         </div>
         <div className="hintTeamListTxt">{t("团队列表")}</div>

@@ -304,9 +304,9 @@ const Node: React.FC = () => {
             })
           )}
         </div>
-        <div className="teamBtn">
+        <div className="teamBtn" onClick={() => myTeamPath()}>
           <img src={teamIcon} className="teamIcon"></img>
-          <span className="spnTxt" onClick={() => myTeamPath()}>
+          <span className="spnTxt">
             {t("我的团队")}
           </span>
         </div>

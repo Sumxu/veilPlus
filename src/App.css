@@ -87,8 +87,9 @@
 }
 
 .body {
-  height: calc(100vh - 50px);
-  overflow-y: auto;
+  /* height: calc(100vh - 50px); */
+  /* overflow-y: auto; */
+  flex: 1;
 }
 
 .bottom {

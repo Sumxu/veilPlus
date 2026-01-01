@@ -11,7 +11,6 @@ import { userAddress } from "@/Store/Store.ts";
 import { BigNumber, utils } from "ethers";
 import { Button } from "antd-mobile";
 import ContractSend from "@/Hooks/ContractSend.ts";
-import hintIcon from "@/assets/basic/hintIcon.png";
 const MyPopup: React.FC = ({ isShow, onClose }) => {
   const [userInfo, setUserInfo] = useState({}); //用户信息
   const walletAddress = userAddress((state) => state.address);

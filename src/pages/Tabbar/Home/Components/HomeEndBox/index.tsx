@@ -3,13 +3,15 @@ import type { FC } from "react";
 import topOneIcon from "@/assets/home/top1.png";
 import topTwoIcon from "@/assets/home/top2.png";
 import topThreeIcon from "@/assets/home/top3.png";
+import { t } from "i18next";
+
 const HomeEndBox: FC = () => {
   return (
     <div className="HomeEndBox">
-      <div className="title">捐赠排行榜</div>
+      <div className="title">{t('捐赠排行榜')}</div>
       <div className="listHeaderOption">
-        <div className="txt">用户名</div>
-        <div className="txt">捐赠量(USDT)</div>
+        <div className="txt">{t('用户名')}</div>
+        <div className="txt">{t('捐赠量')}(USDT)</div>
       </div>
       <div className="rankingTopBox">
         <div className="topOption oneTop">

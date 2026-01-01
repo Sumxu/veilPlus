@@ -120,13 +120,7 @@ const Header: React.FC<{
     >
       <div className="back-left">
         {langTxt && (
-          <div className="lan-option">
-            <img src={lan} className="lan-icon"></img>
-            <div className="lan-txt" onClick={langClick}>
-              {langTxt}
-            </div>
-            <DownOutline color="#fff" />
-          </div>
+            <img src={back} className="lan-icon" onClick={()=>navigate(-1)}></img>
         )}
       </div>
       {

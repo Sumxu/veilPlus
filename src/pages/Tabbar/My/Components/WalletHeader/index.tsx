@@ -4,6 +4,8 @@ import logOutIcon from "@/assets/my/logOutIcon.png";
 import copyIcon from "@/assets/basic/copyIcon.png";
 import nodeIcon from "@/assets/my/node.png";
 import memberIcon from "@/assets/my/member.png";
+import { t } from "i18next";
+
 const WalletHeader: React.FC = () => {
   return (
     <div className="WalletHeaderPage">
@@ -16,11 +18,11 @@ const WalletHeader: React.FC = () => {
           </div>
           <div className="nodeBox">
             <div className="nodeOption">
-              <img src={nodeIcon} className="nodeIcon"></img> 节点用户
+              <img src={nodeIcon} className="nodeIcon"></img> {t("节点用户")}
             </div>
             
             <div className="memberOption">
-              <img src={memberIcon} className="memberIcon"></img> 等级:v8
+              <img src={memberIcon} className="memberIcon"></img> {t("等级")}:v8
             </div>
           </div>
         </div>

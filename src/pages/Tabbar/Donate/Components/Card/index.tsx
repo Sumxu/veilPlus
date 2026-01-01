@@ -2,6 +2,8 @@ import "./index.scss";
 import { useState, type FC } from "react";
 import DrawPopup from "@/components/Popup/DrawPopup";
 import { useNavigate } from "react-router-dom";
+import { t } from "i18next";
+
 const Card: FC = () => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const navigate=useNavigate()
@@ -15,8 +17,8 @@ const Card: FC = () => {
     <div className="CardPage">
       <div className="headerTopBox">
         <div className="txtOption">
-          <div className="txt">当前捐赠</div>
-          <div className="txt">累计收益</div>
+          <div className="txt">{t('当前捐赠')}</div>
+          <div className="txt">{t('累计收益')}</div>
         </div>
         <div className="txtOption txtOptionMt4">
           <div className="txt">800.00 USDT</div>
@@ -25,12 +27,12 @@ const Card: FC = () => {
       </div>
       <div className="headerEndBox">
         <div className="leftOption">
-          <div className="hintTitle">待领取收益</div>
+          <div className="hintTitle">{t("待领取收益")}</div>
           <div className="hintNumber">500.00 VIPL</div>
         </div>
         <div className="rightOption">
-          <div className="btn btnOne" onClick={()=>navigate('/OutputList')}>记录</div>
-          <div className="btn btnTwo" onClick={()=>openShow()}>领取</div>
+          <div className="btn btnOne" onClick={()=>navigate('/OutputList')}>{t('记录')}</div>
+          <div className="btn btnTwo" onClick={()=>openShow()}>{t('领取')}</div>
         </div>
       </div>
       <DrawPopup isShow={isShow} onClose={onClose}></DrawPopup>

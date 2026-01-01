@@ -16,16 +16,17 @@
   }
   .back-left {
     flex: none;
+     .lan-icon {
+        width: 28px;
+        height: 24px;
+      }
     .lan-option {
       // border: 1px solid #fdcd9d;
       padding: 4px 15px;
       border-radius: 14px;
       display: flex;
       align-items: center;
-      .lan-icon {
-        width: 16px;
-        height: 16px;
-      }
+     
       .lan-txt {
         margin-left: 4px;
         margin-right: 4px;
