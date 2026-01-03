@@ -62,5 +62,12 @@
   "前1001～1600位: 奖励980枚VIPL": "Top 1001–1600: Reward 980 VIPL",
   "前1～300位: 奖励5000枚VIPL": "Top 1–300: Reward 5000 VIPL",
   "前301～600位: 奖励3500枚VIPL": "Top 301–600: Reward 3500 VIPL",
-  "前601～1000位: 奖励2450枚VIPL": "Top 601–1000: Reward 2450 VIPL"
+  "前601～1000位: 奖励2450枚VIPL": "Top 601–1000: Reward 2450 VIPL",
+  "没有可领取的积分": "No points available to claim",
+  "领取成功": "Claim successful",
+  "累计领取": "Total claimed",
+  "待领取积分": "Pending points",
+  "每日赠送": "Daily bonus",
+  "正在加载": "Loading",
+  "待领取": "Pending"
 }

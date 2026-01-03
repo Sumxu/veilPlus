@@ -55,12 +55,19 @@
   "大节点合伙人赠送VIP2级别(激活即可享受)": "Đối tác nút lớn được tặng VIP cấp 2 (có hiệu lực sau khi kích hoạt)",
   "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)": "Tặng 50% số tiền mua của đối tác nút để quyên góp vào tài khoản lợi nhuận của mỏ đào, đối tác nút lớn được tặng tài khoản 500U (có hiệu lực sau khi kích hoạt)",
   "节点业绩": "Hiệu suất nút",
-    "总量": "Tổng số",
+  "总量": "Tổng số",
   "生态节点": "Nút hệ sinh thái",
   "前1～500位: 奖励2000枚VIPL": "Top 1–500: Thưởng 2000 VIPL",
   "前501～1000位: 奖励1400枚VIPL": "Top 501–1000: Thưởng 1400 VIPL",
   "前1001～1600位: 奖励980枚VIPL": "Top 1001–1600: Thưởng 980 VIPL",
   "前1～300位: 奖励5000枚VIPL": "Top 1–300: Thưởng 5000 VIPL",
   "前301～600位: 奖励3500枚VIPL": "Top 301–600: Thưởng 3500 VIPL",
-  "前601～1000位: 奖励2450枚VIPL": "Top 601–1000: Thưởng 2450 VIPL"
+  "前601～1000位: 奖励2450枚VIPL": "Top 601–1000: Thưởng 2450 VIPL",
+  "没有可领取的积分": "Không có điểm để nhận",
+  "领取成功": "Nhận thành công",
+  "累计领取": "Tổng đã nhận",
+  "待领取积分": "Điểm chưa nhận",
+  "每日赠送": "Thưởng hàng ngày",
+  "正在加载": "Đang tải",
+  "待领取": "Chờ nhận"
 }

@@ -62,5 +62,12 @@
   "前1001～1600位: 奖励980枚VIPL": "Peringkat 1001–1600: Hadiah 980 VIPL",
   "前1～300位: 奖励5000枚VIPL": "Peringkat 1–300: Hadiah 5000 VIPL",
   "前301～600位: 奖励3500枚VIPL": "Peringkat 301–600: Hadiah 3500 VIPL",
-  "前601～1000位: 奖励2450枚VIPL": "Peringkat 601–1000: Hadiah 2450 VIPL"
+  "前601～1000位: 奖励2450枚VIPL": "Peringkat 601–1000: Hadiah 2450 VIPL",
+  "没有可领取的积分": "Tidak ada poin yang dapat diklaim",
+  "领取成功": "Berhasil diklaim",
+  "累计领取": "Total diklaim",
+  "待领取积分": "Poin tertunda",
+  "每日赠送": "Bonus harian",
+  "正在加载": "Memuat",
+  "待领取": "Menunggu klaim"
 }

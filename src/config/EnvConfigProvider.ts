@@ -18,7 +18,8 @@ export default class EnvConfigProvider {
   /** 开发环境配置（测试网） */
   static getDevConfig(): EnvConfig {
     return {
-      apiBase: "https://api.veilplus.com/api/",
+      // apiBase: "https://api.veilplus.com/api/",
+      apiBase: "http://192.168.0.103:8702/",
       contractUsdt: "0x0158953982FbF5f42D5eb934046cD0707D1B2E74",
       contractVeillUser: "0x29baD8Ea5311014B1A9cda2aeAaE178C1A6E7484",
       contractVeillNode: "0x1e42247F4f5De8A51DAdfD1c544b921Ed1c8bC8e",
