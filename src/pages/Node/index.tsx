@@ -7,14 +7,14 @@ import { BigNumber, ethers } from "ethers";
 import { storage } from "@/Hooks/useLocalStorage";
 import { Drawer, Flex, Spin } from "antd";
 import { ProgressCircle } from "antd-mobile";
-import BuyNftPopup from "./component/BuyNftPopup";
+import BuyNftPopup from "@/pages/Node/component/BuyNftPopup";
 import BackHeader from "@/components/BackHeader";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
 import InviteModal from "@/components/InviteModal";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import teamIcon from "@/assets/team/teamIcon.png";
-import NodeList from "./component/NodeList";
-import NodeBuyList from "./component/NodeBuyList";
+import NodeList from "@/pages/Home/component/NodeList";
+import NodeBuyList from "@/pages/Home/component/NodeBuyList";
 interface nodeItem {
   amount: BigNumber;
   nodeName: string;
