@@ -117,6 +117,12 @@
   "编号": "ID",
   "节点累计收益": "Total Pendapatan Node",
   "待领取节点收益": "Pendapatan Node Tertunda",
-  "领取收益": "Klaim Pendapatan"
-
+  "领取收益": "Klaim Pendapatan",
+  "没有可领取的积分": "Tidak ada poin yang dapat diklaim",
+  "领取成功": "Berhasil diklaim",
+  "累计领取": "Total diklaim",
+  "待领取积分": "Poin tertunda",
+  "每日赠送": "Bonus harian",
+  "正在加载": "Memuat",
+  "待领取": "Menunggu klaim"
 }

@@ -13,7 +13,8 @@ import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
 import InviteModal from "@/components/InviteModal";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import teamIcon from "@/assets/team/teamIcon.png";
-
+import NodeList from "./component/NodeList";
+import NodeBuyList from "./component/NodeBuyList";
 interface nodeItem {
   amount: BigNumber;
   nodeName: string;
@@ -81,11 +82,10 @@ const Node: React.FC = () => {
   const [listLoading, setListLoading] = useState<boolean>(false);
   /**
    *
-   * @param item 购买节点
+   * @param item 购买节点id
    */
-  const buyClick = (item) => {
-    if (userNodeInfo.flg) return; //已购买节点
-    setNodeId(item.id);
+  const buyClick = (id: number) => {
+    setNodeId(id);
     setShowBuyNftPopup(true);
   };
   const myTeamPath = () => {
@@ -146,6 +146,7 @@ const Node: React.FC = () => {
       params: [walletAddress],
     });
     setUserNodeInfo(result.value);
+  
   };
   const nodeBtn = (item) => {
     if (item.id == Number(userNodeInfo.nodeId) && userNodeInfo.flg) {
@@ -231,84 +232,24 @@ const Node: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <svg width="0" height="0">
-          <defs>
-            <linearGradient
-              id="gradientColor"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="0%"
-            >
-              <stop offset="0%" stopColor="#00B2FE" />
-              <stop offset="100%" stopColor="#00FDE3" />
-            </linearGradient>
-          </defs>
-        </svg>
         <div className="nodesBox">
           {listLoading ? (
             <div className="assetDetailSpinBox">
               <Spin />
             </div>
+          ) : !userNodeInfo.flg ? (
+            <NodeList
+              showBuyNftChange={buyClick}
+              nodeList={nodeList}
+              userNodeInfo={userNodeInfo}
+            />
           ) : (
-            nodeList.map((item, index) => {
-              return (
-                <div className="nodeItem" key={index}>
-                  <div
-                    className={`trapezoid ${
-                      item.id == 0 ? "trapezoidOne" : "trapezoidTwo"
-                    }`}
-                  >
-                    {" "}
-                    {item.nodeName}
-                  </div>
-                  <div className="progressCircleItem">
-                    <ProgressCircle
-                      className="progressCircleReverse"
-                      percent={selllWith(item)}
-                      style={{
-                        "--size": "98px",
-                        "--track-width": "4px",
-                        "--fill-color": "url(#gradientColor)",
-                        "--track-color": "#284647",
-                      }}
-                    >
-                      <div className="progressCircleNumber">
-                        {item.inventory.toString()}
-                      </div>
-                      <div className="progressCircleTxt">{t("剩余")}</div>
-                    </ProgressCircle>
-                  </div>
-                  <div className="numberItem">
-                    <div className="itemHintTxt">
-                      <div className="hintTxt hintOne">{t("总量")}</div>
-                      <div className="hintTxt hintOne">
-                        {item.max.toString()}
-                      </div>
-                    </div>
-                    <div className="line"></div>
-                    <div className="itemHintTxt">
-                      <div className="hintTxt hintOne">{t("已售")}</div>
-                      <div className="hintTxt hintOne">{selllNumber(item)}</div>
-                    </div>
-                  </div>
-                  <div
-                    className={`btn ${item.id == 0 ? "oneBtn" : "twoBtn"}`}
-                    onClick={() => buyClick(item)}
-                  >
-                    {nodeBtn(item)}
-                  </div>
-                </div>
-              );
-            })
+            <NodeBuyList nodeList={nodeList} userNodeInfo={userNodeInfo} />
           )}
         </div>
         <div className="teamBtn" onClick={() => myTeamPath()}>
           <img src={teamIcon} className="teamIcon"></img>
-          <span className="spnTxt">
-            {t("我的团队")}
-          </span>
+          <span className="spnTxt">{t("我的团队")}</span>
         </div>
       </div>
       <Drawer

@@ -117,5 +117,12 @@
   "编号": "ID",
   "节点累计收益": "Total Node Earnings",
   "待领取节点收益": "Pending Node Earnings",
-  "领取收益": "Claim Earnings"
+  "领取收益": "Claim Earnings",
+  "没有可领取的积分": "No points available to claim",
+  "领取成功": "Claim successful",
+  "累计领取": "Total claimed",
+  "待领取积分": "Pending points",
+  "每日赠送": "Daily bonus",
+  "正在加载": "Loading",
+  "待领取": "Pending"
 }
