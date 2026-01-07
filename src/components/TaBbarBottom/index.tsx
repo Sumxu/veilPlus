@@ -7,6 +7,8 @@ import home from "@/assets/tabbar/home.png";
 import homeActive from "@/assets/tabbar/homeActive.png";
 import my from "@/assets/tabbar/my.png";
 import myActive from "@/assets/tabbar/myActive.png";
+import donate from "@/assets/tabbar/donate.png";
+import donateActive from "@/assets/tabbar/donateActive.png";
 import { useNavigate, useLocation } from "react-router-dom";
 const TaBbarBottom: FC = () => {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const TaBbarBottom: FC = () => {
     {
       key: "/Donate",
       title: t("捐赠"),
-      icon: { default: home, active: homeActive },
+      icon: { default: donate, active: donateActive },
     },
     {
       key: "/My",
