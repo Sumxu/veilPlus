@@ -74,6 +74,9 @@
         }
       }
       .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex: none;
         background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
         border-radius: 14px;

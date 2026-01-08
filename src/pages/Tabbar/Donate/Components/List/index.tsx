@@ -7,8 +7,10 @@ import { t } from "i18next";
 
 const List: FC = () => {
   const [isShow, setIsShow] = useState<boolean>(false);
-  const openShow = () => {
+  const [checkItem, setCheckItem] = useState<DonateItem>({});
+  const openShow = (item: DonateItem) => {
     setIsShow(true);
+    setCheckItem(item);
   };
   const onClose = () => {
     setIsShow(false);
@@ -18,16 +20,22 @@ const List: FC = () => {
       title: t("100-1000U专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.0",
+      number: "0.1",
+      id: 1,
     },
     {
       title: t("1100-3000U专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.2",
+      number: "1.2",
+      id: 2,
     },
     {
       title: t("31000U以上专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.5",
+      number: "1.5",
+      id: 3,
     },
   ];
   return (
@@ -42,14 +50,18 @@ const List: FC = () => {
                 <div className="hintTxt">{item.hintTxt}</div>
                 <div className="hintNumber">{item.hintNumber}%</div>
               </div>
-              <div className="rightBtnOption" onClick={openShow}>
+              <div className="rightBtnOption" onClick={() => openShow(item)}>
                 {t("去捐赠")}
               </div>
             </div>
           </div>
         );
       })}
-      <DonatePopup isShow={isShow} onClose={onClose}></DonatePopup>
+      <DonatePopup
+        isShow={isShow}
+        onClose={onClose}
+        checkItem={checkItem}
+      ></DonatePopup>
     </div>
   );
 };

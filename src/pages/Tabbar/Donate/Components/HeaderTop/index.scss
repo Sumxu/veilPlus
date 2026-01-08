@@ -1,12 +1,14 @@
 .headerTopPage {
   position: fixed;
-  top: 10px;
-  left: 16px;
-  right: 16px;
+  top: 0px;
+  padding: 10px 16px;
+  left: 0px;
+  right: 0px;
   background: #000;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   .leftTxt {
     font-weight: 500;
     font-size: 18px;

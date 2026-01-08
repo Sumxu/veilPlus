@@ -51,11 +51,17 @@ class EnvManager {
   static get contractUsdt(): string {
     return EnvManager.config.contractUsdt;
   }
-    static get contractVeillUser(): string {
+  static get contractVeillUser(): string {
     return EnvManager.config.contractVeillUser;
   }
-    static get contractVeillNode(): string {
+  static get contractVeillNode(): string {
     return EnvManager.config.contractVeillNode;
+  }
+  static get veilPlusToken(): string {
+    return EnvManager.config.veilPlusToken;
+  }
+  static get veilPlusPool(): string {
+    return EnvManager.config.veilPlusPool;
   }
   static get rpcUrl(): string {
     return EnvManager.config.rpcUrl;
@@ -72,10 +78,10 @@ class EnvManager {
   static get apiBase(): string {
     return EnvManager.config.apiBase;
   }
-  
+
   /** 调试打印（仅开发环境） */
   static print(): void {
-    console.log("EnvManager.isProd==",EnvManager.isProd)
+    console.log("EnvManager.isProd==", EnvManager.isProd);
     if (EnvManager.isProd) return;
     console.log("🌍 EnvManager.mode:", EnvManager.mode);
     console.log("🌍 EnvManager.config:", EnvManager.config);

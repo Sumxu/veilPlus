@@ -2,11 +2,13 @@ import "./index.scss";
 import { t } from "i18next";
 import checkIcon from "@/assets/team/check.png";
 import back from "@/assets/basic/back.png";
-
+import { useNavigate } from "react-router-dom";
 
 const NodeDetail: React.FC = () => {
-  const nodeId=1
- const hintTxts = [
+  const navigate = useNavigate();
+
+  const nodeId = 1;
+  const hintTxts = [
     t("全网入金1%永久分红"),
     t("买入手续费1%永久分红"),
     t("卖出手续费1.5%永久分红"),
@@ -34,33 +36,36 @@ const NodeDetail: React.FC = () => {
     ],
   };
   return (
-    <div className="NodeDetailPage">
+  <div className="NodeDetailBg">
+      <div className="NodeDetailPage">
       <div className="leftIcon">
         <img src={back} className="backIcon"></img>
       </div>
       <div className="hintTxt">
-        Hi,{t('欢迎')}
+        Hi,{t("欢迎")}
         <div className="TagBox">
-          <div className="tagName">{t('编号')}</div>
+          <div className="tagName">{t("编号")}</div>
           <div className="tagNo">#0089</div>
         </div>
       </div>
-      <div className="hintTxts">{t('的节点用户来到')} VEIL PLUS {t('生态节点中心')}</div>
+      <div className="hintTxts">
+        {t("的节点用户来到")} VEIL PLUS {t("生态节点中心")}
+      </div>
       <div className="box usdtInfo">
         <div className="usdtTop">
-          <div className="title">{t('团队总业绩')}(USDT)</div>
+          <div className="title">{t("团队总业绩")}(USDT)</div>
           <div className="number">12321</div>
         </div>
         <div className="usdtBottom">
           <div className="usdtItemBottom">
             <div className="title">9800</div>
-            <div className="number">{t('节点累计收益')}(USDT)</div>
-            <div className="btn btnList">{t('明细记录')}</div>
+            <div className="number">{t("节点累计收益")}(USDT)</div>
+            <div className="btn btnList" onClick={()=>navigate('/TeamClaim')}>{t("明细记录")}</div>
           </div>
           <div className="usdtItemBottom">
             <div className="title txtColor">9800</div>
-            <div className="number">{t('待领取节点收益')}(USDT)</div>
-            <div className="btn btnAward">{t('领取收益')}</div>
+            <div className="number">{t("待领取节点收益")}(USDT)</div>
+            <div className="btn btnAward">{t("领取收益")}</div>
           </div>
         </div>
       </div>
@@ -88,6 +93,7 @@ const NodeDetail: React.FC = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 export default NodeDetail;

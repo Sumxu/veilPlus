@@ -1,13 +1,18 @@
+.NodeDetailBg {
+  background: #000;
+  padding-bottom: 40px;
+}
 .NodeDetailPage {
   padding-inline: 16px;
-  background: url("@/assets/Home/centerBg.png");
+  background-image: url("@/assets/Home/centerBg.png");
   background-repeat: no-repeat;
   background-size: 100% 500px;
   background-position: 0% 0%;
+  height: 100%;
   .leftIcon {
-    .backIcon{
-        width: 24px;
-        height: 24px;
+    .backIcon {
+      width: 24px;
+      height: 24px;
     }
     margin-top: 14px;
   }
@@ -124,7 +129,7 @@
     }
   }
 
-   .buy-hint-option {
+  .buy-hint-option {
     margin-top: 24px;
     margin-bottom: 8px;
     padding: 12px;

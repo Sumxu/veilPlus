@@ -2,7 +2,7 @@
   background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
   border-radius: 8px;
   padding: 6px 12px;
-  margin-top:60px;
+  margin-top: 60px;
   .headerTopBox {
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -27,29 +27,25 @@
   }
   .headerEndBox {
     margin-top: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .leftOption {
-      flex: none;
+
+    .endBox {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
       .hintTitle {
         font-weight: 400;
         font-size: 12px;
-        color: #f4ff00;
+        color: #000;
       }
       .hintNumber {
         margin-top: 2px;
         font-weight: 500;
         font-size: 16px;
-        color: #f4ff00;
+        color: #000;
       }
-    }
-    .rightOption {
-      flex: auto;
-      display: flex;
-    //   align-items: center;
-        justify-content: flex-end;
       .btn {
+        margin-top: 6px;
         padding: 6px 26px;
         text-align: center;
         font-weight: 500;
@@ -65,6 +61,5 @@
         background: #000000;
         color: #00f8f3;
       }
-    }
   }
 }

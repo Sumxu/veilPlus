@@ -8,89 +8,59 @@ import ContractRequest from "@/Hooks/ContractRequest.ts";
 import ContractList from "@/Contract/Contract";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils";
 import { userAddress } from "@/Store/Store.ts";
-import { BigNumber, utils } from "ethers";
+import { BigNumber, utils, ethers } from "ethers";
 import { Button } from "antd-mobile";
+import { Calc } from "@/Hooks/calc";
+import type { DonateItem } from "@/Ts/DonateList";
 import ContractSend from "@/Hooks/ContractSend.ts";
-const MyPopup: React.FC = ({ isShow, onClose }) => {
-  const [userInfo, setUserInfo] = useState({}); //用户信息
+const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
   const walletAddress = userAddress((state) => state.address);
   const [rate, setRate] = useState<BigNumber>(BigNumber.from(0));
   const [inputNumber, setInputNumber] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
-  const [getTaxNumber, setGetTaxNumber] = useState<BigNumber>(
+  const [isFocus, setIsFocus] = useState(false); // ✅ 是否获得焦点
+  //usdt 余额
+  const [usdtBalanceOf, setUsdtBalanceOf] = useState<BigNumber>(
     BigNumber.from(0)
   );
-  const [isFocus, setIsFocus] = useState(false); // ✅ 是否获得焦点
   const onCloseChange = () => {
     onClose();
   };
-  //兑换比例
-  const getTusdSwap = async () => {
-    const paramsData = [
-      toWei(1),
-      [ContractList["USDTToken"].address, ContractList["TaxToken"].address],
-    ];
-    const result = await ContractRequest({
-      tokenName: "swapRouterToken",
-      methodsName: "getAmountsOut",
-      params: paramsData,
-    });
-    if (result.value) {
-      const usdtIn = result.value[0]; // 1 USDT
-      const taxOut = result.value[1]; // 能换多少 TAX
-      // 计算兑换比例
-      const rate = fromWei(taxOut); // 比例：1 USDT = rate TAX
-      console.log("兑换比例: 1 USDT =", rate, "TAX");
-      setRate(taxOut);
-    }
-  };
-
-  const getUserInfo = async () => {
-    const result = await ContractRequest({
-      tokenName: "storeToken",
-      methodsName: "userInfo",
-      params: [walletAddress],
-    });
-    if (result.value) {
-      setUserInfo(result.value);
-    }
-  };
+  /**
+   *
+   * @param val 输入的内容
+   * @returns 监听输入的内容
+   */
   const inputChange = (val) => {
-    setInputNumber(val);
     // 空或 <=0
     if (!val || Number(val) <= 0) {
-      setGetTaxNumber(BigNumber.from(0));
+      setInputNumber("");
       return;
     }
-    try {
-      /**
-       * 1) USDT 输入转 wei（保持整数）
-       * parseUnits("105.3936", 18)
-       * 得到 105.3936 * 1e18 的 BigNumber
-       */
-      const usdtWei = utils.parseUnits(val, 18); // BigNumber
-
-      /**
-       * 2) rate 必须是 18 decimals（你的 rate 应该是 parseUnits 出来的）
-       * 比如 rate=0.1 → parseUnits("0.1", 18)
-       */
-      const rateWei = BigNumber.from(rate.toString());
-      /**
-       * 3) TAX = usdtWei * rateWei / 1e18
-       * 中间结果是 36 位精度，再 / 1e18
-       */
-      const taxWei = usdtWei.mul(rateWei).div(utils.parseUnits("1", 18));
-      // 保存（wei）
-      setGetTaxNumber(taxWei);
-    } catch (error) {
-      console.error("转换错误:", error);
+    setInputNumber(val);
+  };
+  /**
+   * 校验输入值是否符合当前 item 的规则
+   */
+  const validateDonateItem = (item: DonateItem, value: number): boolean => {
+    switch (item.id) {
+      case 1:
+        return value >= 100 && value <= 1000;
+      case 2:
+        return value >= 1100 && value <= 3000;
+      case 3:
+        return value >= 31000;
+      default:
+        return false;
     }
   };
-
   //确认提现
   const submitClick = async () => {
     if (inputNumber == "") {
       return Totast(t("请输入"), "info");
+    }
+    if (!validateDonateItem(checkItem, Number(inputNumber))) {
+      return Totast(t(`请输入 ${checkItem.title} 范围内的金额`), "info");
     }
     if (!/^\d+(\.\d+)?$/.test(inputNumber))
       return Totast(t("输入格式不正确"), "info");
@@ -101,23 +71,72 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
     } catch (err) {
       return Totast(t("输入超出精度范围"), "info");
     }
-
-    if (amount.gt(userInfo.tusd)) {
+    if (amount.gt(usdtBalanceOf)) {
       return Totast(t("余额不足"), "info");
     }
+    //开始授权 进行购买
+    let applyAmount: BigNumber = BigNumber.from(0);
+    let isApply = false;
     setSubmitLoading(true);
-    const submitResult = await ContractSend({
-      tokenName: "storeToken",
-      methodsName: "withdraw",
-      params: [amount],
+    await ContractRequest({
+      tokenName: "USDTToken",
+      methodsName: "allowance",
+      params: [walletAddress, ContractList["VailPlusPool"].address],
+    }).then((res) => {
+      if (res.value) {
+        applyAmount = res.value;
+      }
     });
-    setSubmitLoading(false);
-    if (submitResult.value) {
-      onClose();
+    if (applyAmount.lt(amount)) {
+      await ContractSend({
+        tokenName: "USDTToken",
+        methodsName: "approve",
+        params: [
+          ContractList["VailPlusPool"].address,
+          ethers.constants.MaxUint256, //授权最大值
+        ],
+      }).then((res) => {
+        if (res.value) {
+          isApply = true;
+        } else {
+          return;
+        }
+      });
+    } else {
+      isApply = true;
+    }
+    if (!isApply) {
+      return;
+    }
+    try {
+      const result = await ContractSend({
+        tokenName: "VailPlusPool",
+        methodsName: "deposit",
+        params: [amount],
+      });
+      if (result.value) {
+        onClose();
+        Totast(t("购买成功"), "success"); // 检查授权或者授权时发生了错误，请检查网络后重新尝试
+      }
+    } finally {
+      // 无论成功或失败，都需要关闭加载状态
+      setSubmitLoading(false);
+    }
+  };
+  const getUsdtBalance = async () => {
+    const usdtRes = await ContractRequest({
+      tokenName: "USDTToken",
+      methodsName: "balanceOf",
+      params: [walletAddress],
+    });
+    if (usdtRes.value) {
+      setUsdtBalanceOf(usdtRes.value);
     }
   };
   useEffect(() => {
     if (isShow == false) return;
+    setInputNumber("");
+    getUsdtBalance();
   }, [isShow]);
   return (
     <>
@@ -136,11 +155,13 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
               onClick={onCloseChange}
             ></img>
           </div>
-          <div className="title">100-10000U专区</div>
+          <div className="title">{checkItem.title}</div>
           <div className="input-box">
             <div className="input-hint-txt-option">
               <div className="txt-option">{t("参与金额")}:</div>
-              <div className="txt-option right-txt">余额:500USDT</div>
+              <div className="txt-option right-txt">
+                余额:{fromWei(usdtBalanceOf)}USDT
+              </div>
             </div>
             <div className={`input-option ${isFocus ? "input-focus" : ""}`}>
               <Input
@@ -156,7 +177,12 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
               />
               <div className="input-txt">USDT</div>
               <div className="line"></div>
-              <div className="input-txt">MAX</div>
+              <div
+                className="input-txt"
+                onClick={() => setInputNumber(fromWei(usdtBalanceOf))}
+              >
+                MAX
+              </div>
             </div>
           </div>
           <div className="hintBox">
@@ -164,14 +190,20 @@ const MyPopup: React.FC = ({ isShow, onClose }) => {
               <div className="txt">日收益率</div>
               <div className="txt">预计日收益</div>
             </div>
-
             <div className="txtOption txtEndOption">
-              <div className="txt txtEnd">1.0%</div>
-              <div className="txt txtEnd">0.00 USDT</div>
+              <div className="txt txtEnd">{checkItem.hintNumber}%</div>
+              <div className="txt txtEnd">
+                {checkItem?.number && (
+                  <span>{Calc.mul(inputNumber, checkItem.number)}</span>
+                )}
+                USDT
+              </div>
             </div>
           </div>
           <div className="hintOption">
-            *当获得价值<span className="spn1">0.00USDT</span>收益后，将自动出局
+            *当获得价值
+            <span className="spn1">{Calc.mul(inputNumber, 2)}USDT</span>
+            收益后，将自动出局
           </div>
           <Button
             loading={submitLoading}

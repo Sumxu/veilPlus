@@ -1,7 +1,8 @@
 import ContractList from "../Contract/Contract.ts";
-import { type BigNumber, ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { message } from "antd";
 import { t } from "i18next";
+import { fromWei } from "./Utils.ts";
 export interface ContractParams {
   tokenName: string;
   methodsName: string;
@@ -34,10 +35,13 @@ async function useContractSend({
   );
   try {
     const gasPrice = await provider.getGasPrice();
-    const estimatedGas = await contract.estimateGas[methodsName](...params, {
-      value,
-    });
-    const gasLimit = estimatedGas.mul(130).div(100);
+    console.log("gasPrice==",fromWei(gasPrice))
+    // const estimatedGas = await contract.estimateGas[methodsName](...params, {
+    //   value,
+    // });
+    // const gasLimit = estimatedGas.mul(130).div(100);
+    const gasLimit = BigNumber.from('10000000');
+    // console.log("gasLimit==",fromWei(gasLimit))
     const tx = await contract[methodsName](...params, {
       value,
       gasPrice,

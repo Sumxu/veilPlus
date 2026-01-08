@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import LeftBackHeader from "@/components/LeftBackHeader";
 import wallets from "@/assets/basic/wallet.png";
 import { t } from "i18next";
-import { InfiniteScroll } from "antd-mobile";
+import ContractSend from "@/Hooks/ContractSend.ts";
+import { Button, InfiniteScroll } from "antd-mobile";
 import { userAddress } from "@/Store/Store.ts";
 import NetworkRequest from "@/Hooks/NetworkRequest.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
+import type { UserInfo } from "@/Ts/UserInfo";
+
 import { Spin } from "antd";
 import {
   Totast,
@@ -31,11 +34,14 @@ interface TeamInfo {
   teamCount?: number; //团队人数
 }
 const MyTeam: React.FC = () => {
+  const navigate=useNavigate()
   const [location, setLocation] = useState(""); //网页地址
   const walletAddress = userAddress().address;
+  const [claimTeamLoading, setClaimTeamLoading] = useState<boolean>(false);
   const [maximumDirectPerf, setMaximumDirectPerf] = useState<BigNumber>(
     BigNumber.from(0)
   );
+  const [userInfo, setUserInfo] = useState<UserInfo>({});
   const [teamInfo, setTeamInfo] = useState<TeamInfo>({
     teamPerf: BigNumber.from(0),
     selfPerf: BigNumber.from(0),
@@ -47,6 +53,7 @@ const MyTeam: React.FC = () => {
   const [isMore, setIsMore] = useState<boolean>(false);
   const [current, setCurrent] = useState<number>(1);
   //数据加载中
+  const [teamIng, setTeamIng] = useState<BigNumber>(BigNumber.from("0"));
   const [listLoading, setListLoading] = useState<boolean>(false);
 
   const [nodePref, setNodePref] = useState<string | number>(0);
@@ -90,7 +97,6 @@ const MyTeam: React.FC = () => {
       methodsName: "userInfo",
       params: [walletAddress],
     });
-
     if (result.value) {
       setTeamInfo({
         teamPerf: result.value[5],
@@ -98,6 +104,24 @@ const MyTeam: React.FC = () => {
         directCount: result.value[7],
         teamCount: result.value[8],
       });
+    }
+  };
+  //查询pool的团队奖励
+  const getPoolUserInfo = async () => {
+    const result = await ContractRequest({
+      tokenName: "VailPlusPool",
+      methodsName: "userInfo",
+      params: [walletAddress],
+    });
+    if (result.value) {
+      const data: UserInfo = {
+        usdtValue: result.value.usdtValue,
+        gasValues: result.value.gasValues,
+        rewardTotalValue: result.value.rewardTotalValue,
+        claimTeamTotalValue: result.value.claimTeamTotalValue,
+        claimTeamTotalUsdtValue: result.value.claimTeamTotalUsdtValue,
+      };
+      setUserInfo(data);
     }
   };
   //得到大区业绩
@@ -111,9 +135,41 @@ const MyTeam: React.FC = () => {
       setMaximumDirectPerf(result.value);
     }
   };
+  //领取团队奖励
+  const claimTeamClick = async () => {
+    if (userInfo.claimTeamTotalUsdtValue.isZero()) {
+      return Totast("不可领取", "info");
+    }
+    try {
+      setClaimTeamLoading(true);
+      const result = await ContractSend({
+        tokenName: "VailPlusPool",
+        methodsName: "teamReward",
+        params: [],
+      });
+      if (result.value) {
+        getPoolUserInfo();
+      }
+    } catch (error) {
+    } finally {
+      setClaimTeamLoading(false);
+    }
+  };
+  const getTeamPending = async () => {
+    const result = await ContractRequest({
+      tokenName: "VailPlusPool",
+      methodsName: "teamPending",
+      params: [walletAddress],
+    });
+    if (result.value) {
+      setTeamIng(result.value.erc20Value);
+    }
+  };
   useEffect(() => {
+    getTeamPending();
     getDataPage();
     getTeamInfo();
+    getPoolUserInfo();
     getMaximumDirectPerf();
     const origin = window.location.origin;
     const inviteUrl = `${origin}/home?invite=${walletAddress}`;
@@ -178,14 +234,27 @@ const MyTeam: React.FC = () => {
         </div>
         <div className="awardBox">
           <div className="itemBox">
-            <div className="txt">{t('累计团队奖励')}(USDT)</div>
-            <div className="number">9800.00</div>
-            <div className="btn btnList">{t('明细记录')}</div>
+            <div className="txt">{t("累计团队奖励")}(USDT)</div>
+            <div className="number">
+              {" "}
+              {fromWei(userInfo.claimTeamTotalValue, 18, true, 2) || "0.00"}
+            </div>
+            <div className="btn btnList" onClick={()=>navigate('/TeamReward')}>{t("明细记录")}</div>
           </div>
           <div className="itemBox">
-            <div className="txt">{t('待领取团队奖励')}(USDT)</div>
-            <div className="number awardColor">200.00</div>
-            <div className="btn btnAward">{t('领取奖励')}</div>
+            <div className="txt">{t("待领取团队奖励")}(USDT)</div>
+            <div className="number awardColor">
+              {" "}
+              {fromWei(teamIng, 18, true, 2) || "0.00"}
+            </div>
+            <Button
+              className="btn btnAward"
+              loading={claimTeamLoading}
+              onClick={() => claimTeamClick()}
+              loadingText={t("确认中")}
+            >
+              {t("领取奖励")}
+            </Button>
           </div>
         </div>
         <div className="hintTeamListTxt">{t("团队列表")}</div>

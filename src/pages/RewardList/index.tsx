@@ -131,7 +131,7 @@ const DonateStartListPage: FC = () => {
             return (
               <div className="itemBox" key={index}>
                 <div className="headerOption">
-                  <div className="tag opacity">#{item.perType}-{item.poolIndex}</div>
+                  <div className="tag opacity">#1-000083</div>
                   <div className="rightOption">
                     {renderStatus(item.status)}
                     <div className="dateTime">{item.blockTime}</div>

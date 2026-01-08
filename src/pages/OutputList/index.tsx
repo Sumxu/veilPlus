@@ -24,73 +24,77 @@ const OutputList: React.FC = () => {
       statusName: "已完成",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    }, {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    }, {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    }, {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
     },
-     {
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
-    }, {
+    },
+    {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+    {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+    {
+      blockTime: "2025-12-23 18:32:56",
+      statusName: "收益中",
+      amount: "12.2",
+    },
+    {
       blockTime: "2025-12-23 18:32:56",
       statusName: "收益中",
       amount: "12.2",
@@ -153,11 +157,11 @@ const OutputList: React.FC = () => {
   return (
     <>
       <div className="out-put-list-page">
-        <LeftBackHeader title={t('收益记录')}></LeftBackHeader>
+        <LeftBackHeader title={t("收益记录")}></LeftBackHeader>
         <div className="item-box">
           <div className="list-item-header">
             <div className="header-txt header-txt-1">{t("时间")}</div>
-            <div className="header-txt header-txt-2">{t('状态')}</div>
+            <div className="header-txt header-txt-2">{t("状态")}</div>
             <div className="header-txt header-txt-3">{t("金额(VIPL)")}</div>
           </div>
           <div className="list-item-option">
@@ -169,8 +173,16 @@ const OutputList: React.FC = () => {
                   return (
                     <div className="list-item" key={index}>
                       <div className="item-txt">{item.blockTime}</div>
-                      
-                      <div className={item.statusName=='收益中'?'item-txt-no ing':'item-txt-no'}>{item.statusName}</div>
+
+                      <div
+                        className={
+                          item.statusName == "收益中"
+                            ? "item-txt-no ing"
+                            : "item-txt-no"
+                        }
+                      >
+                        {item.statusName}
+                      </div>
                       <div className="item-txt item-txt-right">
                         +{item.amount}
                       </div>
