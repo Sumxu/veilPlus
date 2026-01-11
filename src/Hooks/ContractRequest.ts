@@ -24,8 +24,6 @@ async function useContractRequest({tokenName, methodsName, params}: ContractPara
         const Result = await contract[methodsName](...params);
         return { value:Result };
     }catch (error){
-        console.log('tokenName'+tokenName,error);
-        console.log('methodsName'+methodsName,error);
         return { value:false };
     }
 }

@@ -13,7 +13,7 @@ export function formatAddress(
   prefixLen = 7,
   suffixLen = 4
 ): string {
-  if (!addr) return "";
+  if (!addr) return "-";
   return `${addr.slice(0, prefixLen)}....${addr.slice(-suffixLen)}`;
 }
 /**
@@ -79,7 +79,7 @@ export function fromWei(
     return truncateDecimal(etherValue, precision);
   } catch (error) {
     console.error("fromWei 转换失败:", error);
-    return "0";
+    return "0.0000";
   }
 }
 

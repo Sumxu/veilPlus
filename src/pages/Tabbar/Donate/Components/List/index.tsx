@@ -31,7 +31,7 @@ const List: FC = () => {
       id: 2,
     },
     {
-      title: t("31000U以上专区"),
+      title: t("3100U以上专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.5",
       number: "1.5",

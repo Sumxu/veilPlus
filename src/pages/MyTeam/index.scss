@@ -12,7 +12,6 @@
       align-items: center;
       background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
       border-radius: 8px;
-      margin-top: 24px;
       .itemOption {
         flex: 1;
         .number {
@@ -174,7 +173,7 @@
       justify-content: space-between;
       margin-top: 12px;
       .itemBox {
-        background: rgba(0,240,247,0.15);
+        background: rgba(0, 240, 247, 0.15);
         border-radius: 8px;
         border: 1px solid #00e5ec;
         padding: 16px 14px;
@@ -186,8 +185,8 @@
           color: #00f8f3;
           text-align: center;
         }
-        .awardColor{
-          color: #F4FF00 !important;
+        .awardColor {
+          color: #f4ff00 !important;
         }
         .number {
           text-align: center;

@@ -1,5 +1,5 @@
 import "./index.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RightOutline } from "antd-mobile-icons";
 import type { MyToolItem } from "@/Ts/MyToolItem";
 import teamTools from "@/assets/my/teamTools.png";
@@ -9,11 +9,14 @@ import lanIcon from "@/assets/my/lanIcon.png";
 import moneyTools from "@/assets/my/moneyTools.png";
 import { useNavigate } from "react-router-dom";
 import LanPopup from "@/components/LanPopup";
-import { t } from "i18next";
-
-const Tools: React.FC = () => {
+import i18n, { t } from "i18next";
+import { Totast } from "@/Hooks/Utils";
+import right from '@/assets/basic/right.png'
+const Tools: React.FC = ({ userInfo }) => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState<boolean>(false);
+  const [langTxt, setLangTxt] = useState<string>("");
+  const [value, setValue] = useState<string>("");
   const toolList: MyToolItem[] = [
     {
       icon: moneyTools,
@@ -47,15 +50,25 @@ const Tools: React.FC = () => {
       icon: lanIcon,
       toolsName: t("语言设置"),
       type: 1,
-      desc: "简体中文",
+      desc: langTxt,
       path: "",
     },
   ];
-  const toolsClick = (item) => {
+  const toolsClick = (item, index) => {
     if (item.type == 1) {
       setIsShow(true);
     } else {
-      navigate(item.path);
+      if (index == 2) {
+        //判断是否是节点
+        if (userInfo.isNode) {
+          navigate(item.path);
+        } else {
+          Totast("未购买节点", "info");
+          navigate(item.path);
+        }
+      } else {
+        navigate(item.path);
+      }
     }
   };
   /**
@@ -64,25 +77,61 @@ const Tools: React.FC = () => {
   const lanSetChange = () => {
     setIsShow(!isShow);
   };
+    const getCurrLang = () => {
+    const localLang: string = window.localStorage.getItem("lang") ?? "zhHant";
+    i18n.changeLanguage(localLang);
+    console.log("localLang==", localLang);
+    if (localLang == "zhHant") {
+      setValue("1");
+      setLangTxt("繁体中文");
+    }
+    if (localLang == "en") {
+      setValue("2");
+      setLangTxt("English");
+    }
+    if (localLang == "indonesian") {
+      setValue("3");
+      setLangTxt("Indonesian");
+    }
+    if (localLang == "thai") {
+      setValue("4");
+      setLangTxt("Thai");
+    }
+    if (localLang == "japanese") {
+      setValue("5");
+      setLangTxt("Japanese");
+    }
+    if (localLang == "korean") {
+      setValue("6");
+      setLangTxt("Korean");
+    }
+    if (localLang == "vietnamese") {
+      setValue("7");
+      setLangTxt("Vietnamese");
+    }
+  };
+  useEffect(() => {
+    getCurrLang();
+  }, []);
   return (
     <div className="ToolsPage">
       {toolList.map((item, index) => {
         return (
           <div
             className="toolItem"
-            onClick={() => toolsClick(item)}
+            onClick={() => toolsClick(item, index)}
             key={index}
           >
             <img src={item.icon} className="toolIcon"></img>
             <div className="toolName">{item.toolsName}</div>
             <div className="rightOption">
               {item.type == 1 && <div className="toolDesc">{item.desc}</div>}
-              <RightOutline fontSize={12} color="#00F8F3" />
+               <img src={right} className="rightIcon"></img>
             </div>
           </div>
         );
       })}
-      <LanPopup isShow={isShow} lanChange={lanSetChange}></LanPopup>
+      <LanPopup isShow={isShow} value={value} lanChange={lanSetChange}></LanPopup>
     </div>
   );
 };

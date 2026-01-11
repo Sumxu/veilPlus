@@ -49,7 +49,7 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
       case 2:
         return value >= 1100 && value <= 3000;
       case 3:
-        return value >= 31000;
+        return value >= 3100;
       default:
         return false;
     }

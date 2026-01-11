@@ -3,11 +3,38 @@ import { t } from "i18next";
 import checkIcon from "@/assets/team/check.png";
 import back from "@/assets/basic/back.png";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import ContractRequest from "@/Hooks/ContractRequest.ts";
+import { userAddress } from "@/Store/Store.ts";
+import { BigNumber, ethers } from "ethers";
+import { formatAddress, fromWei, Totast } from "@/Hooks/Utils";
+import NetworkRequest from "@/Hooks/NetworkRequest.ts";
+import ContractSend from "@/Hooks/ContractSend.ts";
+import { Button } from "antd-mobile";
+interface userNodeInfo {
+  nodeId: BigNumber; //0小 1大
+  flg: boolean; //是否是节点
+  weight: BigNumber;
+  storeValue: BigNumber;
+  rewardDebt: BigNumber;
+}
+interface TeamInfo {
+  teamPerf?: BigNumber; //团队业绩
+  selfPerf?: BigNumber; //个人业绩
+  directCount?: number; //直推人数
+  teamCount?: number; //团队人数
+}
 const NodeDetail: React.FC = () => {
-  const navigate = useNavigate();
+  const [submitLoading, setSubmitLoading] = useState<boolean>(false);
 
-  const nodeId = 1;
+  const navigate = useNavigate();
+  const walletAddress = userAddress((state) => state.address);
+  const [nodePref, setNodePref] = useState<string | number>(0);
+  const [nodeId, setNodeId] = useState<BigNumber>(BigNumber.from("0")); //节点类型
+  const [pingValue, setPingValue] = useState<BigNumber>(BigNumber.from("0")); //待领取收益
+  const [claimTotalValue, setClaimTotalValue] = useState<BigNumber>(
+    BigNumber.from("0")
+  ); //节点累计收益
   const hintTxts = [
     t("全网入金1%永久分红"),
     t("买入手续费1%永久分红"),
@@ -35,65 +62,141 @@ const NodeDetail: React.FC = () => {
       t("前601～1000位: 奖励2450枚VIPL"),
     ],
   };
+  const getNodeInfo = async () => {
+    const result = await ContractRequest({
+      tokenName: "vailPlusNodeToken",
+      methodsName: "userNode",
+      params: [walletAddress],
+    });
+    if (result.value) {
+      setNodeId(result.value.nodeId);
+      setClaimTotalValue(result.value.claimTotalValue);
+    }
+  };
+  //获得节点总业绩
+  const getNodePerf = async () => {
+    const nodeRes = await NetworkRequest({
+      Url: "user/info",
+      Method: "get",
+      Data: {
+        address: walletAddress,
+      },
+    });
+    if (nodeRes.success) {
+      setNodePref(nodeRes.data.data.nodePerf);
+    }
+  };
+  const getPending = async () => {
+    const result = await ContractRequest({
+      tokenName: "vailPlusNodeToken",
+      methodsName: "pending",
+      params: [walletAddress],
+    });
+    if (result.value) {
+      setPingValue(result.value);
+    }
+  };
+
+  const submitClick = async () => {
+    if (pingValue.isZero()) {
+      return Totast("不可领取", "info");
+    }
+    try {
+      setSubmitLoading(true);
+      const result = await ContractSend({
+        tokenName: "vailPlusNodeToken",
+        methodsName: "reward",
+        params: [],
+      });
+      if (result.value) {
+      }
+    } catch (error) {
+    } finally {
+      setSubmitLoading(false);
+    }
+  };
+  useEffect(() => {
+    getNodeInfo();
+    getNodePerf();
+    getPending();
+  }, []);
   return (
-  <div className="NodeDetailBg">
+    <div className="NodeDetailBg">
       <div className="NodeDetailPage">
-      <div className="leftIcon">
-        <img src={back} className="backIcon"></img>
-      </div>
-      <div className="hintTxt">
-        Hi,{t("欢迎")}
-        <div className="TagBox">
-          <div className="tagName">{t("编号")}</div>
-          <div className="tagNo">#0089</div>
+        <div className="leftIcon">
+          <img
+            src={back}
+            className="backIcon"
+            onClick={() => navigate(-1)}
+          ></img>
         </div>
-      </div>
-      <div className="hintTxts">
-        {t("的节点用户来到")} VEIL PLUS {t("生态节点中心")}
-      </div>
-      <div className="box usdtInfo">
-        <div className="usdtTop">
-          <div className="title">{t("团队总业绩")}(USDT)</div>
-          <div className="number">12321</div>
-        </div>
-        <div className="usdtBottom">
-          <div className="usdtItemBottom">
-            <div className="title">9800</div>
-            <div className="number">{t("节点累计收益")}(USDT)</div>
-            <div className="btn btnList" onClick={()=>navigate('/TeamClaim')}>{t("明细记录")}</div>
-          </div>
-          <div className="usdtItemBottom">
-            <div className="title txtColor">9800</div>
-            <div className="number">{t("待领取节点收益")}(USDT)</div>
-            <div className="btn btnAward">{t("领取收益")}</div>
+        <div className="hintTxt">
+          Hi,{t("欢迎")}
+          <div className="TagBox">
+            <div className="tagName">{t("用户")}</div>
+            <div className="tagNo">{formatAddress(walletAddress)}</div>
           </div>
         </div>
-      </div>
-
-      <div className="buy-hint-option">
-        <div className="hintOption">{t("获得权益")}</div>
-        <div className="right-option">
-          {hintTxts.map((item, index) => {
-            return (
-              <div className="txtOption" key={index}>
-                <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item">{item}</div>
+        <div className="hintTxts">
+          {t("来到")} VEIL PLUS {t("生态节点中心")}
+        </div>
+        <div className="box usdtInfo">
+          <div className="usdtTop">
+            <div className="title">{t("节点总业绩")}(USDT)</div>
+            <div className="number">{fromWei(nodePref)}</div>
+          </div>
+          <div className="usdtBottom">
+            <div className="usdtItemBottom">
+              <div className="title">{fromWei(claimTotalValue)}</div>
+              <div className="number">{t("节点累计收益")}(USDT)</div>
+              <div
+                className="btn btnList"
+                onClick={() => navigate("/TeamClaim")}
+              >
+                {t("明细记录")}
               </div>
-            );
-          })}
+            </div>
+            <div className="usdtItemBottom">
+              <div className="title txtColor">{fromWei(pingValue)}</div>
+              <div className="number">{t("待领取节点收益")}(USDT)</div>
+              <Button
+                className="btn btnAward"
+                loading={submitLoading}
+                loadingText={t("确认中")}
+                onClick={() => {
+                  submitClick();
+                }}
+              >
+                {t("领取收益")}
+              </Button>
+            </div>
+          </div>
+        </div>
 
-          {mapTxts[nodeId].map((item, index) => {
-            return (
-              <div className="txtOption" key={index}>
-                <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item">{item}</div>
-              </div>
-            );
-          })}
+        <div className="buy-hint-option">
+          <div className="hintOption">{t("获得权益")}</div>
+          <div className="right-option">
+            {hintTxts.map((item, index) => {
+              return (
+                <div className="txtOption" key={index}>
+                  <img className="iconIcon" src={checkIcon}></img>
+                  <div className="txt-1-item">{item}</div>
+                </div>
+              );
+            })}
+
+            {mapTxts[nodeId.toString()].map((item, index) => {
+              return (
+                <div className="txtOption" key={index}>
+                  <img className="iconIcon" src={checkIcon}></img>
+                  <div className="txt-1-item">{item}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 export default NodeDetail;

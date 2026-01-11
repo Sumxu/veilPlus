@@ -11,95 +11,12 @@ import { InfiniteScroll } from "antd-mobile";
 import { fromWei } from "@/Hooks/Utils";
 interface listItem {
   blockTime: string;
-  amount: string;
-  statusName: number | string;
+  erc20Amount: string;
 }
 
 const OutputList: React.FC = () => {
   const walletAddress = userAddress((state) => state.address);
-  // const walletAddress = "0xcd75ef45514081cc98c93aebac2dac7035fb74c4";
-  const [list, setList] = useState<listItem[]>([
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "已完成",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-    {
-      blockTime: "2025-12-23 18:32:56",
-      statusName: "收益中",
-      amount: "12.2",
-    },
-  ]);
+  const [list, setList] = useState<listItem[]>([]);
   // 列表是否加载
   const [listLoding, setListLoding] = useState<boolean>(false);
   // 是否还有更多数据可以加载
@@ -110,8 +27,8 @@ const OutputList: React.FC = () => {
     const nexPage = current + 1;
     setCurrent(nexPage);
     await NetworkRequest({
-      Method: "post",
-      Url: "nft/claimRecord",
+      Url: "reward/page",
+      Method: "get",
       Data: {
         current: nexPage,
         size: 20,
@@ -132,8 +49,8 @@ const OutputList: React.FC = () => {
     setList([]);
     setListLoding(true);
     const result = await NetworkRequest({
-      Url: "nft/claimRecord",
-      Method: "post",
+      Url: "reward/page",
+      Method: "get",
       Data: {
         current: 1,
         size: 20,
@@ -152,7 +69,9 @@ const OutputList: React.FC = () => {
       setListLoding(false);
     }
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getDataList()
+  }, []);
   // 当前钱包地址
   return (
     <>
@@ -174,17 +93,9 @@ const OutputList: React.FC = () => {
                     <div className="list-item" key={index}>
                       <div className="item-txt">{item.blockTime}</div>
 
-                      <div
-                        className={
-                          item.statusName == "收益中"
-                            ? "item-txt-no ing"
-                            : "item-txt-no"
-                        }
-                      >
-                        {item.statusName}
-                      </div>
+                      <div className="item-txt-no">已完成</div>
                       <div className="item-txt item-txt-right">
-                        +{item.amount}
+                        +{fromWei(item.erc20Amount)}
                       </div>
                     </div>
                   );

@@ -93,7 +93,7 @@ const My: React.FC = () => {
         viplBalance={viplBalance}
         onChange={() => onChange()}
       ></Info>
-      <Tools></Tools>
+      <Tools userInfo={userInfo}></Tools>
     </div>
   );
 };

@@ -32,8 +32,8 @@ const Info: React.FC = ({ pendingInfo, viplBalance, usdtBalance,onChange}) => {
     <div className="InfoPage">
       <div className="infoBox">
         <div className="detailList">
-          <div className="txt">{t("资产明细")}</div>
-          <RightOutline color="#fff" fontSize={12} />
+          {/* <div className="txt">{t("资产明细")}</div> */}
+          {/* <RightOutline color="#fff" fontSize={12} /> */}
         </div>
         <div className="hintTxt">{t("资产中心")}</div>
         <div className="numberBox">

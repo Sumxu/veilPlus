@@ -129,19 +129,6 @@ const abi = [
     type: "event",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "deposit",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -168,16 +155,15 @@ const abi = [
         name: "poolIndex",
         type: "uint256",
       },
+      {
+        indexed: false,
+        internalType: "uint8",
+        name: "perType",
+        type: "uint8",
+      },
     ],
     name: "Deposit",
     type: "event",
-  },
-  {
-    inputs: [],
-    name: "initialize",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
   },
   {
     anonymous: false,
@@ -210,20 +196,6 @@ const abi = [
     ],
     name: "OwnershipTransferred",
     type: "event",
-  },
-  {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "reward",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
   },
   {
     anonymous: false,
@@ -276,13 +248,6 @@ const abi = [
     type: "event",
   },
   {
-    inputs: [],
-    name: "teamReward",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -314,19 +279,6 @@ const abi = [
     type: "event",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "transferOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -340,21 +292,81 @@ const abi = [
     type: "event",
   },
   {
-    inputs: [
+    inputs: [],
+    name: "SwapRouter",
+    outputs: [
       {
-        internalType: "address",
-        name: "newImplementation",
+        internalType: "contract ISwapRouter",
+        name: "",
         type: "address",
       },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "UPGRADE_INTERFACE_VERSION",
+    outputs: [
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: "string",
+        name: "",
+        type: "string",
       },
     ],
-    name: "upgradeToAndCall",
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "USDTToken",
+    outputs: [
+      {
+        internalType: "contract IERC20",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "VeilPlusToken",
+    outputs: [
+      {
+        internalType: "contract IERC20",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "VeilPlusUser",
+    outputs: [
+      {
+        internalType: "contract IUser",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "deposit",
     outputs: [],
-    stateMutability: "payable",
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -368,6 +380,13 @@ const abi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "initialize",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -512,6 +531,13 @@ const abi = [
   },
   {
     inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "repoAddress",
     outputs: [
       {
@@ -521,6 +547,13 @@ const abi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "reward",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -537,16 +570,16 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "SwapRouter",
-    outputs: [
+    inputs: [
       {
-        internalType: "contract ISwapRouter",
-        name: "",
-        type: "address",
+        internalType: "uint256",
+        name: "_startTime",
+        type: "uint256",
       },
     ],
-    stateMutability: "view",
+    name: "setStartTime",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -614,28 +647,53 @@ const abi = [
   },
   {
     inputs: [],
-    name: "UPGRADE_INTERFACE_VERSION",
+    name: "teamReward",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "totalDepositAmount",
     outputs: [
       {
-        internalType: "string",
+        internalType: "uint256",
         name: "",
-        type: "string",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [],
-    name: "USDTToken",
-    outputs: [
+    inputs: [
       {
-        internalType: "contract IERC20",
-        name: "",
+        internalType: "address",
+        name: "newOwner",
         type: "address",
       },
     ],
-    stateMutability: "view",
+    name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "newImplementation",
+        type: "address",
+      },
+      {
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
+      },
+    ],
+    name: "upgradeToAndCall",
+    outputs: [],
+    stateMutability: "payable",
     type: "function",
   },
   {
@@ -701,32 +759,6 @@ const abi = [
         internalType: "uint256",
         name: "",
         type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "VeilPlusToken",
-    outputs: [
-      {
-        internalType: "contract IERC20",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "VeilPlusUser",
-    outputs: [
-      {
-        internalType: "contract IUser",
-        name: "",
-        type: "address",
       },
     ],
     stateMutability: "view",

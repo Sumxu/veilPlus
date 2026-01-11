@@ -115,14 +115,19 @@
           line-height: 32px;
           border-radius: 16px;
           text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .btnList {
           font-weight: 500;
-          font-size: 14px;
+          font-size: 14px !important;
           color: #00f8f3;
           border: 1px solid #00f8f3;
         }
         .btnAward {
+          font-size: 14px !important;
+
           background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
         }
       }

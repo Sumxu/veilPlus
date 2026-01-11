@@ -39,7 +39,7 @@ const WalletHeader: React.FC = ({ userInfo }) => {
             </div>
           )}
         </div>
-        <img src={logOutIcon} className="logOutIcon"></img>
+        {/* <img src={logOutIcon} className="logOutIcon"></img> */}
       </div>
     </div>
   );

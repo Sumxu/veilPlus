@@ -4,13 +4,11 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { t } from "i18next";
 import { BigNumber, ethers } from "ethers";
-import { storage } from "@/Hooks/useLocalStorage";
 import { Drawer, Flex, Spin } from "antd";
 import { ProgressCircle } from "antd-mobile";
 import BuyNftPopup from "@/pages/Node/component/BuyNftPopup";
 import BackHeader from "@/components/BackHeader";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
-import InviteModal from "@/components/InviteModal";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import teamIcon from "@/assets/team/teamIcon.png";
 import NodeList from "@/pages/Home/component/NodeList";
@@ -30,9 +28,7 @@ interface userNodeInfo {
   rewardDebt: BigNumber;
 }
 const Node: React.FC = () => {
-  const [inviteShow, setInviteShow] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [invite, setInvite] = useState<string | null>(null); // 新增 invite 状态
   // 当前钱包地址
   const walletAddress = userAddress((state) => state.address);
   const [showBuyNftPopup, setShowBuyNftPopup] = useState<boolean>(false);
@@ -112,31 +108,6 @@ const Node: React.FC = () => {
     return percent;
   };
   /**
-   *
-   * @returns 当前用户是否存在上级
-   */
-  const isInviterFn = async () => {
-    // 1️⃣ 先检查 URL 是否有 invite 参数
-    const params = new URLSearchParams(location.search);
-    const inviteParam = params.get("invite");
-    if (inviteParam) {
-      setInvite(inviteParam); // 保存到 state
-      storage.set("invite", inviteParam); // 可选：存本地
-    }
-
-    if (!walletAddress) return; // 地址不存在不查
-    const result = await ContractRequest({
-      tokenName: "vailPlusUserToken",
-      methodsName: "userInfo",
-      params: [walletAddress],
-    });
-    if (result.value) {
-      if (result.value[0] == ethers.constants.AddressZero) {
-        setInviteShow(true);
-      }
-    }
-  };
-  /**
    * 查询用户的节点信息
    */
   const getUserNodeInfo = async () => {
@@ -146,7 +117,6 @@ const Node: React.FC = () => {
       params: [walletAddress],
     });
     setUserNodeInfo(result.value);
-  
   };
   const nodeBtn = (item) => {
     if (item.id == Number(userNodeInfo.nodeId) && userNodeInfo.flg) {
@@ -213,7 +183,6 @@ const Node: React.FC = () => {
     }
   };
   useEffect(() => {
-    isInviterFn();
     initNodeInfo();
     getUserNodeInfo();
   }, []);
@@ -264,10 +233,6 @@ const Node: React.FC = () => {
       >
         <BuyNftPopup nodeId={nodeId} onClose={() => BuyNftPopupCloseChange()} />
       </Drawer>
-      <InviteModal
-        isShow={inviteShow}
-        onClose={() => setInviteShow(false)}
-      ></InviteModal>
     </>
   );
 };
