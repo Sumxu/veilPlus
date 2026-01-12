@@ -30,22 +30,27 @@ function BuyNftPopup(Props: buyNftPopupClass) {
   ];
   const mapTxts = {
     0: [
-      t("小节点合伙人赠送VIP1级别(激活即可享受)"),
+      t("小节点合伙人赠送VIP1级别(启用即可享受)"),
       t(
-        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
+        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(启用即可享受)"
       ),
-      t("前1～500位: 奖励2000枚VIPL"),
-      t("前501～1000位: 奖励1400枚VIPL"),
-      t("前1001～1600位: 奖励980枚VIPL"),
+      t("每日赠送 50 代币积分，上线时按 1:1 映射 VIPL 代币"),
+      t("所有代币积分释放至上线截止，剩余代币按以下比例赠送"),
+      t("前1～500位: 奖励 40%VIPL"),
+      t("前501～1000位: 奖励 30%VIPL"),
+      t("前1001～1600位: 奖励 30%VIPL"),
     ],
     1: [
-      t("大节点合伙人赠送VIP2级别(激活即可享受)"),
+      t("小节点合伙人赠送VIP1级别(启用即可享受)"),
       t(
-        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
+        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户小节点合伙人赠送250U账户(启用即可享受)"
       ),
-      t("前1～300位: 奖励5000枚VIPL"),
-      t("前301～600位: 奖励3500枚VIPL"),
-      t("前601～1000位: 奖励2450枚VIPL"),
+       t(
+        "全网代币 3% 即390 万代币赠送大节点每日赠送 100 代币积分，上线时按 1:1 映射 VIPL 代币所有积分释放至上线截止，剩余代币积分按以下比例赠送"
+      ),
+      t("前1～300位: 奖励 40%VIPL"),
+      t("前301～600位: 奖励 30%VIPL"),
+      t("前601～1000位: 奖励 30%VIPL"),
     ],
   };
   const walletAddress = userAddress((state) => state.address);
@@ -174,7 +179,6 @@ function BuyNftPopup(Props: buyNftPopupClass) {
               </div>
             );
           })}
-
           {mapTxts[Props.nodeId].map((item, index) => {
             return (
               <div className="txtOption" key={index}>
@@ -184,6 +188,9 @@ function BuyNftPopup(Props: buyNftPopupClass) {
             );
           })}
         </div>
+      </div>
+      <div className="need-hint-pay-option">
+          {t("祝各位早到早得,拥有 VEILPLUS 流量代币无限增值空间")}
       </div>
       <div className="need-pay-option">
         <div className="need-txt-1">
