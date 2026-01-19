@@ -228,7 +228,7 @@ const MyTeam: React.FC = () => {
                 copyAction();
               }}
             >
-              复制
+              {t('复制')}
             </div>
           </div>
         </div>

@@ -74,13 +74,13 @@ const OutputList: React.FC = () => {
   const rewardTypeTxt = (rewardType) => {
     switch (rewardType) {
       case 1:
-        return "推荐";
+        return t("推荐");
       case 2:
-        return "团队";
+        return  t("团队");
       case 3:
-        return "平级";
+        return  t("平级");
       default:
-        return "未知类型";
+        return  t("未知类型");
     }
   };
   useEffect(() => {

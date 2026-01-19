@@ -61,7 +61,7 @@ const MyPopup: React.FC = ({ isShow, onClose, pendingInfo }) => {
           </div>
           <div className="tag-box">
             <img src={hintIcon} className="icon"></img>
-            <div className="txt-option">领取收益将直接到账已绑定的钱包!</div>
+            <div className="txt-option">{t('领取收益将直接到账已绑定的钱包')}!</div>
           </div>
           <div className="input-draw-box">
             <div className="input-hint-txt-option">

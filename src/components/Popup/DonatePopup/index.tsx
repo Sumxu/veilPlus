@@ -160,7 +160,7 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
             <div className="input-hint-txt-option">
               <div className="txt-option">{t("参与金额")}:</div>
               <div className="txt-option right-txt">
-                余额:{fromWei(usdtBalanceOf)}USDT
+                {t('余额')}:{fromWei(usdtBalanceOf)}USDT
               </div>
             </div>
             <div className={`input-option ${isFocus ? "input-focus" : ""}`}>
@@ -187,8 +187,8 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
           </div>
           <div className="hintBox">
             <div className="txtOption">
-              <div className="txt">日收益率</div>
-              <div className="txt">预计日收益</div>
+              <div className="txt">{t('日收益率')}</div>
+              <div className="txt">{t('预计日收益')}</div>
             </div>
             <div className="txtOption txtEndOption">
               <div className="txt txtEnd">{checkItem.hintNumber}%</div>
@@ -201,9 +201,9 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
             </div>
           </div>
           <div className="hintOption">
-            *当获得价值
+            *{t('当获得价值')}
             <span className="spn1">{Calc.mul(inputNumber, 2)}USDT</span>
-            收益后，将自动出局
+            {t('收益后，将自动出局')}
           </div>
           <Button
             loading={submitLoading}
