@@ -185,5 +185,10 @@
   "赠送节点合伙人抢购金额的50%捐赠矿池收益账户小节点合伙人赠送250U账户(启用即可享受)": "50% of the purchase amount is donated to the mining pool income account; Small Node partners receive a 250U account (Available Upon Activation)",
   "全网代币 3% 即390 万代币赠送大节点每日赠送 100 代币积分，上线时按 1:1 映射 VIPL 代币所有积分释放至上线截止，剩余代币积分按以下比例赠送": "3% of total tokens (3.9 million) are allocated to Large Nodes; 100 token points are given daily and mapped to VIPL at a 1:1 ratio upon launch. All points will be released until launch, with remaining points distributed according to the following ratios",
   "小节点未激活 需捐赠500U以上": "Small node not activated, donation of 500U or more required",
-  "大节点未激活 需捐赠1000U以上": "Large node not activated, donation of 1000U or more required"
+  "大节点未激活 需捐赠1000U以上": "Large node not activated, donation of 1000U or more required",
+   "捐赠专区": "Donation Zone",
+  "100-999U专区": "100-999U Zone",
+  "1000-2999U专区": "1000-2999U Zone",
+  "节点分红": "Node Dividend",
+  "托底池": "Stability Pool"
 }

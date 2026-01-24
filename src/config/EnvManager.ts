@@ -66,7 +66,9 @@ class EnvManager {
   static get rpcUrl(): string {
     return EnvManager.config.rpcUrl;
   }
-
+  static get veilPlusBasePair(): string {
+    return EnvManager.config.veilPlusBasePair;
+  }
   static get blockExplorerUrls(): string {
     return EnvManager.config.blockExplorerUrls;
   }
@@ -76,8 +78,8 @@ class EnvManager {
   static get chainName(): string {
     return EnvManager.config.chainName;
   }
-  static get veilPlusSafety():string{
-    return EnvManager.config.veilPlusSafety
+  static get veilPlusSafety(): string {
+    return EnvManager.config.veilPlusSafety;
   }
   static get apiBase(): string {
     return EnvManager.config.apiBase;

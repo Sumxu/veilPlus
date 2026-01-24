@@ -6,4 +6,29 @@
   background-repeat: no-repeat;
   padding-inline: 16px;
   background-color: #000;
+  padding-bottom: 40px;
 }
+ .btnList {
+    margin-top: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn {
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.85);
+      border-radius: 25px;
+      border: 1px solid #fff;
+      width: 100%;
+    }
+    .bgOne {
+      background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+    }
+    .bgTwo {
+      background: linear-gradient(270deg, #ffbf67 0%, #e878ff 100%);
+    }
+  }

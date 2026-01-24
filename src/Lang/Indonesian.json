@@ -184,6 +184,11 @@
   "赠送节点合伙人抢购金额的50%捐赠矿池收益账户小节点合伙人赠送250U账户(启用即可享受)": "50% dari jumlah pembelian disumbangkan ke akun pendapatan kolam tambang, mitra node kecil mendapatkan akun 250U (aktif langsung menikmati)",
   "全网代币 3% 即390 万代币赠送大节点每日赠送 100 代币积分，上线时按 1:1 映射 VIPL 代币所有积分释放至上线截止，剩余代币积分按以下比例赠送": "3% dari total token (3,9 juta) diberikan kepada node besar, bonus harian 100 poin token, dipetakan 1:1 ke VIPL saat peluncuran. Semua poin dirilis hingga peluncuran, sisanya dibagikan sesuai rasio",
   "小节点未激活 需捐赠500U以上": "Node kecil belum diaktifkan, perlu donasi minimal 500U",
-  "大节点未激活 需捐赠1000U以上": "Node besar belum diaktifkan, perlu donasi minimal 1000U"
+  "大节点未激活 需捐赠1000U以上": "Node besar belum diaktifkan, perlu donasi minimal 1000U",
+  "捐赠专区": "Zona Donasi",
+  "100-999U专区": "Zona 100-999U",
+  "1000-2999U专区": "Zona 1000-2999U",
+  "节点分红": "Dividen Node",
+  "托底池": "Kolam Penyangga"
 }
 

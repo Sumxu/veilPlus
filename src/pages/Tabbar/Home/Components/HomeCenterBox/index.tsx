@@ -56,9 +56,9 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
   };
   const getVeilPlusToken = async () => {
     const result = await ContractRequest({
-      tokenName: "VailPlusPoolToken",
-      methodsName: "totalSupply",
-      params: [],
+      tokenName: "veilPlusToken",
+      methodsName: "balanceOf",
+      params: [ContractList['veilPlusBasePair'].address],
     });
     if (result.value) {
       setLpValue(result.value);
@@ -98,7 +98,7 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
     const result = await ContractRequest({
       tokenName: "veilPlusToken",
       methodsName: "balanceOf",
-      params: [ContractList["veilPlusToken"].address],
+      params: [ContractList["VailPlusPoolToken"].address],
     });
     if (result.value) {
       setDonateValue(result.value); //捐赠池
@@ -112,7 +112,6 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
     getVeilUsdt(); //usdt
     getVeilPlusSafety();//托底池
     getDonateValue();//捐赠池
-
   }, []);
   return (
     <div className="HomeCenterBox">
@@ -150,14 +149,6 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
             <span className="txt">{fromWei(veilPlusSafety)}</span>
             <span className="txt">{fromWei(totalFundValue)}</span>
           </div>
-        </div>
-      </div>
-      <div className="btnList">
-        <div className="btn bgOne" onClick={() => navigate("/Donate")}>
-          {t("捐赠挖矿")}
-        </div>
-        <div className="btn bgTwo" onClick={() => navigate("/Node")}>
-          {t("节点购买")}
         </div>
       </div>
       <div className="biTitle">{t("代币经济学")}</div>

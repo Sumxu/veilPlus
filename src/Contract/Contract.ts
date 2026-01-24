@@ -28,6 +28,10 @@ const Contract: ContractMap = {
     address: EnvManager.veilPlusPool,
     abi: Erc20,
   },
+  veilPlusBasePair:{
+    address: EnvManager.veilPlusBasePair,
+    abi: Erc20,
+  },
   vailPlusUserToken: {
     address: EnvManager.contractVeillUser,
     abi: VailPlusUserABI,
