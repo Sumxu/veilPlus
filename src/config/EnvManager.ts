@@ -70,11 +70,15 @@ class EnvManager {
   static get blockExplorerUrls(): string {
     return EnvManager.config.blockExplorerUrls;
   }
-
+  static get veilPlusRepurchase(): string {
+    return EnvManager.config.veilPlusRepurchase;
+  }
   static get chainName(): string {
     return EnvManager.config.chainName;
   }
-
+  static get veilPlusSafety():string{
+    return EnvManager.config.veilPlusSafety
+  }
   static get apiBase(): string {
     return EnvManager.config.apiBase;
   }

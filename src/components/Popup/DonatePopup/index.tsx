@@ -1,7 +1,7 @@
 import "./index.scss";
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { Popup, Input } from "antd-mobile";
+import { Popup, Input, Toast } from "antd-mobile";
 import closeIcon from "@/assets/basic/close.png";
 import { t } from "i18next";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
@@ -13,15 +13,29 @@ import { Button } from "antd-mobile";
 import { Calc } from "@/Hooks/calc";
 import type { DonateItem } from "@/Ts/DonateList";
 import ContractSend from "@/Hooks/ContractSend.ts";
+interface userNodeInfo {
+  nodeId: BigNumber; //0小 1大
+  flg: boolean; //是否是节点
+  weight: BigNumber;
+  storeValue: BigNumber;
+  rewardDebt: BigNumber;
+  isActivate: boolean;
+}
 const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
   const walletAddress = userAddress((state) => state.address);
+  const [userNodeInfo, setUserNodeInfo] = useState<userNodeInfo>({}); //用户节点信息
   const [rate, setRate] = useState<BigNumber>(BigNumber.from(0));
+  const [userInfo, setUserInfo] = useState({});
   const [inputNumber, setInputNumber] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState(false); // ✅ 是否获得焦点
+  const nodeMap = {
+    0: t("小节点未激活 需捐赠500U以上"),
+    1: t("大节点未激活 需捐赠1000U以上"),
+  };
   //usdt 余额
   const [usdtBalanceOf, setUsdtBalanceOf] = useState<BigNumber>(
-    BigNumber.from(0)
+    BigNumber.from(0),
   );
   const onCloseChange = () => {
     onClose();
@@ -45,11 +59,9 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
   const validateDonateItem = (item: DonateItem, value: number): boolean => {
     switch (item.id) {
       case 1:
-        return value >= 100 && value <= 1000;
+        return value >= 100 && value <= 999;
       case 2:
-        return value >= 1100 && value <= 3000;
-      case 3:
-        return value >= 3100;
+        return value >= 1000 && value <= 2999;
       default:
         return false;
     }
@@ -59,8 +71,22 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
     if (inputNumber == "") {
       return Totast(t("请输入"), "info");
     }
-    if (!validateDonateItem(checkItem, Number(inputNumber))) {
-      return Totast(t(`请输入 ${checkItem.title} 范围内的金额`), "info");
+    if (userInfo.isNode && !userInfo.isActivate) {
+      if (userInfo.nodeId.toString() == 0) {
+        //小节点激活输入金额
+        if (inputNumber < 500) {
+          return Totast("小节点激活金额不能小于500U", "info");
+        }
+      } else {
+        //大节点激活输入金额
+        if (inputNumber < 1000) {
+          return Totast("大节点激活金额不能小于1000U", "info");
+        }
+      }
+    } else {
+      if (!validateDonateItem(checkItem, Number(inputNumber))) {
+        return Totast(t(`请输入 ${checkItem.title} 范围内的金额`), "info");
+      }
     }
     if (!/^\d+(\.\d+)?$/.test(inputNumber))
       return Totast(t("输入格式不正确"), "info");
@@ -133,10 +159,27 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
       setUsdtBalanceOf(usdtRes.value);
     }
   };
+  const getUserInfo = async () => {
+    const result = await ContractRequest({
+      tokenName: "vailPlusUserToken",
+      methodsName: "userInfo",
+      params: [walletAddress],
+    });
+    if (result.value) {
+      const data = {
+        level: result.value.level,
+        isNode: result.value.isNode,
+        nodeId: result.value.nodeId,
+        isActivate: result.value.isActivate,
+      };
+      setUserInfo(data);
+    }
+  };
   useEffect(() => {
     if (isShow == false) return;
     setInputNumber("");
     getUsdtBalance();
+    getUserInfo();
   }, [isShow]);
   return (
     <>
@@ -155,12 +198,18 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
               onClick={onCloseChange}
             ></img>
           </div>
+
           <div className="title">{checkItem.title}</div>
+          {userInfo.isNode && !userInfo.isActivate && (
+            <div className="flagHintOption">
+              {nodeMap[userInfo?.nodeId?.toString()]}
+            </div>
+          )}
           <div className="input-box">
             <div className="input-hint-txt-option">
               <div className="txt-option">{t("参与金额")}:</div>
               <div className="txt-option right-txt">
-                {t('余额')}:{fromWei(usdtBalanceOf)}USDT
+                {t("余额")}:{fromWei(usdtBalanceOf)}USDT
               </div>
             </div>
             <div className={`input-option ${isFocus ? "input-focus" : ""}`}>
@@ -187,8 +236,8 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
           </div>
           <div className="hintBox">
             <div className="txtOption">
-              <div className="txt">{t('日收益率')}</div>
-              <div className="txt">{t('预计日收益')}</div>
+              <div className="txt">{t("日收益率")}</div>
+              <div className="txt">{t("预计日收益")}</div>
             </div>
             <div className="txtOption txtEndOption">
               <div className="txt txtEnd">{checkItem.hintNumber}%</div>
@@ -201,9 +250,9 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
             </div>
           </div>
           <div className="hintOption">
-            *{t('当获得价值')}
+            *{t("当获得价值")}
             <span className="spn1">{Calc.mul(inputNumber, 2)}USDT</span>
-            {t('收益后，将自动出局')}
+            {t("收益后，将自动出局")}
           </div>
           <Button
             loading={submitLoading}

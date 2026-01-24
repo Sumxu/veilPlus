@@ -17,30 +17,23 @@ const List: FC = () => {
   };
   const list: DonateItem[] = [
     {
-      title: t("100-1000U专区"),
+      title: t("100-999U专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.0",
       number: "0.1",
       id: 1,
     },
     {
-      title: t("1100-3000U专区"),
+      title: t("1000-2999U专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.2",
       number: "1.2",
       id: 2,
     },
-    {
-      title: t("3100U以上专区"),
-      hintTxt: t("日化收益"),
-      hintNumber: "1.5",
-      number: "1.5",
-      id: 3,
-    },
   ];
   return (
     <div className="listPage">
-      <div className="hintTitle">{t("捐赠档位")}</div>
+      <div className="hintTitle">{t("捐赠专区")}</div>
       {list.map((item, index) => {
         return (
           <div className="itemBox" key={index}>

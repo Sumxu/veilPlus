@@ -35,13 +35,10 @@ async function useContractSend({
   );
   try {
     const gasPrice = await provider.getGasPrice();
-    console.log("gasPrice==",fromWei(gasPrice))
-    // const estimatedGas = await contract.estimateGas[methodsName](...params, {
-    //   value,
-    // });
-    // const gasLimit = estimatedGas.mul(130).div(100);
-    const gasLimit = BigNumber.from('10000000');
-    // console.log("gasLimit==",fromWei(gasLimit))
+    const estimatedGas = await contract.estimateGas[methodsName](...params, {
+      value,
+    });
+    const gasLimit = estimatedGas.mul(130).div(100);
     const tx = await contract[methodsName](...params, {
       value,
       gasPrice,
@@ -56,6 +53,7 @@ async function useContractSend({
     ) {
       message.warning(t('取消交易签名')); // 你已取消交易签名
     } else {
+      console.log("err===",err)
       let errorMsg = err?.message || String(err);
       if (errorMsg.length > 50) {
         errorMsg = errorMsg.slice(0, 50) + "...";

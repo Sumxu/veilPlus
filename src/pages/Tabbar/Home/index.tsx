@@ -14,7 +14,6 @@ const Home: FC = () => {
   const [inviteShow, setInviteShow] = useState<boolean>(false);
   const walletAddress = userAddress((state) => state.address);
   const [invite, setInvite] = useState<string | null>(null); // 新增 invite 状态
-
   /**
    *
    * @returns 当前用户是否存在上级
@@ -27,10 +26,9 @@ const Home: FC = () => {
       setInvite(inviteParam); // 保存到 state
       storage.set("invite", inviteParam); // 可选：存本地
     }
-
     if (!walletAddress) return; // 地址不存在不查
     const result = await ContractRequest({
-      tokenName: "USDTToken",
+      tokenName: "vailPlusUserToken",
       methodsName: "userInfo",
       params: [walletAddress],
     });

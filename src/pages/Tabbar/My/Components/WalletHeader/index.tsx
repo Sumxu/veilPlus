@@ -34,7 +34,7 @@ const WalletHeader: React.FC = ({ userInfo }) => {
 
               <div className="memberOption">
                 <img src={memberIcon} className="memberIcon"></img> {t("等级")}
-                :v{userInfo.level}
+                :v{userInfo.level.toString()}
               </div>
             </div>
           )}

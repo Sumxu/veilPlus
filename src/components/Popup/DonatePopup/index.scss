@@ -82,6 +82,12 @@
       color: #fd880a;
     }
   }
+  .flagHintOption{
+    margin-top: 12px;
+     font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+  }
   .input-box {
     margin-top: 16px;
     .input-hint-txt-option {
@@ -146,6 +152,7 @@
       background: rgba(255, 255, 255, 0.15);
     }
   }
+
   .hint-txt-box {
     margin-top: 16px;
     display: flex;

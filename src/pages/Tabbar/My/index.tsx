@@ -29,6 +29,7 @@ const My: React.FC = () => {
       methodsName: "userInfo",
       params: [walletAddress],
     });
+    console.log("result--userInfo",result)
     if (result.value) {
       const data = {
         level: result.value.level,

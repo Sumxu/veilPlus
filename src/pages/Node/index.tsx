@@ -26,6 +26,7 @@ interface userNodeInfo {
   weight: BigNumber;
   storeValue: BigNumber;
   rewardDebt: BigNumber;
+  isNode:boolean
 }
 const Node: React.FC = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Node: React.FC = () => {
       txtLst: [
         t("小节点合伙人赠送VIP1级别(激活即可享受)"),
         t(
-          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
+          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)",
         ),
       ],
     },
@@ -57,7 +58,7 @@ const Node: React.FC = () => {
       txtLst: [
         t("大节点合伙人赠送VIP2级别(激活即可享受)"),
         t(
-          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
+          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)",
         ),
       ],
     },
@@ -112,14 +113,14 @@ const Node: React.FC = () => {
    */
   const getUserNodeInfo = async () => {
     const result = await ContractRequest({
-      tokenName: "vailPlusNodeToken",
-      methodsName: "userNode",
+      tokenName: "vailPlusUserToken",
+      methodsName: "userInfo",
       params: [walletAddress],
     });
     setUserNodeInfo(result.value);
   };
   const nodeBtn = (item) => {
-    if (item.id == Number(userNodeInfo.nodeId) && userNodeInfo.flg) {
+    if (item.id == Number(userNodeInfo.nodeId) && userNodeInfo.isNode) {
       //已经是节点
       return <span>{t("待激活")}</span>;
     } else {
@@ -159,7 +160,7 @@ const Node: React.FC = () => {
           txtLst: [
             t("小节点合伙人赠送VIP1级别(激活即可享受)"),
             t(
-              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
+              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)",
             ),
           ],
         },
@@ -172,7 +173,7 @@ const Node: React.FC = () => {
           txtLst: [
             t("大节点合伙人赠送VIP2级别(激活即可享受)"),
             t(
-              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
+              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)",
             ),
           ],
         },
@@ -206,7 +207,7 @@ const Node: React.FC = () => {
             <div className="assetDetailSpinBox">
               <Spin />
             </div>
-          ) : !userNodeInfo.flg ? (
+          ) : !userNodeInfo.isNode ? (
             <NodeList
               showBuyNftChange={buyClick}
               nodeList={nodeList}

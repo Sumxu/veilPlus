@@ -19,12 +19,14 @@ export default class EnvConfigProvider {
   static getDevConfig(): EnvConfig {
     return {
       // apiBase: "https://api.veilplus.com/api/",
-      apiBase: "http://192.168.31.123:8702/",
+      apiBase: "http://3.0.146.249:8001/api/",
       contractUsdt: "0x0158953982FbF5f42D5eb934046cD0707D1B2E74",
-      contractVeillUser: "0x9E1390A5fE24CdfCEdAe50f8F1a252E653b3C4c1",
-      contractVeillNode: "0x963102A48a14f2882b5f23BbeA28b8Eb38b73707",
-      veilPlusToken: "0x846d777EBC4653A646714E65919e6Be2bBEFc073",
-      veilPlusPool: "0x59269AAAb8e8c25Bc20c26CDd3F80562a37848A9",
+      contractVeillUser: "0xB8D7772733b9b1C4655910a0774D23Fd50183F39",
+      contractVeillNode: "0x95DBF309d12651bb8B75F0112d00ADcABf2de372",
+      veilPlusToken: "0x720CCF80bEa4554B12FCf6a4e8Ead0DC536C4042",
+      veilPlusPool: "0x036BC45dd059749fd2888893C1bF744a38fCe1fB",
+      veilPlusSafety: "0xe4e96e139aFb35b4FFB089D9dD96e44E6bF75657",//托底
+      veilPlusRepurchase: "0xde3127d3e8239F541108050Ac451E092A1f82Cc5",//回购池
       chainId: "0x61",
       rpcUrl: "https://bsc-testnet-rpc.publicnode.com/",
       blockExplorerUrls: "http://143.92.39.28:9030/api",
@@ -40,6 +42,8 @@ export default class EnvConfigProvider {
       contractVeillNode: "0x6818087D9cd968A6d8DC3914F2bce74d07114204",
       veilPlusToken: "0x846d777EBC4653A646714E65919e6Be2bBEFc073",
       veilPlusPool: "0x2b93c86fc50A402D10f2BD282fE8F802eC806592",
+      veilPlusSafety: "0xe4e96e139aFb35b4FFB089D9dD96e44E6bF75657",
+      veilPlusRepurchase: "0xde3127d3e8239F541108050Ac451E092A1f82Cc5",
       chainId: "0x38",
       rpcUrl: "https://bsc-dataseed.binance.org/",
       blockExplorerUrls: "https://bscscan.com",

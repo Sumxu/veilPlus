@@ -84,7 +84,7 @@ const MyTeam: React.FC = () => {
 
   const copyAction = () => {
     const origin = window.location.origin;
-    const inviteUrl = `${origin}/home?invite=${walletAddress}`;
+    const inviteUrl = `${origin}/Home?invite=${walletAddress}`;
     copyText(inviteUrl);
   };
   const xiaoQuUsdt = () => {
@@ -172,7 +172,7 @@ const MyTeam: React.FC = () => {
     getPoolUserInfo();
     getMaximumDirectPerf();
     const origin = window.location.origin;
-    const inviteUrl = `${origin}/home?invite=${walletAddress}`;
+    const inviteUrl = `${origin}/Home?invite=${walletAddress}`;
     setLocation(inviteUrl);
   }, []);
   return (

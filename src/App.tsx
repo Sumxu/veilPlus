@@ -14,7 +14,9 @@ EnvManager.print();
 function App() {
   const location = useLocation();
   // 是否显示底部 Tab
+  console.log("location.pathname--",location.pathname)
   const showTab = ["/Home", "/Donate", "/My"].includes(location.pathname);
+  console.log("showTab000",showTab)
   const walletAddress = userAddress((state) => state.address);
   const [loading, setLoading] = useState(true);
   useEffect(() => {

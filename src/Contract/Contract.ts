@@ -20,6 +20,10 @@ const Contract: ContractMap = {
     address: EnvManager.veilPlusToken,
     abi: Erc20,
   },
+  veilPlusSafety:{
+     address: EnvManager.veilPlusSafety,
+    abi: Erc20,
+  },
   VailPlusPoolToken: {
     address: EnvManager.veilPlusPool,
     abi: Erc20,
@@ -36,6 +40,10 @@ const Contract: ContractMap = {
     address: EnvManager.veilPlusPool,
     abi: VailPlusPoolABI,
   },
+  VeilPlusRepurchase:{
+    address:EnvManager.veilPlusRepurchase,
+    abi: Erc20,
+  }
 };
 // 正式
 export default Contract;

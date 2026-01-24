@@ -182,5 +182,7 @@
   "每日赠送 50 代币积分，上线时按 1:1 映射 VIPL 代币": "Tặng 50 điểm token mỗi ngày, khi ra mắt sẽ đổi 1:1 thành VIPL",
   "所有代币积分释放至上线截止，剩余代币按以下比例赠送": "Tất cả điểm token được phát hành đến khi ra mắt, phần còn lại được phân bổ theo tỷ lệ sau",
   "赠送节点合伙人抢购金额的50%捐赠矿池收益账户小节点合伙人赠送250U账户(启用即可享受)": "50% số tiền mua được quyên góp vào tài khoản thu nhập pool, đối tác nút nhỏ nhận tài khoản 250U (kích hoạt ngay để sử dụng)",
-  "全网代币 3% 即390 万代币赠送大节点每日赠送 100 代币积分，上线时按 1:1 映射 VIPL 代币所有积分释放至上线截止，剩余代币积分按以下比例赠送": "3% tổng số token (3,9 triệu) được tặng cho nút lớn, tặng 100 điểm token mỗi ngày, khi ra mắt đổi 1:1 thành VIPL. Tất cả điểm được phát hành đến khi ra mắt, phần còn lại phân phối theo tỷ lệ sau"
+  "全网代币 3% 即390 万代币赠送大节点每日赠送 100 代币积分，上线时按 1:1 映射 VIPL 代币所有积分释放至上线截止，剩余代币积分按以下比例赠送": "3% tổng số token (3,9 triệu) được tặng cho nút lớn, tặng 100 điểm token mỗi ngày, khi ra mắt đổi 1:1 thành VIPL. Tất cả điểm được phát hành đến khi ra mắt, phần còn lại phân phối theo tỷ lệ sau",
+  "小节点未激活 需捐赠500U以上": "Nút nhỏ chưa được kích hoạt, cần quyên góp tối thiểu 500U",
+  "大节点未激活 需捐赠1000U以上": "Nút lớn chưa được kích hoạt, cần quyên góp tối thiểu 1000U"
 }
