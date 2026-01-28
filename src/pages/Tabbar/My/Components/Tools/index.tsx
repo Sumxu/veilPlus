@@ -64,7 +64,6 @@ const Tools: React.FC = ({ userInfo }) => {
           navigate(item.path);
         } else {
           Totast("未购买节点", "info");
-          navigate(item.path);
         }
       } else {
         navigate(item.path);
@@ -80,7 +79,6 @@ const Tools: React.FC = ({ userInfo }) => {
     const getCurrLang = () => {
     const localLang: string = window.localStorage.getItem("lang") ?? "zhHant";
     i18n.changeLanguage(localLang);
-    console.log("localLang==", localLang);
     if (localLang == "zhHant") {
       setValue("1");
       setLangTxt("繁体中文");

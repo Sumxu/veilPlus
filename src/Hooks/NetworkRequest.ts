@@ -34,7 +34,7 @@ async function NetworkRequest(params: NetWorkProps): Promise<any> {
     const result = await response.json();
     if (result.code === 401) {
       storage.remove("token");
-      window.location.reload();
+      location.replace("/Home");
     } else if (!response.ok || result.code !== 200) {
       throw new Error(result.msg || t("请求错误"));
     }

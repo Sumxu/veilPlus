@@ -112,7 +112,7 @@ const HomeEndBox: FC = () => {
             <div className="rankingOption" key={index}>
               <div className="indexItem">{index + 4}</div>
               <div className="indexWallet">{formatAddress(item.address)}</div>
-              <div className="indexNumber">{fromWei(item.amount)}</div>
+              <div className="indexNumber">{fromWei(item.amount)||'-'}</div>
             </div>
           ))
         )}

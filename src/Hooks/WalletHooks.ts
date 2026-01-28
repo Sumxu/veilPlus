@@ -1,41 +1,40 @@
 import { userAddress, userChainId } from "@/Store/Store";
 import { message } from "antd";
 import EnvManager from "@/config/EnvManager";
+import { storage } from "@/Hooks/useLocalStorage";
 
 declare global {
   interface Window {
     ethereum?: any;
   }
 }
-
 // ✅ 保证全局只注册一次监听
 let isListenerAdded = false;
-
-export function listenWalletEvents() {
+export function listenWalletEvents(navigate) {
   if (!window.ethereum || isListenerAdded) return;
-
   isListenerAdded = true;
-
   console.log("✅ Wallet Event Listener Registered");
-
   window.ethereum.on("accountsChanged", (accounts: string[]) => {
+    clearStorageFn();
+    //清空缓存
     if (accounts.length === 0) {
-      console.log("钱包已断开");
-     window.location.reload();
+      navigate("/Home");
     } else {
-      console.log("钱包切换为:", accounts[0]);
-      window.location.reload();
+      navigate("/Home");
     }
   });
 
   window.ethereum.on("chainChanged", () => {
-    console.log("链切换，刷新页面");
-    window.location.reload();
+    navigate("/Home");
   });
 }
-
+//清空所有的缓存只要切换了账号
+const clearStorageFn = () => {
+  storage.set("sign", null);
+  storage.set("address", null);
+};
 // ✅ 连接钱包逻辑
-export async function ensureWalletConnected(): Promise<boolean> {
+export async function ensureWalletConnected(navigate): Promise<boolean> {
   const { setAddress } = userAddress.getState();
   const { setChain } = userChainId.getState();
 
@@ -61,7 +60,6 @@ export async function ensureWalletConnected(): Promise<boolean> {
 
   try {
     accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    
   } catch {
     return false;
   }
@@ -77,7 +75,8 @@ export async function ensureWalletConnected(): Promise<boolean> {
         method: "wallet_switchEthereumChain",
         params: [{ chainId: BNB_PARAMS.chainId }],
       });
-      window.location.reload();
+      clearStorageFn();
+      navigate("/Home");
     } catch (err: any) {
       if (err.code === 4902) {
         try {
@@ -85,9 +84,9 @@ export async function ensureWalletConnected(): Promise<boolean> {
             method: "wallet_addEthereumChain",
             params: [BNB_PARAMS],
           });
-          window.location.reload();
-        } catch {
-        }
+          clearStorageFn();
+          navigate("/Home");
+        } catch {}
       }
     }
   }

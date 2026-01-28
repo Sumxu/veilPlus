@@ -7,6 +7,7 @@ import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
 import { userAddress } from "@/Store/Store.ts";
 import NetworkRequest from "@/Hooks/NetworkRequest.ts";
 import { concatSign } from "@/Hooks/Utils.ts";
+import { storage } from "@/Hooks/useLocalStorage";
 import { UseSignMessage } from "@/Hooks/UseSignMessage.ts";
 interface NodeItem {
   amount: BigNumber;
@@ -33,7 +34,7 @@ interface NodeInfo {
 }
 const NodeList: React.FC<NodeListClass> = (props) => {
   const { signMessage } = UseSignMessage(); //获取钱包签名
-  const walletAddress = userAddress().address;
+  const walletAddress = storage.get("address");
   const [nodeInfo, setNodeInfo] = useState<NodeInfo>({});
   const [btnIndexLoading, setBtnIndexLoading] = useState<number | null>(null);
   /**

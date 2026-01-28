@@ -8,6 +8,7 @@ import NetworkRequest from "@/Hooks/NetworkRequest.ts";
 import LeftBackHeader from "@/components/LeftBackHeader";
 import { userAddress } from "@/Store/Store.ts";
 import { InfiniteScroll } from "antd-mobile";
+import { storage } from "@/Hooks/useLocalStorage";
 import { fromWei } from "@/Hooks/Utils";
 interface listItem {
   blockTime: string;
@@ -15,7 +16,7 @@ interface listItem {
 }
 
 const OutputList: React.FC = () => {
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get('address');
   const [list, setList] = useState<listItem[]>([]);
   // 列表是否加载
   const [listLoding, setListLoding] = useState<boolean>(false);

@@ -14,23 +14,34 @@ import ContractSend from "@/Hooks/ContractSend.ts";
 import hintIcon from "@/assets/basic/hintIcon.png";
 import { storage } from "@/Hooks/useLocalStorage";
 
-const MyPopup: React.FC = ({ isShow, onClose, pendingInfo }) => {
-  const [userInfo, setUserInfo] = useState({}); //用户信息
+const TeamPopup: React.FC = ({ isShow, onClose }) => {
   const walletAddress = storage.get('address');
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
+  const [teamIng, setTeamIng] = useState<BigNumber>(BigNumber.from("0"));
   const onCloseChange = () => {
     onClose();
   };
+  //团队领取弹窗用的是erc20Value
+  const getTeamPending = async () => {
+    const result = await ContractRequest({
+      tokenName: "VailPlusPool",
+      methodsName: "teamPending",
+      params: [walletAddress],
+    });
+    if (result.value) {
+      setTeamIng(result.value.erc20Value);
+    }
+  };
   //确认提现
   const submitClick = async () => {
-    if (pendingInfo.rewardValue.isZero()) {
+    if (teamIng.isZero()) {
       return Totast("不可领取", "info");
     }
     try {
       setSubmitLoading(true);
       const result = await ContractSend({
         tokenName: "VailPlusPool",
-        methodsName: "reward",
+        methodsName: "teamReward",
         params: [],
       });
       if (result.value) {
@@ -43,6 +54,7 @@ const MyPopup: React.FC = ({ isShow, onClose, pendingInfo }) => {
   };
   useEffect(() => {
     if (isShow == false) return;
+    getTeamPending();
   }, [isShow]);
   return (
     <>
@@ -54,7 +66,7 @@ const MyPopup: React.FC = ({ isShow, onClose, pendingInfo }) => {
       >
         <div className="my-popup-page">
           <div className="header-option">
-            <div className="title">{t("领取捐赠收益")}</div>
+            <div className="title">{t("领取社区收益")}</div>
             <img
               src={closeIcon}
               className="close-icon"
@@ -70,7 +82,7 @@ const MyPopup: React.FC = ({ isShow, onClose, pendingInfo }) => {
           <div className="input-draw-box">
             <div className="input-hint-txt-option">
               <div className="txt-option">
-                {t("领取数量")}:{fromWei(pendingInfo.rewardValue)}VIPL
+                {t("领取数量")}:{fromWei(teamIng)}VIPL
               </div>
             </div>
           </div>
@@ -89,4 +101,4 @@ const MyPopup: React.FC = ({ isShow, onClose, pendingInfo }) => {
     </>
   );
 };
-export default MyPopup;
+export default TeamPopup;

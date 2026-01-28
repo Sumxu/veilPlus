@@ -12,13 +12,15 @@ import { Spin } from "antd";
 import { userAddress } from "@/Store/Store.ts";
 import { BigNumber } from "ethers";
 import NoData from "@/components/NoData";
+import { storage } from "@/Hooks/useLocalStorage";
+
 import type { DepositItem } from "@/Ts/DepositList";
 import { fromWei } from "@/Hooks/Utils";
 const DonateStartListPage: FC = () => {
   const [isMore, setIsMore] = useState<boolean>(false);
   const [list, setList] = useState<DepositItem[]>([]);
   const [pageLoading, setPageLoading] = useState<boolean>(false);
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get('address');
 
   const [current, setCurrent] = useState<number>(1);
   const [tabIndex, setTabIndex] = useState<string>("0");
@@ -131,7 +133,9 @@ const DonateStartListPage: FC = () => {
             return (
               <div className="itemBox" key={index}>
                 <div className="headerOption">
-                  <div className="tag opacity">#{item.perType}-{item.poolIndex}</div>
+                  <div className="tag opacity">
+                    #{item.perType}-{item.poolIndex}
+                  </div>
                   <div className="rightOption">
                     {renderStatus(item.status)}
                     <div className="dateTime">{item.blockTime}</div>
@@ -144,7 +148,7 @@ const DonateStartListPage: FC = () => {
                   <div className="rightOption">
                     <div className="rightItem">
                       <div className="txt">{t("预计总收益")}</div>
-                      <div className="txt2">{fromWei(item.gasValues)} VIPL</div>
+                      <div className="txt2">{fromWei(item.gasValues)} USDT</div>
                     </div>
                     <div className="rightItem rightItemLeft">
                       <div className="txt">{t("参与金额")}</div>

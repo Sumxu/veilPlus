@@ -10,6 +10,8 @@ import ContractList from "@/Contract/Contract.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import closeIcon from "@/assets/basic/close.png";
 import checkIcon from "@/assets/team/check.png";
+import { storage } from "@/Hooks/useLocalStorage";
+
 interface nodeItem {
   amount: BigNumber;
   inventory: BigNumber; //库存
@@ -52,7 +54,7 @@ function BuyNftPopup(Props: buyNftPopupClass) {
       t("前601～1000位: 奖励 30%VIPL"),
     ],
   };
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get('address');
   //usdt 余额
   const [usdtBalanceOf, setUsdtBalanceOf] = useState<BigNumber>(
     BigNumber.from(0)

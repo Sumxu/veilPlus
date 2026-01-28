@@ -12,13 +12,14 @@ import { Spin } from "antd";
 import { userAddress } from "@/Store/Store.ts";
 import { BigNumber } from "ethers";
 import NoData from "@/components/NoData";
+import { storage } from "@/Hooks/useLocalStorage";
 import type { DepositItem } from "@/Ts/DepositList";
 import { fromWei } from "@/Hooks/Utils";
 const DonateStartListPage: FC = () => {
   const [isMore, setIsMore] = useState<boolean>(false);
   const [list, setList] = useState<DepositItem[]>([]);
   const [pageLoading, setPageLoading] = useState<boolean>(false);
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get('address');
 
   const [current, setCurrent] = useState<number>(1);
   const [tabIndex, setTabIndex] = useState<string>("0");

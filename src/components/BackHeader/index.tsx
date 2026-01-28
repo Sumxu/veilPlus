@@ -9,6 +9,7 @@ import { Picker } from "antd-mobile";
 import i18n, { t } from "i18next";
 import { DownOutline } from "antd-mobile-icons";
 import walletsIcon from '@/assets/basic/wallet.png'
+import { storage } from "@/Hooks/useLocalStorage";
 const Header: React.FC<{
   title: string;
   isHome?: boolean;
@@ -17,7 +18,7 @@ const Header: React.FC<{
   rightIcon?: string;
 }> = ({ title, isHome, rightText, rightIcon, rightUrl }) => {
   const navigate = useNavigate();
-  const walletAddress = userAddress().address;
+   const walletAddress = storage.get('address');
   const basicColumns = [
     [
       { label: "中文繁体", value: "1" },

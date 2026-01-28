@@ -7,9 +7,10 @@ import memberIcon from "@/assets/my/member.png";
 import { t } from "i18next";
 import { userAddress } from "@/Store/Store.ts";
 import { formatAddress, copyText } from "@/Hooks/Utils";
+import { storage } from "@/Hooks/useLocalStorage";
 
-const WalletHeader: React.FC = ({ userInfo }) => {
-  const walletAddress = userAddress((state) => state.address);
+const WalletHeader: React.FC = ({ userInfo, level }) => {
+  const walletAddress = storage.get('address');
   const copyClick = () => {
     copyText(walletAddress);
   };
@@ -34,7 +35,7 @@ const WalletHeader: React.FC = ({ userInfo }) => {
 
               <div className="memberOption">
                 <img src={memberIcon} className="memberIcon"></img> {t("等级")}
-                :v{userInfo.level.toString()}
+                :v{level.toString()}
               </div>
             </div>
           )}

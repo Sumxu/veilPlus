@@ -3,6 +3,13 @@
   border-radius: 8px;
   padding: 6px 12px;
   margin-top: 60px;
+  .top12{
+    margin-top: 12px;
+  }
+  .headerBottomBorder {
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
   .headerTopBox {
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -27,39 +34,41 @@
   }
   .headerEndBox {
     margin-top: 12px;
-
     .endBox {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-      .hintTitle {
-        font-weight: 400;
-        font-size: 12px;
-        color: #000;
-      }
-      .hintNumber {
-        margin-top: 2px;
-        font-weight: 500;
-        font-size: 16px;
-        color: #000;
-      }
-      .btn {
-        margin-top: 6px;
-        padding: 6px 26px;
-        text-align: center;
-        font-weight: 500;
-        border-radius: 16px;
-        font-size: 14px;
-      }
-      .btnOne {
-        color: rgba(0, 0, 0, 0.85);
-        border: 1px solid rgba(0, 0, 0, 0.85);
-      }
-      .btnTwo {
-        margin-left: 8px;
-        background: #000000;
-        color: #00f8f3;
-      }
+    .hintTitle {
+      font-weight: 400;
+      font-size: 12px;
+      color: #000;
+    }
+    .hintNumber {
+      margin-top: 2px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000;
+    }
+    .btn {
+      margin-top: 6px;
+      padding: 6px 26px;
+      text-align: center;
+      font-weight: 500;
+      border-radius: 16px;
+      font-size: 14px;
+    }
+    .btnOne {
+      color: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.85);
+    }
+    .btnTwo {
+      margin-left: 8px;
+      background: #000000;
+      color: #00f8f3;
+    }
+  }
+  .rightTxt {
+    text-align: right;
   }
 }

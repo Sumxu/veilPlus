@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { ethers, BigNumber } from "ethers";
-import {t} from 'i18next'
+import { t } from "i18next";
 /**
  * 格式化钱包地址
  * @param addr 钱包地址
@@ -11,7 +11,7 @@ import {t} from 'i18next'
 export function formatAddress(
   addr?: string,
   prefixLen = 7,
-  suffixLen = 4
+  suffixLen = 4,
 ): string {
   if (!addr) return "-";
   return `${addr.slice(0, prefixLen)}....${addr.slice(-suffixLen)}`;
@@ -65,21 +65,24 @@ export function fromWei(
   value: string | number | bigint | BigNumber,
   decimals = 18,
   fixed = true,
-  precision = 4
+  precision = 4,
 ): string {
-  if (value == "") {
-    return "";
-  }
-  if (value === undefined || value === null) return "0";
+  if (value === "" || value === undefined || value === null) return "0";
+
   try {
     const etherValue = ethers.utils.formatUnits(value.toString(), decimals);
 
     if (!fixed) return etherValue;
 
+    // ✅ precision = 0：不允许小数点
+    if (precision === 0) {
+      return String(Math.floor(Number(etherValue)));
+    }
+
     return truncateDecimal(etherValue, precision);
   } catch (error) {
     console.error("fromWei 转换失败:", error);
-    return "0.0000";
+    return "0";
   }
 }
 
@@ -99,7 +102,7 @@ function truncateDecimal(value: string, decimals: number): string {
  */
 export function toWei(
   value: string | number | bigint,
-  decimals = 18
+  decimals = 18,
 ): BigNumber {
   if (value === undefined || value === null) return BigNumber.from(0);
   try {
@@ -126,7 +129,7 @@ export function SubAddress(address: string): string | null {
 // 全局消息通知
 export function Totast(
   Message: string,
-  type: "success" | "error" | "info" | "warning" | "loading"
+  type: "success" | "error" | "info" | "warning" | "loading",
 ) {
   switch (type) {
     case "success":
@@ -237,7 +240,7 @@ export const concatSign = (bigNumber: string): string => {
  */
 export const toBigNumberUnits = (
   value: string | number,
-  decimals: number = 18
+  decimals: number = 18,
 ): ethers.BigNumber => {
   if (value === null || value === undefined || value === "") {
     throw new Error("Invalid value: value is required");
@@ -293,7 +296,7 @@ export const toTimestamp = (timeStr: string): number =>
  */
 export const calcBigNumberPercentInt = (
   part: BigNumber,
-  total: BigNumber
+  total: BigNumber,
 ): number => {
   if (!part || !total || total.isZero()) return 0;
 
@@ -356,8 +359,10 @@ export function copyText(text: string) {
       () => Totast(t("复制成功"), "success"),
       () => {
         const ok = fallbackCopy(text);
-        ok ? Totast(t("复制成功"), "success") : Totast("请长按文本复制", "info");
-      }
+        ok
+          ? Totast(t("复制成功"), "success")
+          : Totast("请长按文本复制", "info");
+      },
     );
   } else {
     const ok = fallbackCopy(text);
@@ -380,7 +385,7 @@ export function copyToClipboard(text: string, message: string = "复制成功") 
       },
       () => {
         Totast("复制失败，请手动复制", "error");
-      }
+      },
     );
   } else {
     // 兼容旧浏览器
@@ -406,8 +411,8 @@ export function timestampToFull(ts: number, isMs = false) {
   const date = new Date(isMs ? ts : ts * 1000);
   const pad = (n: number) => n.toString().padStart(2, "0");
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
-    date.getDate()
+    date.getDate(),
   )} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(
-    date.getSeconds()
+    date.getSeconds(),
   )}`;
 }

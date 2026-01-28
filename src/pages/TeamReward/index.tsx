@@ -10,6 +10,7 @@ import { userAddress } from "@/Store/Store.ts";
 import { InfiniteScroll } from "antd-mobile";
 import { fromWei, formatAddress } from "@/Hooks/Utils";
 import { BigNumber } from "ethers";
+import { storage } from "@/Hooks/useLocalStorage";
 interface listItem {
   fromAddress: string;
   usdtAmount: BigNumber;
@@ -17,7 +18,7 @@ interface listItem {
   blockTime: string;
 }
 const OutputList: React.FC = () => {
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get('address');
   const [list, setList] = useState<listItem[]>([]);
   // 列表是否加载
   const [listLoding, setListLoding] = useState<boolean>(false);

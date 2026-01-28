@@ -20,14 +20,14 @@ const List: FC = () => {
       title: t("100-999U专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.0",
-      number: "0.1",
+      number: "0.01",
       id: 1,
     },
     {
       title: t("1000-2999U专区"),
       hintTxt: t("日化收益"),
       hintNumber: "1.2",
-      number: "1.2",
+      number: "0.012",
       id: 2,
     },
   ];

@@ -31,7 +31,7 @@ interface userNodeInfo {
 const Node: React.FC = () => {
   const navigate = useNavigate();
   // 当前钱包地址
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get('address');
   const [showBuyNftPopup, setShowBuyNftPopup] = useState<boolean>(false);
   const [userNodeInfo, setUserNodeInfo] = useState<userNodeInfo>({}); //用户节点信息
   const [nodeId, setNodeId] = useState<number>(0); //购买节点信息Id

@@ -9,8 +9,15 @@ import { BigNumber } from "ethers";
 import { userAddress } from "@/Store/Store.ts";
 import ContractList from "@/Contract/Contract.ts";
 import { useNavigate } from "react-router-dom";
+import { storage } from "@/Hooks/useLocalStorage";
+import { useLocation } from "react-router-dom";
+import { ensureWalletConnected } from "@/Hooks/WalletHooks";
+import { useNFTMulticall } from "@/Hooks/useNFTTokensByOwner";
+
 const HomeCenterBox: FC = () => {
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get("address");
+  const { fetch } = useNFTMulticall();
+  const location = useLocation();
   const navigate = useNavigate();
   const [totalDepositAmount, setTotalDepositAmount] = useState<BigNumber>(
     BigNumber.from("0"),
@@ -23,7 +30,7 @@ const HomeCenterBox: FC = () => {
   const [veilPlusSafety, setVeilPlusSafety] = useState<BigNumber>(
     BigNumber.from("0"),
   ); //托底池
-const [donateValue, setDonateValue] = useState<BigNumber>(
+  const [donateValue, setDonateValue] = useState<BigNumber>(
     BigNumber.from("0"),
   ); //捐赠池
   const [destroyValue, setDestroyValue] = useState<BigNumber>(
@@ -34,16 +41,7 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
   const copyClick = () => {
     copyText(EnvManager.veilPlusToken);
   };
-  const getTotalDepositAmount = async () => {
-    const result = await ContractRequest({
-      tokenName: "VailPlusPool",
-      methodsName: "totalDepositAmount",
-      params: [],
-    });
-    if (result.value) {
-      setTotalDepositAmount(result.value);
-    }
-  };
+
   const getTotalFundValue = async () => {
     const result = await ContractRequest({
       tokenName: "vailPlusNodeToken",
@@ -52,16 +50,22 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
     });
     if (result.value) {
       setTotalFundValue(result.value);
+      setTimeout(() => {
+        getVeilPlusToken(); //全网
+      }, 1000);
     }
   };
   const getVeilPlusToken = async () => {
     const result = await ContractRequest({
       tokenName: "veilPlusToken",
       methodsName: "balanceOf",
-      params: [ContractList['veilPlusBasePair'].address],
+      params: [ContractList["veilPlusBasePair"].address],
     });
     if (result.value) {
       setLpValue(result.value);
+      setTimeout(() => {
+        getVeilPlusPool(); //全网
+      }, 1000);
     }
   };
   const getVeilPlusPool = async () => {
@@ -72,6 +76,9 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
     });
     if (result.value) {
       setDestroyValue(result.value);
+      setTimeout(() => {
+        getVeilPlusSafety(); //全网
+      }, 1000);
     }
   };
   const getVeilUsdt = async () => {
@@ -90,11 +97,15 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
       methodsName: "balanceOf",
       params: [ContractList["veilPlusSafety"].address],
     });
+    console.log("getVeilPlusSafety==", result);
     if (result.value) {
       setVeilPlusSafety(result.value); //托底池
+      setTimeout(() => {
+        getDonateValue(); //捐赠池
+      }, 1000);
     }
   };
-   const getDonateValue = async () => {
+  const getDonateValue = async () => {
     const result = await ContractRequest({
       tokenName: "veilPlusToken",
       methodsName: "balanceOf",
@@ -102,17 +113,15 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
     });
     if (result.value) {
       setDonateValue(result.value); //捐赠池
+      setTimeout(() => {
+        getVeilUsdt(); //捐赠池
+      }, 1000);
     }
   };
   useEffect(() => {
-    getTotalDepositAmount(); ///总捐赠
-    getTotalFundValue(); //节点总分红
-    getVeilPlusToken(); //全网总销毁
-    getVeilPlusPool(); //LP质押
-    getVeilUsdt(); //usdt
-    getVeilPlusSafety();//托底池
-    getDonateValue();//捐赠池
-  }, []);
+     getTotalFundValue(); //节点总分红
+   
+  }, ['location']);
   return (
     <div className="HomeCenterBox">
       <div className="title">{t("全网数据")}</div>
@@ -165,9 +174,9 @@ const [donateValue, setDonateValue] = useState<BigNumber>(
             </div>
           </div>
           <div className="centerTxtOption centerTxtTop12">
-            <div className="centerTxt">{t("发行价")}：0.08USDT</div>
+            <div className="centerTxt">{t("发行价")}：0.007692USDT</div>
             <div className="centerTxt">
-              {t("初始发行量")}：1000{t("万")}
+              {t("初始发行量")} 1300{t("万")}
             </div>
           </div>
         </div>

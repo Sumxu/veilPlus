@@ -48,6 +48,10 @@ class EnvManager {
   static get configAll(): Readonly<EnvConfig> {
     return EnvManager.config;
   }
+
+  static get multiCallToken(): Readonly<EnvConfig> {
+    return EnvManager.multiCallToken;
+  }
   static get contractUsdt(): string {
     return EnvManager.config.contractUsdt;
   }

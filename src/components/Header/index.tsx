@@ -7,16 +7,23 @@ import logo from "@/assets/img/head-logo.png";
 import wallet from "@/assets/img/wallet.png";
 import { userAddress } from "@/Store/Store.ts";
 import { formatAddress } from "@/Hooks/Utils";
-
+import { storage } from "@/Hooks/useLocalStorage";
 const Header: React.FC<{
   showLogo?: boolean;
   title?: string;
   showConnect?: boolean;
   recordText?: string;
   recordUrl?: string;
-   fixed?: boolean; // 新增属性
-}> = ({ showLogo, title, showConnect = false, recordText, recordUrl,fixed = true }) => {
-  const walletAddress = userAddress().address;
+  fixed?: boolean; // 新增属性
+}> = ({
+  showLogo,
+  title,
+  showConnect = false,
+  recordText,
+  recordUrl,
+  fixed = true,
+}) => {
+  const walletAddress = storage.get("address");
   const address = formatAddress(walletAddress);
   const navigate = useNavigate();
   const [menuStatus, setMenuStatus] = useState(false);
@@ -37,7 +44,7 @@ const Header: React.FC<{
       {!menuStatus && (
         <div
           ref={headerRef}
-           className={`head-box ${scrolled ? "scrolled" : ""} ${fixed ? "fixed" : "static"}`}
+          className={`head-box ${scrolled ? "scrolled" : ""} ${fixed ? "fixed" : "static"}`}
         >
           <div className="menu-box">
             <img

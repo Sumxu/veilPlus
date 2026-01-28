@@ -8,7 +8,7 @@ import { userAddress } from "@/Store/Store";
 export function useAuthGuard() {
   const navigate = useNavigate();
   const location = useLocation();
-  const wallet = userAddress((state) => state.address);
+  const wallet = storage.get('address');
 
   const [ready, setReady] = useState(false);
   const [invite, setInvite] = useState<string | null>(null); // 新增 invite 状态

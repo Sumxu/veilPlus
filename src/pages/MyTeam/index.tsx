@@ -22,6 +22,7 @@ import {
 } from "@/Hooks/Utils.ts";
 import NoData from "@/components/NoData";
 import { BigNumber } from "ethers";
+import { storage } from "@/Hooks/useLocalStorage";
 interface listItem {
   address?: string | number;
   createTime?: string;
@@ -34,12 +35,12 @@ interface TeamInfo {
   teamCount?: number; //团队人数
 }
 const MyTeam: React.FC = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [location, setLocation] = useState(""); //网页地址
-  const walletAddress = userAddress().address;
+  const walletAddress = storage.get('address');
   const [claimTeamLoading, setClaimTeamLoading] = useState<boolean>(false);
   const [maximumDirectPerf, setMaximumDirectPerf] = useState<BigNumber>(
-    BigNumber.from(0)
+    BigNumber.from(0),
   );
   const [userInfo, setUserInfo] = useState<UserInfo>({});
   const [teamInfo, setTeamInfo] = useState<TeamInfo>({
@@ -104,6 +105,9 @@ const MyTeam: React.FC = () => {
         directCount: result.value[7],
         teamCount: result.value[8],
       });
+      setTimeout(() => {
+          getPoolUserInfo()
+      }, 1000);
     }
   };
   //查询pool的团队奖励
@@ -122,6 +126,9 @@ const MyTeam: React.FC = () => {
         claimTeamTotalUsdtValue: result.value.claimTeamTotalUsdtValue,
       };
       setUserInfo(data);
+      setTimeout(() => {
+        getMaximumDirectPerf()
+      }, 1000);
     }
   };
   //得到大区业绩
@@ -135,42 +142,9 @@ const MyTeam: React.FC = () => {
       setMaximumDirectPerf(result.value);
     }
   };
-  //领取团队奖励
-  const claimTeamClick = async () => {
-    if (userInfo.claimTeamTotalUsdtValue.isZero()) {
-      return Totast("不可领取", "info");
-    }
-    try {
-      setClaimTeamLoading(true);
-      const result = await ContractSend({
-        tokenName: "VailPlusPool",
-        methodsName: "teamReward",
-        params: [],
-      });
-      if (result.value) {
-        getPoolUserInfo();
-      }
-    } catch (error) {
-    } finally {
-      setClaimTeamLoading(false);
-    }
-  };
-  const getTeamPending = async () => {
-    const result = await ContractRequest({
-      tokenName: "VailPlusPool",
-      methodsName: "teamPending",
-      params: [walletAddress],
-    });
-    if (result.value) {
-      setTeamIng(result.value.erc20Value);
-    }
-  };
   useEffect(() => {
-    getTeamPending();
     getDataPage();
     getTeamInfo();
-    getPoolUserInfo();
-    getMaximumDirectPerf();
     const origin = window.location.origin;
     const inviteUrl = `${origin}/Home?invite=${walletAddress}`;
     setLocation(inviteUrl);
@@ -191,13 +165,6 @@ const MyTeam: React.FC = () => {
           </div>
         </div>
         <div className="box usdtInfo">
-          <div className="usdtTop">
-            <div className="title">{t("团队总业绩")}(USDT)</div>
-            <div className="number">
-              {" "}
-              {fromWei(teamInfo.teamPerf, 18, true, 2)}{" "}
-            </div>
-          </div>
           <div className="usdtBottom">
             <div className="usdtItemBottom">
               {maximumDirectPerf && teamInfo.teamPerf && (
@@ -205,15 +172,14 @@ const MyTeam: React.FC = () => {
                   {fromWei(xiaoQuUsdt(), 18, true, 2)} USDT
                 </div>
               )}
-
               <div className="number">{t("小区业绩")}</div>
             </div>
             <div className="usdtItemBottom">
               <div className="title">
                 {" "}
-                {fromWei(nodePref, 18, true, 2) || "0.00"} USDT
+                {fromWei(teamInfo.teamPerf, 18, true, 2) || "0.00"} USDT
               </div>
-              <div className="number">{t("节点业绩")}</div>
+              <div className="number">{t("团队总业绩")}</div>
             </div>
           </div>
         </div>
@@ -228,35 +194,13 @@ const MyTeam: React.FC = () => {
                 copyAction();
               }}
             >
-              {t('复制')}
+              {t("复制")}
             </div>
           </div>
         </div>
-        <div className="awardBox">
-          <div className="itemBox">
-            <div className="txt">{t("累计团队奖励")}(USDT)</div>
-            <div className="number">
-              {" "}
-              {fromWei(userInfo.claimTeamTotalValue, 18, true, 2) || "0.00"}
-            </div>
-            <div className="btn btnList" onClick={()=>navigate('/TeamReward')}>{t("明细记录")}</div>
-          </div>
-          <div className="itemBox">
-            <div className="txt">{t("待领取团队奖励")}(USDT)</div>
-            <div className="number awardColor">
-              {" "}
-              {fromWei(teamIng, 18, true, 2) || "0.00"}
-            </div>
-            <Button
-              className="btn btnAward"
-              loading={claimTeamLoading}
-              onClick={() => claimTeamClick()}
-              loadingText={t("确认中")}
-            >
-              {t("领取奖励")}
-            </Button>
-          </div>
-        </div>
+
+       
+
         <div className="hintTeamListTxt">{t("团队列表")}</div>
         <div className="box teamList">
           <div className="teamHeaderOption">

@@ -13,6 +13,8 @@ import { Button } from "antd-mobile";
 import { Calc } from "@/Hooks/calc";
 import type { DonateItem } from "@/Ts/DonateList";
 import ContractSend from "@/Hooks/ContractSend.ts";
+import { storage } from "@/Hooks/useLocalStorage";
+
 interface userNodeInfo {
   nodeId: BigNumber; //0小 1大
   flg: boolean; //是否是节点
@@ -22,7 +24,7 @@ interface userNodeInfo {
   isActivate: boolean;
 }
 const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
-  const walletAddress = userAddress((state) => state.address);
+  const walletAddress = storage.get('address');
   const [userNodeInfo, setUserNodeInfo] = useState<userNodeInfo>({}); //用户节点信息
   const [rate, setRate] = useState<BigNumber>(BigNumber.from(0));
   const [userInfo, setUserInfo] = useState({});
@@ -150,11 +152,13 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
     }
   };
   const getUsdtBalance = async () => {
+    console.log("walletAddress==",walletAddress)
     const usdtRes = await ContractRequest({
       tokenName: "USDTToken",
       methodsName: "balanceOf",
       params: [walletAddress],
     });
+    console.log("usdtRes==",usdtRes)
     if (usdtRes.value) {
       setUsdtBalanceOf(usdtRes.value);
     }

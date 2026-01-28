@@ -28,6 +28,7 @@ export default class EnvConfigProvider {
       veilPlusSafety: "0xe4e96e139aFb35b4FFB089D9dD96e44E6bF75657",//托底
       veilPlusRepurchase: "0xde3127d3e8239F541108050Ac451E092A1f82Cc5",//回购池
       veilPlusBasePair:"0x5097a670ac73714c74eB8A61d6F373e7635c9A6B",//lp池
+      multiCallToken:"0xcA11bde05977b3631167028862bE2a173976CA11",
       chainId: "0x61",
       rpcUrl: "https://bsc-testnet-rpc.publicnode.com/",
       blockExplorerUrls: "http://143.92.39.28:9030/api",
@@ -41,15 +42,16 @@ export default class EnvConfigProvider {
       contractUsdt: "0x55d398326f99059fF775485246999027B3197955",
       contractVeillUser: "0x0647C3F22ad415cAB132c8D7B0639a500498c3cE",
       contractVeillNode: "0x6818087D9cd968A6d8DC3914F2bce74d07114204",
-      veilPlusToken: "0x846d777EBC4653A646714E65919e6Be2bBEFc073",
-      veilPlusPool: "0x2b93c86fc50A402D10f2BD282fE8F802eC806592",
-      veilPlusSafety: "0xe4e96e139aFb35b4FFB089D9dD96e44E6bF75657",
-      veilPlusRepurchase: "0xde3127d3e8239F541108050Ac451E092A1f82Cc5",
-      veilPlusBasePair:"0x5097a670ac73714c74eB8A61d6F373e7635c9A6B",
+      veilPlusToken: "0x796B08f7BA8d1859Ea4B9FBFECe57D06A1b49F88",
+      veilPlusPool: "0xa5fb3d81d9600e1B4580d244b1837561650B5B3b",
+      veilPlusSafety: "0xA6d24b2A5304BC463408579ecFE39472C8a95561",
+      veilPlusRepurchase: "0x14eb9acAF00f367b9a9A05efEa2B8Aa006B899F5",
+      veilPlusBasePair:"0x705eFAE2f1225eA9A035D69d816605024A6A2381",
+      multiCallToken:"0xcA11bde05977b3631167028862bE2a173976CA11",
       chainId: "0x38",
       rpcUrl: "https://bsc-dataseed.binance.org/",
       blockExplorerUrls: "https://bscscan.com",
-      chainName: "BNB Smart Chain Mainnet",
+      chainName: "BNB Chain",
     };
   }
 }
