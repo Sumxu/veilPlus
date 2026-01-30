@@ -9,6 +9,7 @@ import lanIcon from "@/assets/my/lanIcon.png";
 import moneyTools from "@/assets/my/moneyTools.png";
 import { useNavigate } from "react-router-dom";
 import LanPopup from "@/components/LanPopup";
+import appIcon from "@/assets/my/token.png";
 import i18n, { t } from "i18next";
 import { Totast } from "@/Hooks/Utils";
 import right from '@/assets/basic/right.png'

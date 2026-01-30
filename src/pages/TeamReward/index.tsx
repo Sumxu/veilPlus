@@ -19,6 +19,7 @@ interface listItem {
 }
 const OutputList: React.FC = () => {
   const walletAddress = storage.get('address');
+  
   const [list, setList] = useState<listItem[]>([]);
   // 列表是否加载
   const [listLoding, setListLoding] = useState<boolean>(false);
@@ -85,7 +86,7 @@ const OutputList: React.FC = () => {
     }
   };
   useEffect(() => {
-    // getDataList();
+    getDataList();
   }, []);
   // 当前钱包地址
   return (

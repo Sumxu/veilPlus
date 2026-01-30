@@ -23,12 +23,9 @@ const Home: FC = () => {
    * @returns 当前用户是否存在上级
    */
   const isInviterFn = async (address) => {
-    // 1️⃣ 先检查 URL 是否有 invite 参数
-    const params = new URLSearchParams(location.search);
-    const inviteParam = params.get("invite");
+    const inviteParam = storage.get("invite");
     if (inviteParam) {
       setInvite(inviteParam); // 保存到 state
-      storage.set("invite", inviteParam); // 可选：存本地
     }
     if (!address) return; // 地址不存在不查
     const result = await ContractRequest({
@@ -49,8 +46,18 @@ const Home: FC = () => {
   const onLoginSuccess = (address) => {
     isInviterFn(address);
   };
+  const initInviter = () => {
+    // 1️⃣ 先检查 URL 是否有 invite 参数
+    const params = new URLSearchParams(location.search);
+    const inviteParam = params.get("invite");
+    if (inviteParam) {
+      setInvite(inviteParam); // 保存到 state
+      storage.set("invite", inviteParam); // 可选：存本地
+    }
+  };
   useEffect(() => {
     initLogin();
+    initInviter();
   }, [location]);
   return (
     <div className="homePageBox">

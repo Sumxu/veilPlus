@@ -11,6 +11,7 @@ const My = lazy(() => import("@/pages/Tabbar/My/index"));
 const About = lazy(() => import("@/pages/Tabbar/My/About"));
 const NodeDetail = lazy(() => import("@/pages/Tabbar/My/NodeDetail"));
 const OutputList = lazy(() => import("@/pages/OutputList"));
+const Swap = lazy(() => import("@/pages/Swap"));
 
 const DonateStartList = lazy(
   () => import("@/pages/Tabbar/Donate/DonateStartList")
@@ -28,4 +29,5 @@ export const routes = [
   { path: "/About", element: <About /> },
   { path: "/NodeDetail", element: <NodeDetail /> },
   { path: "/DonateStartList", element: <DonateStartList /> },
+  { path: "/Swap", element: <Swap /> },
 ];

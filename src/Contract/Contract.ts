@@ -3,6 +3,7 @@ import EnvManager from "@/config/EnvManager.ts";
 import VailPlusNodeABI from "./ABI/VailPlusNodeABI.ts";
 import VailPlusUserABI from "./ABI/VailPlusUserABI.ts";
 import VailPlusPoolABI from "./ABI/VailPlusPoolABI.ts";
+import SwapRouterABI from "./ABI/SwapRouterABI.ts";
 interface ContractItem {
   address: string;
   abi: any[]; // 或具体ABI类型
@@ -20,15 +21,15 @@ const Contract: ContractMap = {
     address: EnvManager.veilPlusToken,
     abi: Erc20,
   },
-  veilPlusSafety:{
-     address: EnvManager.veilPlusSafety,
+  veilPlusSafety: {
+    address: EnvManager.veilPlusSafety,
     abi: Erc20,
   },
   VailPlusPoolToken: {
     address: EnvManager.veilPlusPool,
     abi: Erc20,
   },
-  veilPlusBasePair:{
+  veilPlusBasePair: {
     address: EnvManager.veilPlusBasePair,
     abi: Erc20,
   },
@@ -44,10 +45,14 @@ const Contract: ContractMap = {
     address: EnvManager.veilPlusPool,
     abi: VailPlusPoolABI,
   },
-  VeilPlusRepurchase:{
-    address:EnvManager.veilPlusRepurchase,
+  VeilPlusRepurchase: {
+    address: EnvManager.veilPlusRepurchase,
     abi: Erc20,
-  }
+  },
+  SwapRouter: {
+    address: EnvManager.SwapRouter,
+    abi: SwapRouterABI,
+  },
 };
 // 正式
 export default Contract;

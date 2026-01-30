@@ -6,15 +6,18 @@ import { useEffect, useState } from "react";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import { userAddress } from "@/Store/Store.ts";
 import { BigNumber } from "ethers";
+import right from "@/assets/basic/right.png";
 import type { PendIngInfo } from "@/Ts/PendIngInfo";
 import { storage } from "@/Hooks/useLocalStorage";
 import { ensureWalletConnected } from "@/Hooks/WalletHooks";
-
+import swapIcon from "@/assets/basic/swapIcon.png";
+import { useNavigate } from "react-router-dom";
 interface userInfo {
   level: BigNumber;
   isNode: boolean;
 }
 const My: React.FC = () => {
+  const navigate = useNavigate();
   const walletAddress = storage.get("address");
   const [userInfo, setUserInfo] = useState({});
   const [usdtBalance, setUsdtBalance] = useState<BigNumber>(
@@ -116,7 +119,14 @@ const My: React.FC = () => {
         viplBalance={viplBalance}
         onChange={() => onChange()}
       ></Info>
-      <Tools userInfo={userInfo}></Tools>
+      <div className="myPageContent">
+        <div className="swapCardBox" onClick={() => navigate("/Swap")}>
+          <img src={swapIcon} className="swapIcon"></img>
+          <span className="txt">Ave Swap</span>
+          {/* <img src={right} className="rightIcon"></img> */}
+        </div>
+        <Tools userInfo={userInfo}></Tools>
+      </div>
     </div>
   );
 };

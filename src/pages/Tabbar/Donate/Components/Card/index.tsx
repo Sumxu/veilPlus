@@ -25,7 +25,6 @@ const Card: FC = ({ listChange }) => {
     BigNumber.from("0"),
   );
   const navigate = useNavigate();
-
   const openShow = () => {
     setIsShow(true);
   };

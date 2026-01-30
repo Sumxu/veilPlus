@@ -205,5 +205,17 @@
   "实时捐赠收益": "Real-time Donation Earnings",
   "捐赠收益": "Donation Earnings",
   "累计领取社区奖励": "Total Claimed Community Rewards",
-  "待领取社区奖励": "Pending Community Rewards"
+  "待领取社区奖励": "Pending Community Rewards",
+  "VIPL余额不足": "Insufficient VIPL balance",
+  "超出最大出售额度": "Exceeds maximum sell limit",
+  "兑换比例": "Exchange rate",
+  "选择资产": "Select asset",
+  "兑换滑点": "Swap slippage",
+  "暴跌滑点": "Crash slippage",
+  "预计获得": "Estimated received",
+  "最大出售额度": "Maximum sell limit",
+  "兑换": "Swap",
+  "我的记录": "My records",
+  "交易对": "Trading pair",
+  "已完成": "Completed"
 }

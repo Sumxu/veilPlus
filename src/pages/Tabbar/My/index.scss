@@ -1,7 +1,38 @@
-.myPage{
-    padding-inline:16px;
-    background: url('@/assets/my/meTopBg.png');
-    background-repeat: no-repeat;
-    background-size: 100% 150px;
-    
+.myPage {
+
+  background-image: url("@/assets/my/meTopBg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 150px;
+
+  .myPageContent {
+    padding-bottom: 90px;
+    background: #000;
+  }
+  .swapCardBox {
+    margin-top: 24px;
+    margin-inline: 16px;
+    border-radius: 8px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    // border: 1px solid #00e4ed;
+    // background: rgba(0, 240, 247, 0.15);
+    background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
+    .swapIcon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+    .txt {
+      flex: auto;
+      margin-left: 8px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000;
+    }
+    .rightIcon {
+      width: 18px;
+      height: 18px;
+    }
+  }
 }

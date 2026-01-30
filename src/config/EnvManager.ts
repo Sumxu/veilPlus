@@ -48,7 +48,9 @@ class EnvManager {
   static get configAll(): Readonly<EnvConfig> {
     return EnvManager.config;
   }
-
+  static get SwapRouter(): Readonly<EnvConfig> {
+    return EnvManager.config.SwapRouter;
+  }
   static get multiCallToken(): Readonly<EnvConfig> {
     return EnvManager.multiCallToken;
   }
