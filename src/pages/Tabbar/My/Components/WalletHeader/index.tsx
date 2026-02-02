@@ -10,7 +10,7 @@ import { formatAddress, copyText } from "@/Hooks/Utils";
 import { storage } from "@/Hooks/useLocalStorage";
 
 const WalletHeader: React.FC = ({ userInfo, level }) => {
-  const walletAddress = storage.get('address');
+  const walletAddress = storage.get("address");
   const copyClick = () => {
     copyText(walletAddress);
   };
@@ -27,18 +27,18 @@ const WalletHeader: React.FC = ({ userInfo, level }) => {
               onClick={() => copyClick()}
             ></img>
           </div>
-          {userInfo.isNode && (
-            <div className="nodeBox">
+
+          <div className="nodeBox">
+            {userInfo.isNode && (
               <div className="nodeOption">
                 <img src={nodeIcon} className="nodeIcon"></img> {t("节点用户")}
               </div>
-
-              <div className="memberOption">
-                <img src={memberIcon} className="memberIcon"></img> {t("等级")}
-                :v{level.toString()}
-              </div>
+            )}
+            <div className="memberOption">
+              <img src={memberIcon} className="memberIcon"></img> {t("等级")}
+              :v{level.toString()}
             </div>
-          )}
+          </div>
         </div>
         {/* <img src={logOutIcon} className="logOutIcon"></img> */}
       </div>

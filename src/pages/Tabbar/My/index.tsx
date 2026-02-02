@@ -10,7 +10,8 @@ import right from "@/assets/basic/right.png";
 import type { PendIngInfo } from "@/Ts/PendIngInfo";
 import { storage } from "@/Hooks/useLocalStorage";
 import { ensureWalletConnected } from "@/Hooks/WalletHooks";
-import swapIcon from "@/assets/basic/swapIcon.png";
+import swapIcon from "@/assets/basic/swapIcon.jpg";
+
 import { useNavigate } from "react-router-dom";
 interface userInfo {
   level: BigNumber;
@@ -28,13 +29,13 @@ const My: React.FC = () => {
     BigNumber.from("0"),
   );
   const [pendingInfo, setPendIngInfo] = useState<PendIngInfo>({});
-
   const getUserInfo = async () => {
     const result = await ContractRequest({
       tokenName: "vailPlusUserToken",
       methodsName: "userInfo",
       params: [walletAddress],
     });
+    console.log("getUserInfo",result)
     if (result.value) {
       const data = {
         level: result.value.level,
@@ -94,6 +95,7 @@ const My: React.FC = () => {
       methodsName: "getUserLevel",
       params: [walletAddress],
     });
+    console.log("result==",result)
     if (result.value) {
       setLevel(result.value);
       setTimeout(() => {

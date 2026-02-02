@@ -227,8 +227,8 @@ const Swap: React.FC = () => {
     if (toWei(inputSwapAmount).gt(viplTokenBalance)) {
       return Totast(t("VIPL余额不足"), "info");
     }
-    if (toWei(inputSwapAmount).gt(maxBuyBalance)) {
-      return Totast(t("超出最大出售额度"), "info");
+    if (estimateAmount(outputSwapAmount).gt(maxBuyBalance)) {
+      return Totast(t("剩余额度不足，盈利部分请到 Ave Swap 或者 PancakeSwap 交易"), "info");
     }
     if (buttonLoading == true) {
       return;
