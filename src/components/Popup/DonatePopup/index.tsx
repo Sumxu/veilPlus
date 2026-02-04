@@ -24,7 +24,7 @@ interface userNodeInfo {
   isActivate: boolean;
 }
 const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
-  const walletAddress = storage.get('address');
+  const walletAddress = storage.get("address");
   const [userNodeInfo, setUserNodeInfo] = useState<userNodeInfo>({}); //用户节点信息
   const [rate, setRate] = useState<BigNumber>(BigNumber.from(0));
   const [userInfo, setUserInfo] = useState({});
@@ -68,27 +68,12 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
         return false;
     }
   };
-  //确认提现
   const submitClick = async () => {
     if (inputNumber == "") {
       return Totast(t("请输入"), "info");
     }
-    if (userInfo.isNode && !userInfo.isActivate) {
-      if (userInfo.nodeId.toString() == 0) {
-        //小节点激活输入金额
-        if (inputNumber < 500) {
-          return Totast("小节点激活金额不能小于500U", "info");
-        }
-      } else {
-        //大节点激活输入金额
-        if (inputNumber < 1000) {
-          return Totast("大节点激活金额不能小于1000U", "info");
-        }
-      }
-    } else {
-      if (!validateDonateItem(checkItem, Number(inputNumber))) {
-        return Totast(t(`请输入 ${checkItem.title} 范围内的金额`), "info");
-      }
+    if (!validateDonateItem(checkItem, Number(inputNumber))) {
+      return Totast(t(`请输入 ${checkItem.title} 范围内的金额`), "info");
     }
     if (!/^\d+(\.\d+)?$/.test(inputNumber))
       return Totast(t("输入格式不正确"), "info");
@@ -152,13 +137,13 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
     }
   };
   const getUsdtBalance = async () => {
-    console.log("walletAddress==",walletAddress)
+    console.log("walletAddress==", walletAddress);
     const usdtRes = await ContractRequest({
       tokenName: "USDTToken",
       methodsName: "balanceOf",
       params: [walletAddress],
     });
-    console.log("usdtRes==",usdtRes)
+    console.log("usdtRes==", usdtRes);
     if (usdtRes.value) {
       setUsdtBalanceOf(usdtRes.value);
     }
@@ -204,11 +189,11 @@ const MyPopup: React.FC = ({ isShow, onClose, checkItem }) => {
           </div>
 
           <div className="title">{checkItem.title}</div>
-          {userInfo.isNode && !userInfo.isActivate && (
+          {/* {userInfo.isNode && !userInfo.isActivate && (
             <div className="flagHintOption">
               {nodeMap[userInfo?.nodeId?.toString()]}
             </div>
-          )}
+          )} */}
           <div className="input-box">
             <div className="input-hint-txt-option">
               <div className="txt-option">{t("参与金额")}:</div>
